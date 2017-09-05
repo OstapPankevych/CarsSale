@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CarsSale.DataAccess.Repositories.Interfaces
 {
-    public interface IBodyTypeRepository: IRepository<BODY_TYPE, int>
+    public interface IEngineFuelRepository: IRepository<ENGINE_FUEL, int>
     {
-        BODY_TYPE CreateIfNotExists(string name);
+        IEnumerable<ENGINE_FUEL> CreateIfNotExist(int engineId, int[] fuelIds);
     }
 }

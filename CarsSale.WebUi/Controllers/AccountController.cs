@@ -33,6 +33,16 @@ namespace CarsSale.WebUi.Controllers
             return View(new Account());
         }
 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        public ActionResult SubmitForgotPassword()
+        {
+            return View("~/Views/Home/Index");
+        }
+
         [HttpPost]
         public ActionResult SubmitRegistry(Account account)
         {

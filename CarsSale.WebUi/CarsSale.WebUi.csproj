@@ -141,11 +141,21 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdvertisementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Advertisement.cs" />
+    <Compile Include="Models\Vehicl\Fuel.cs" />
+    <Compile Include="Models\Vehicl\Region.cs" />
+    <Compile Include="Models\Vehicl\BodyType.cs" />
+    <Compile Include="Models\Vehicl\Transmission.cs" />
+    <Compile Include="Models\Vehicl\Engine.cs" />
+    <Compile Include="Models\Vehicl\Type.cs" />
+    <Compile Include="Models\Vehicl\Brand.cs" />
+    <Compile Include="Models\Region.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +165,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Advertisement\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

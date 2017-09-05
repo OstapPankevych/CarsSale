@@ -1,5 +1,4 @@
 using CarsSale.DataAccess;
-using CarsSale.DataAccess.Repositories;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.Services;
 using CarsSale.DataAccess.Services.Interfaces;
@@ -16,6 +15,7 @@ namespace CarsSale.WebUi.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using CarsSale.DataAccess.Repositories;
 
     public static class NinjectWebCommon 
     {

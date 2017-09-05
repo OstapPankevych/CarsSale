@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CarsSale.DataAccess.Repositories.Interfaces;
+﻿using CarsSale.DataAccess.Repositories.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
@@ -12,6 +7,18 @@ namespace CarsSale.DataAccess.Repositories
         public TransmissionRepository(CarsSaleEntities context)
             : base(context.TRANSMISSIONs)
         {
+        }
+
+        public TRANSMISSION CreateIfNotExists(string name)
+        {
+            bool Query(TRANSMISSION x) => x.NAME == name;
+            var vehiclType = Get(Query);
+            if (vehiclType != null) return vehiclType;
+            Create(new TRANSMISSION
+            {
+                NAME = name
+            });
+            return Get(Query);
         }
     }
 }

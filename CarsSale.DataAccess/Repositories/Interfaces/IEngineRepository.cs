@@ -8,5 +8,6 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
 {
     public interface IEngineRepository: IRepository<ENGINE, int>
     {
+        ENGINE CreateIfNotExists(int volume);
     }
 }

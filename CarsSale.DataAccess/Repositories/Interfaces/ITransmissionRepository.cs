@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarsSale.DataAccess.Repositories.Interfaces
+﻿namespace CarsSale.DataAccess.Repositories.Interfaces
 {
     public interface ITransmissionRepository: IRepository<TRANSMISSION, int>
     {
+        TRANSMISSION CreateIfNotExists(string name);
     }
 }

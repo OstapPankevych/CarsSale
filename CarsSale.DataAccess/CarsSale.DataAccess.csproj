@@ -101,6 +101,15 @@
     <Compile Include="REGION.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AdvertisementRepository.cs" />
+    <Compile Include="Repositories\BodyTypeRepository.cs" />
+    <Compile Include="Repositories\BrandRepository.cs" />
+    <Compile Include="Repositories\CompleteSetRepository.cs" />
+    <Compile Include="Repositories\EngineFuelRepository.cs" />
+    <Compile Include="Repositories\EngineRepository.cs" />
+    <Compile Include="Repositories\FuelRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEngineFuelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IAdvertisementRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBodyTypeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBrandRepository.cs" />
@@ -114,13 +123,6 @@
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\Interfaces\IVehiclRepository.cs" />
     <Compile Include="Repositories\Interfaces\IVehiclTypeRepository.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AdvertisementRepository.cs" />
-    <Compile Include="Repositories\BodyTypeRepository.cs" />
-    <Compile Include="Repositories\BrandRepository.cs" />
-    <Compile Include="Repositories\CompleteSetRepository.cs" />
-    <Compile Include="Repositories\EngineRepository.cs" />
-    <Compile Include="Repositories\FuelRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
@@ -131,6 +133,8 @@
     <Compile Include="ROLE.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\AdvertisementService.cs" />
+    <Compile Include="Services\Interfaces\IAdvertisementService.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Service.cs" />

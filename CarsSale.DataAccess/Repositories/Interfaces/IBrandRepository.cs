@@ -8,5 +8,6 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
 {
     public interface IBrandRepository: IRepository<BRAND, int>
     {
+        BRAND CreateIfNotExists(string name);
     }
 }
