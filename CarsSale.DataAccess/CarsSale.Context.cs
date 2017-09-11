@@ -26,7 +26,6 @@ namespace CarsSale.DataAccess
         }
     
         public virtual DbSet<ADVERTISEMENT> ADVERTISEMENTs { get; set; }
-        public virtual DbSet<BODY_TYPE> BODY_TYPE { get; set; }
         public virtual DbSet<BRAND> BRANDs { get; set; }
         public virtual DbSet<COMPLETESET> COMPLETESETs { get; set; }
         public virtual DbSet<ENGINE> ENGINEs { get; set; }
@@ -34,7 +33,7 @@ namespace CarsSale.DataAccess
         public virtual DbSet<FUEL> FUELs { get; set; }
         public virtual DbSet<REGION> REGIONs { get; set; }
         public virtual DbSet<ROLE> ROLEs { get; set; }
-        public virtual DbSet<TRANSMISSION> TRANSMISSIONs { get; set; }
+        public virtual DbSet<TRANSMISSION_TYPE> TRANSMISSION_TYPE { get; set; }
         public virtual DbSet<USER> USERs { get; set; }
         public virtual DbSet<VEHICL> VEHICLs { get; set; }
         public virtual DbSet<VEHICL_TYPE> VEHICL_TYPE { get; set; }

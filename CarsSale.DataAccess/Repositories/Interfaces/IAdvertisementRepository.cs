@@ -8,5 +8,6 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
 {
     public interface IAdvertisementRepository: IRepository<ADVERTISEMENT, int>
     {
+
     }
 }

@@ -1,8 +1,46 @@
-﻿
+﻿@model CarsSale.WebUi.Models.Advertisements.Advertisement
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create new advertisement</h2>
+<div>
+	@using (Html.BeginForm("CreateAdvertisement", "Advertisement"))
+	{
+		<div>
+			@Html.Label("Region")
+			@Html.DropDownListFor(x => x.Region, new SelectList(Model.RegionOptions,
+				"Id", "Name"));
+		</div>
+		<div>
+			@Html.Label("Brand")
+			@Html.DropDownListFor(x => x.Brand, new SelectList(Model.BrandOptions,
+				"Id", "Name"));
+		</div>
+		<div>
+			@Html.Label("Vehicl Type")
+			@Html.DropDownListFor(x => x.VehiclType, new SelectList(Model.VehiclTypeOptions,
+				"Id", "Name"));
+		</div>
+		<div>
+			@Html.Label("Transmission Type")
+			@Html.DropDownListFor(x => x.TransmissionType, new SelectList(Model.TransmissionTypeOptions,
+				"Id", "Name"));
+		</div>
+		<div>
+			@Html.Label("Engine Volume")
+			@Html.TextBoxFor(x => x.EngineVolume);
+		</div>
+		<div>
+			@Html.Label("Fuels")
+			@Html.DropDownListFor(x => x.Fuels, new SelectList(Model.FuelOptions,
+				"Id", "Name"));
+		</div>
+		<div>
+			<input type="submit" name="Create">
+		</div>
+	}
+</div>
 

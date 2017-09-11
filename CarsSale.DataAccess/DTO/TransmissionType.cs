@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CarsSale.DataAccess.DTO
 {
-    public class Transmission
+    public class TransmissionType
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public Transmission(TRANSMISSION entity)
+        public TransmissionType(TRANSMISSION_TYPE entity)
         {
             Id = entity.ID;
             Name = entity.NAME;

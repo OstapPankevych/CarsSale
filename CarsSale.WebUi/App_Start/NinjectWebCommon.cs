@@ -72,6 +72,19 @@ namespace CarsSale.WebUi.App_Start
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
             kernel.Bind<IUserService>().To<UserService>();
+
+            kernel.Bind<IVehiclRepository>().To<VehiclRepository>();
+            kernel.Bind<IBrandRepository>().To<BrandRepository>();
+            kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>();
+            kernel.Bind<ICompleteSetRepository>().To<CompleteSetRepository>();
+            kernel.Bind<IEngineFuelRepository>().To<EngineFuelRepository>();
+            kernel.Bind<IEngineRepository>().To<EngineRepository>();
+            kernel.Bind<IFuelRepository>().To<FuelRepository>();
+            kernel.Bind<ITransmissionTypeRepository>().To<TransmissionTypeRepository>();
+            kernel.Bind<IAdvertisementRepository>().To<AdvertisementRepository>();
+            kernel.Bind<IRegionRepository>().To<RegionRepository>();
+
+            kernel.Bind<IAdvertisementService>().To<AdvertisementService>();
         }        
     }
 }

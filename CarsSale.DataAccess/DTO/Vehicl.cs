@@ -13,8 +13,6 @@ namespace CarsSale.DataAccess.DTO
 
         public Brand Brand { get; set; }
 
-        public BodyType BodyType { get; set; }
-
         public CompleteSet CompleteSet { get; set; }
 
         public VehiclType VehiclType { get; set; }
@@ -22,7 +20,6 @@ namespace CarsSale.DataAccess.DTO
         public Vehicl(VEHICL entity)
         {
             Brand = new Brand(entity.BRAND);
-            BodyType = new BodyType(entity.BODY_TYPE);
             CompleteSet = new CompleteSet(entity.COMPLETESET);
             VehiclType = new VehiclType(entity.VEHICL_TYPE);
         }

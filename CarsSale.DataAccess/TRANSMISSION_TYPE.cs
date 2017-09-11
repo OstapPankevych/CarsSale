@@ -12,10 +12,10 @@ namespace CarsSale.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class TRANSMISSION
+    public partial class TRANSMISSION_TYPE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TRANSMISSION()
+        public TRANSMISSION_TYPE()
         {
             this.COMPLETESETs = new HashSet<COMPLETESET>();
         }

@@ -25,7 +25,7 @@ namespace CarsSale.DataAccess
         public int TRANSMISSION_ID { get; set; }
     
         public virtual ENGINE ENGINE { get; set; }
-        public virtual TRANSMISSION TRANSMISSION { get; set; }
+        public virtual TRANSMISSION_TYPE TRANSMISSION_TYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VEHICL> VEHICLs { get; set; }
     }

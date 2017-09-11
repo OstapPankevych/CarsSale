@@ -24,11 +24,9 @@ namespace CarsSale.DataAccess
         public int BRAND_ID { get; set; }
         public int VEHICL_TYPE_ID { get; set; }
         public int COMPLETESET_ID { get; set; }
-        public int BODY_TYPE_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ADVERTISEMENT> ADVERTISEMENTs { get; set; }
-        public virtual BODY_TYPE BODY_TYPE { get; set; }
         public virtual BRAND BRAND { get; set; }
         public virtual COMPLETESET COMPLETESET { get; set; }
         public virtual VEHICL_TYPE VEHICL_TYPE { get; set; }

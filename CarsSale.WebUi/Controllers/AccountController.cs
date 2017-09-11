@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarsSale.DataAccess.DTO;
@@ -46,18 +47,21 @@ namespace CarsSale.WebUi.Controllers
         [HttpPost]
         public ActionResult SubmitRegistry(Account account)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _userService.CreateUser(new User
-                {
-                    Birthday = account.Birthday,
-                    Phone = account.Phone,
-                    Password = account.Password,
-                    Name = account.Name,
-                    Login = account.Login,
-                    Email = account.Email
-                });
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            _userService.CreateUser(new User
+            {
+                Birthday = account.Birthday,
+                Phone = account.Phone,
+                Password = account.Password,
+                Name = account.Name,
+                Login = account.Login,
+                Email = account.Email
+            });
+
             return View("~/Views/Home/Index");
         }
     }

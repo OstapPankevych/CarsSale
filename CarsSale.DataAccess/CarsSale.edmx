@@ -17,13 +17,6 @@
           <Property Name="USER_ID" Type="int" Nullable="false" />
           <Property Name="REGION_ID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="BODY_TYPE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="nvarchar" MaxLength="15" Nullable="false" />
-        </EntityType>
         <EntityType Name="BRAND">
           <Key>
             <PropertyRef Name="ID" />
@@ -75,7 +68,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <EntityType Name="TRANSMISSION">
+        <EntityType Name="TRANSMISSION_TYPE">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -103,7 +96,6 @@
           <Property Name="BRAND_ID" Type="int" Nullable="false" />
           <Property Name="VEHICL_TYPE_ID" Type="int" Nullable="false" />
           <Property Name="COMPLETESET_ID" Type="int" Nullable="false" />
-          <Property Name="BODY_TYPE_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VEHICL_TYPE">
           <Key>
@@ -112,7 +104,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ADVERTISE__REGIO__3E52440B">
+        <Association Name="FK__ADVERTISE__REGIO__3A81B327">
           <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +116,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__USER___3C69FB99">
+        <Association Name="FK__ADVERTISE__USER___38996AB5">
           <End Role="USER" Type="Self.USER" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +128,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__VEHIC__3D5E1FD2">
+        <Association Name="FK__ADVERTISE__VEHIC__398D8EEE">
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -161,10 +153,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__COMPLETES__TRANS__300424B4">
-          <End Role="TRANSMISSION" Type="Self.TRANSMISSION" Multiplicity="1" />
+          <End Role="TRANSMISSION_TYPE" Type="Self.TRANSMISSION_TYPE" Multiplicity="1" />
           <End Role="COMPLETESET" Type="Self.COMPLETESET" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TRANSMISSION">
+            <Principal Role="TRANSMISSION_TYPE">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="COMPLETESET">
@@ -208,19 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__BODY_TYP__398D8EEE">
-          <End Role="BODY_TYPE" Type="Self.BODY_TYPE" Multiplicity="1" />
-          <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BODY_TYPE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="VEHICL">
-              <PropertyRef Name="BODY_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__VEHICL__BRAND_ID__36B12243">
+        <Association Name="FK__VEHICL__BRAND_ID__33D4B598">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__COMPLETE__38996AB5">
+        <Association Name="FK__VEHICL__COMPLETE__35BCFE0A">
           <End Role="COMPLETESET" Type="Self.COMPLETESET" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -244,7 +224,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__VEHICL_T__37A5467C">
+        <Association Name="FK__VEHICL__VEHICL_T__34C8D9D1">
           <End Role="VEHICL_TYPE" Type="Self.VEHICL_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -258,7 +238,6 @@
         </Association>
         <EntityContainer Name="CarsSaleModelStoreContainer">
           <EntitySet Name="ADVERTISEMENT" EntityType="Self.ADVERTISEMENT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BODY_TYPE" EntityType="Self.BODY_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BRAND" EntityType="Self.BRAND" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COMPLETESET" EntityType="Self.COMPLETESET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENGINE" EntityType="Self.ENGINE" Schema="dbo" store:Type="Tables" />
@@ -266,19 +245,19 @@
           <EntitySet Name="FUEL" EntityType="Self.FUEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REGION" EntityType="Self.REGION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TRANSMISSION" EntityType="Self.TRANSMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANSMISSION_TYPE" EntityType="Self.TRANSMISSION_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICL" EntityType="Self.VEHICL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICL_TYPE" EntityType="Self.VEHICL_TYPE" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__ADVERTISE__REGIO__3E52440B" Association="Self.FK__ADVERTISE__REGIO__3E52440B">
+          <AssociationSet Name="FK__ADVERTISE__REGIO__3A81B327" Association="Self.FK__ADVERTISE__REGIO__3A81B327">
             <End Role="REGION" EntitySet="REGION" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__USER___3C69FB99" Association="Self.FK__ADVERTISE__USER___3C69FB99">
+          <AssociationSet Name="FK__ADVERTISE__USER___38996AB5" Association="Self.FK__ADVERTISE__USER___38996AB5">
             <End Role="USER" EntitySet="USER" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__VEHIC__3D5E1FD2" Association="Self.FK__ADVERTISE__VEHIC__3D5E1FD2">
+          <AssociationSet Name="FK__ADVERTISE__VEHIC__398D8EEE" Association="Self.FK__ADVERTISE__VEHIC__398D8EEE">
             <End Role="VEHICL" EntitySet="VEHICL" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
@@ -287,7 +266,7 @@
             <End Role="COMPLETESET" EntitySet="COMPLETESET" />
           </AssociationSet>
           <AssociationSet Name="FK__COMPLETES__TRANS__300424B4" Association="Self.FK__COMPLETES__TRANS__300424B4">
-            <End Role="TRANSMISSION" EntitySet="TRANSMISSION" />
+            <End Role="TRANSMISSION_TYPE" EntitySet="TRANSMISSION_TYPE" />
             <End Role="COMPLETESET" EntitySet="COMPLETESET" />
           </AssociationSet>
           <AssociationSet Name="FK__ENGINE_FU__ENGIN__276EDEB3" Association="Self.FK__ENGINE_FU__ENGIN__276EDEB3">
@@ -302,19 +281,15 @@
             <End Role="ROLE" EntitySet="ROLE" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BODY_TYP__398D8EEE" Association="Self.FK__VEHICL__BODY_TYP__398D8EEE">
-            <End Role="BODY_TYPE" EntitySet="BODY_TYPE" />
-            <End Role="VEHICL" EntitySet="VEHICL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BRAND_ID__36B12243" Association="Self.FK__VEHICL__BRAND_ID__36B12243">
+          <AssociationSet Name="FK__VEHICL__BRAND_ID__33D4B598" Association="Self.FK__VEHICL__BRAND_ID__33D4B598">
             <End Role="BRAND" EntitySet="BRAND" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__COMPLETE__38996AB5" Association="Self.FK__VEHICL__COMPLETE__38996AB5">
+          <AssociationSet Name="FK__VEHICL__COMPLETE__35BCFE0A" Association="Self.FK__VEHICL__COMPLETE__35BCFE0A">
             <End Role="COMPLETESET" EntitySet="COMPLETESET" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__VEHICL_T__37A5467C" Association="Self.FK__VEHICL__VEHICL_T__37A5467C">
+          <AssociationSet Name="FK__VEHICL__VEHICL_T__34C8D9D1" Association="Self.FK__VEHICL__VEHICL_T__34C8D9D1">
             <End Role="VEHICL_TYPE" EntitySet="VEHICL_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
@@ -335,17 +310,9 @@
           <Property Name="VEHICL_ID" Type="Int32" Nullable="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="REGION_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="REGION" Relationship="Self.FK__ADVERTISE__REGIO__3E52440B" FromRole="ADVERTISEMENT" ToRole="REGION" />
-          <NavigationProperty Name="USER" Relationship="Self.FK__ADVERTISE__USER___3C69FB99" FromRole="ADVERTISEMENT" ToRole="USER" />
-          <NavigationProperty Name="VEHICL" Relationship="Self.FK__ADVERTISE__VEHIC__3D5E1FD2" FromRole="ADVERTISEMENT" ToRole="VEHICL" />
-        </EntityType>
-        <EntityType Name="BODY_TYPE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__BODY_TYP__398D8EEE" FromRole="BODY_TYPE" ToRole="VEHICL" />
+          <NavigationProperty Name="REGION" Relationship="Self.FK__ADVERTISE__REGIO__3A81B327" FromRole="ADVERTISEMENT" ToRole="REGION" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__ADVERTISE__USER___38996AB5" FromRole="ADVERTISEMENT" ToRole="USER" />
+          <NavigationProperty Name="VEHICL" Relationship="Self.FK__ADVERTISE__VEHIC__398D8EEE" FromRole="ADVERTISEMENT" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="BRAND">
           <Key>
@@ -353,7 +320,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__BRAND_ID__36B12243" FromRole="BRAND" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__BRAND_ID__33D4B598" FromRole="BRAND" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="COMPLETESET">
           <Key>
@@ -363,8 +330,8 @@
           <Property Name="ENGINE_ID" Type="Int32" Nullable="false" />
           <Property Name="TRANSMISSION_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ENGINE" Relationship="Self.FK__COMPLETES__ENGIN__2F10007B" FromRole="COMPLETESET" ToRole="ENGINE" />
-          <NavigationProperty Name="TRANSMISSION" Relationship="Self.FK__COMPLETES__TRANS__300424B4" FromRole="COMPLETESET" ToRole="TRANSMISSION" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__COMPLETE__38996AB5" FromRole="COMPLETESET" ToRole="VEHICL" />
+          <NavigationProperty Name="TRANSMISSION_TYPE" Relationship="Self.FK__COMPLETES__TRANS__300424B4" FromRole="COMPLETESET" ToRole="TRANSMISSION_TYPE" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__COMPLETE__35BCFE0A" FromRole="COMPLETESET" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="ENGINE">
           <Key>
@@ -399,7 +366,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__REGIO__3E52440B" FromRole="REGION" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__REGIO__3A81B327" FromRole="REGION" ToRole="ADVERTISEMENT" />
         </EntityType>
         <EntityType Name="ROLE">
           <Key>
@@ -409,13 +376,13 @@
           <Property Name="NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="USERs" Relationship="Self.FK__USER__ROLE_ID__1920BF5C" FromRole="ROLE" ToRole="USER" />
         </EntityType>
-        <EntityType Name="TRANSMISSION">
+        <EntityType Name="TRANSMISSION_TYPE">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="COMPLETESETs" Relationship="Self.FK__COMPLETES__TRANS__300424B4" FromRole="TRANSMISSION" ToRole="COMPLETESET" />
+          <NavigationProperty Name="COMPLETESETs" Relationship="Self.FK__COMPLETES__TRANS__300424B4" FromRole="TRANSMISSION_TYPE" ToRole="COMPLETESET" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -429,7 +396,7 @@
           <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LOGIN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__USER___3C69FB99" FromRole="USER" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__USER___38996AB5" FromRole="USER" ToRole="ADVERTISEMENT" />
           <NavigationProperty Name="ROLE" Relationship="Self.FK__USER__ROLE_ID__1920BF5C" FromRole="USER" ToRole="ROLE" />
         </EntityType>
         <EntityType Name="VEHICL">
@@ -440,12 +407,10 @@
           <Property Name="BRAND_ID" Type="Int32" Nullable="false" />
           <Property Name="VEHICL_TYPE_ID" Type="Int32" Nullable="false" />
           <Property Name="COMPLETESET_ID" Type="Int32" Nullable="false" />
-          <Property Name="BODY_TYPE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__VEHIC__3D5E1FD2" FromRole="VEHICL" ToRole="ADVERTISEMENT" />
-          <NavigationProperty Name="BODY_TYPE" Relationship="Self.FK__VEHICL__BODY_TYP__398D8EEE" FromRole="VEHICL" ToRole="BODY_TYPE" />
-          <NavigationProperty Name="BRAND" Relationship="Self.FK__VEHICL__BRAND_ID__36B12243" FromRole="VEHICL" ToRole="BRAND" />
-          <NavigationProperty Name="COMPLETESET" Relationship="Self.FK__VEHICL__COMPLETE__38996AB5" FromRole="VEHICL" ToRole="COMPLETESET" />
-          <NavigationProperty Name="VEHICL_TYPE" Relationship="Self.FK__VEHICL__VEHICL_T__37A5467C" FromRole="VEHICL" ToRole="VEHICL_TYPE" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__VEHIC__398D8EEE" FromRole="VEHICL" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="BRAND" Relationship="Self.FK__VEHICL__BRAND_ID__33D4B598" FromRole="VEHICL" ToRole="BRAND" />
+          <NavigationProperty Name="COMPLETESET" Relationship="Self.FK__VEHICL__COMPLETE__35BCFE0A" FromRole="VEHICL" ToRole="COMPLETESET" />
+          <NavigationProperty Name="VEHICL_TYPE" Relationship="Self.FK__VEHICL__VEHICL_T__34C8D9D1" FromRole="VEHICL" ToRole="VEHICL_TYPE" />
         </EntityType>
         <EntityType Name="VEHICL_TYPE">
           <Key>
@@ -453,9 +418,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__VEHICL_T__37A5467C" FromRole="VEHICL_TYPE" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__VEHICL_T__34C8D9D1" FromRole="VEHICL_TYPE" ToRole="VEHICL" />
         </EntityType>
-        <Association Name="FK__ADVERTISE__REGIO__3E52440B">
+        <Association Name="FK__ADVERTISE__REGIO__3A81B327">
           <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -467,7 +432,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__USER___3C69FB99">
+        <Association Name="FK__ADVERTISE__USER___38996AB5">
           <End Role="USER" Type="Self.USER" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -479,7 +444,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__VEHIC__3D5E1FD2">
+        <Association Name="FK__ADVERTISE__VEHIC__398D8EEE">
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -491,19 +456,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__BODY_TYP__398D8EEE">
-          <End Role="BODY_TYPE" Type="Self.BODY_TYPE" Multiplicity="1" />
-          <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BODY_TYPE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="VEHICL">
-              <PropertyRef Name="BODY_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__VEHICL__BRAND_ID__36B12243">
+        <Association Name="FK__VEHICL__BRAND_ID__33D4B598">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -528,10 +481,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__COMPLETES__TRANS__300424B4">
-          <End Role="TRANSMISSION" Type="Self.TRANSMISSION" Multiplicity="1" />
+          <End Role="TRANSMISSION_TYPE" Type="Self.TRANSMISSION_TYPE" Multiplicity="1" />
           <End Role="COMPLETESET" Type="Self.COMPLETESET" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TRANSMISSION">
+            <Principal Role="TRANSMISSION_TYPE">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="COMPLETESET">
@@ -539,7 +492,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__COMPLETE__38996AB5">
+        <Association Name="FK__VEHICL__COMPLETE__35BCFE0A">
           <End Role="COMPLETESET" Type="Self.COMPLETESET" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -587,7 +540,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__VEHICL_T__37A5467C">
+        <Association Name="FK__VEHICL__VEHICL_T__34C8D9D1">
           <End Role="VEHICL_TYPE" Type="Self.VEHICL_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -601,7 +554,6 @@
         </Association>
         <EntityContainer Name="CarsSaleEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADVERTISEMENTs" EntityType="Self.ADVERTISEMENT" />
-          <EntitySet Name="BODY_TYPE" EntityType="Self.BODY_TYPE" />
           <EntitySet Name="BRANDs" EntityType="Self.BRAND" />
           <EntitySet Name="COMPLETESETs" EntityType="Self.COMPLETESET" />
           <EntitySet Name="ENGINEs" EntityType="Self.ENGINE" />
@@ -609,27 +561,23 @@
           <EntitySet Name="FUELs" EntityType="Self.FUEL" />
           <EntitySet Name="REGIONs" EntityType="Self.REGION" />
           <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
-          <EntitySet Name="TRANSMISSIONs" EntityType="Self.TRANSMISSION" />
+          <EntitySet Name="TRANSMISSION_TYPE" EntityType="Self.TRANSMISSION_TYPE" />
           <EntitySet Name="USERs" EntityType="Self.USER" />
           <EntitySet Name="VEHICLs" EntityType="Self.VEHICL" />
           <EntitySet Name="VEHICL_TYPE" EntityType="Self.VEHICL_TYPE" />
-          <AssociationSet Name="FK__ADVERTISE__REGIO__3E52440B" Association="Self.FK__ADVERTISE__REGIO__3E52440B">
+          <AssociationSet Name="FK__ADVERTISE__REGIO__3A81B327" Association="Self.FK__ADVERTISE__REGIO__3A81B327">
             <End Role="REGION" EntitySet="REGIONs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__USER___3C69FB99" Association="Self.FK__ADVERTISE__USER___3C69FB99">
+          <AssociationSet Name="FK__ADVERTISE__USER___38996AB5" Association="Self.FK__ADVERTISE__USER___38996AB5">
             <End Role="USER" EntitySet="USERs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__VEHIC__3D5E1FD2" Association="Self.FK__ADVERTISE__VEHIC__3D5E1FD2">
+          <AssociationSet Name="FK__ADVERTISE__VEHIC__398D8EEE" Association="Self.FK__ADVERTISE__VEHIC__398D8EEE">
             <End Role="VEHICL" EntitySet="VEHICLs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BODY_TYP__398D8EEE" Association="Self.FK__VEHICL__BODY_TYP__398D8EEE">
-            <End Role="BODY_TYPE" EntitySet="BODY_TYPE" />
-            <End Role="VEHICL" EntitySet="VEHICLs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BRAND_ID__36B12243" Association="Self.FK__VEHICL__BRAND_ID__36B12243">
+          <AssociationSet Name="FK__VEHICL__BRAND_ID__33D4B598" Association="Self.FK__VEHICL__BRAND_ID__33D4B598">
             <End Role="BRAND" EntitySet="BRANDs" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
@@ -638,10 +586,10 @@
             <End Role="COMPLETESET" EntitySet="COMPLETESETs" />
           </AssociationSet>
           <AssociationSet Name="FK__COMPLETES__TRANS__300424B4" Association="Self.FK__COMPLETES__TRANS__300424B4">
-            <End Role="TRANSMISSION" EntitySet="TRANSMISSIONs" />
+            <End Role="TRANSMISSION_TYPE" EntitySet="TRANSMISSION_TYPE" />
             <End Role="COMPLETESET" EntitySet="COMPLETESETs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__COMPLETE__38996AB5" Association="Self.FK__VEHICL__COMPLETE__38996AB5">
+          <AssociationSet Name="FK__VEHICL__COMPLETE__35BCFE0A" Association="Self.FK__VEHICL__COMPLETE__35BCFE0A">
             <End Role="COMPLETESET" EntitySet="COMPLETESETs" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
@@ -657,7 +605,7 @@
             <End Role="ROLE" EntitySet="ROLEs" />
             <End Role="USER" EntitySet="USERs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__VEHICL_T__37A5467C" Association="Self.FK__VEHICL__VEHICL_T__37A5467C">
+          <AssociationSet Name="FK__VEHICL__VEHICL_T__34C8D9D1" Association="Self.FK__VEHICL__VEHICL_T__34C8D9D1">
             <End Role="VEHICL_TYPE" EntitySet="VEHICL_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
@@ -678,14 +626,6 @@
                 <ScalarProperty Name="VEHICL_ID" ColumnName="VEHICL_ID" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BODY_TYPE">
-            <EntityTypeMapping TypeName="CarsSaleModel.BODY_TYPE">
-              <MappingFragment StoreEntitySet="BODY_TYPE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -747,9 +687,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TRANSMISSIONs">
-            <EntityTypeMapping TypeName="CarsSaleModel.TRANSMISSION">
-              <MappingFragment StoreEntitySet="TRANSMISSION">
+          <EntitySetMapping Name="TRANSMISSION_TYPE">
+            <EntityTypeMapping TypeName="CarsSaleModel.TRANSMISSION_TYPE">
+              <MappingFragment StoreEntitySet="TRANSMISSION_TYPE">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
               </MappingFragment>
@@ -776,7 +716,6 @@
                 <ScalarProperty Name="BRAND_ID" ColumnName="BRAND_ID" />
                 <ScalarProperty Name="VEHICL_TYPE_ID" ColumnName="VEHICL_TYPE_ID" />
                 <ScalarProperty Name="COMPLETESET_ID" ColumnName="COMPLETESET_ID" />
-                <ScalarProperty Name="BODY_TYPE_ID" ColumnName="BODY_TYPE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -13,13 +13,13 @@ namespace CarsSale.DataAccess.DTO
 
         public Engine Engine { get; set; }
 
-        public Transmission Transmission { get; set; }
+        public TransmissionType Transmission { get; set; }
 
         public CompleteSet(COMPLETESET entity)
         {
             Id = entity.ID;
             Engine = new Engine(entity.ENGINE);
-            Transmission = new Transmission(entity.TRANSMISSION);
+            Transmission = new TransmissionType(entity.TRANSMISSION_TYPE);
         }
     }
 }

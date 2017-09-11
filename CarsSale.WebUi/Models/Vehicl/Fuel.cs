@@ -8,6 +8,6 @@ namespace CarsSale.WebUi.Models.Vehicl
     public class Fuel
     {
         public int Id { get; set; }
-        public int Volume { get; set; }
+        public string Name { get; set; }
     }
 }
