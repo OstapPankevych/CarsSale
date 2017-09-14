@@ -63,7 +63,7 @@ namespace CarsSale.DataAccess.Services
             var brand = _brandRepository.Get(x => x.ID == brandId);
             var vehiclType = _vehiclTypeRepository.Get(x => x.ID == vehiclTypeId);
             var engine = _engineRepository.CreateIfNotExists(engineVolume);
-
+            _engineFuelRepository.CreateIfNotExist(engine.ID, fuelIds);
             var transmission =
                 _transmissionRepository.Get(x => x.ID == transmissionId);
             var completeSet = _completeSetRepository.CreateIfNotExists(
@@ -78,7 +78,7 @@ namespace CarsSale.DataAccess.Services
             {
                 USER_ID = userId,
                 REGION_ID = regionId,
-                IS_ACTIVE = true,
+                IS_ACTIVE = isActive,
                 VEHICL_ID = vehicl.ID,
                 CREATED_DATE = today,
                 EXPIRATION_DATE = today.AddDays(expirationDays)

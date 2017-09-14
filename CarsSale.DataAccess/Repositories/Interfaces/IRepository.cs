@@ -7,7 +7,7 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
     public interface IRepository<TEntity, in TId> where TEntity: class
     {
         void Create(TEntity entity);
-        TEntity Get(Func<TEntity, bool> predicate);
+        TEntity Get(Func<TEntity, bool> predicate, bool local = false);
         IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null);
         void Update(TEntity entity);
         void Delete(TEntity entity);

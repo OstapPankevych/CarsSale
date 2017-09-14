@@ -52,7 +52,7 @@ namespace CarsSale.WebUi.Controllers
                         {
                             Id = x.Id,
                             Name = x.Name
-                        })
+                        }).ToArray()
             };
             return View(advertisement);
         }
@@ -61,7 +61,9 @@ namespace CarsSale.WebUi.Controllers
         public ActionResult CreateAdvertisement(Advertisement adv)
         {
             if (!ModelState.IsValid)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var userId = 1;
             var regionId = 1;
             var fuels = new int[] {1};

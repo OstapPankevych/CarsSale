@@ -9,13 +9,12 @@ namespace CarsSale.WebUi.Models.Advertisements
         public Brand Brand { get; set; }
         public VehiclType VehiclType { get; set; }
         public TransmissionType TransmissionType { get; set; }
-        public IEnumerable<Fuel> Fuels { get; set; }
         public int EngineVolume { get; set; }
 
         public IEnumerable<Region> RegionOptions { get; set; }
         public IEnumerable<Brand> BrandOptions { get; set; }
         public IEnumerable<VehiclType> VehiclTypeOptions { get; set; }
         public IEnumerable<TransmissionType> TransmissionTypeOptions { get; set; }
-        public IEnumerable<Fuel> FuelOptions { get; set; }
+        public Fuel[] FuelOptions { get; set; }
     }
 }

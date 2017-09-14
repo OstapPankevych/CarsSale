@@ -26,7 +26,7 @@ namespace CarsSale.DataAccess.Repositories
                 ENGINE_ID = engineId,
                 TRANSMISSION_ID = transmissionId
             });
-            return Get(Query);
+            return Get(Query, true);
         }
     }
 }

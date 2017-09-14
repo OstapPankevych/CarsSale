@@ -20,7 +20,7 @@ namespace CarsSale.DataAccess.Repositories
             {
                 VOLUME = volume
             });
-            return Get(Query);
+            return Get(Query, true);
         }
     }
 }

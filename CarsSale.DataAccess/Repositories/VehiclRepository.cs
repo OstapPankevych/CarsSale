@@ -26,7 +26,7 @@ namespace CarsSale.DataAccess.Repositories
                 VEHICL_TYPE_ID = vehiclTypeId,
                 COMPLETESET_ID = completeSetId
             });
-            return Get(Query);
+            return Get(Query, true);
         }
     }
 }

@@ -22,8 +22,13 @@ namespace CarsSale.DataAccess.Repositories
         public virtual void Delete(TEntity entity) =>
             DbSet.Remove(entity);
 
-        public virtual TEntity Get(Func<TEntity, bool> predicate) =>
-            DbSet.FirstOrDefault(predicate);
+        public virtual TEntity Get(Func<TEntity, bool> predicate, bool local = false)
+        {
+            return local
+                ? DbSet.Local.FirstOrDefault(predicate)
+                : DbSet.FirstOrDefault(predicate);
+        }
+            
 
         public virtual void Update(TEntity entity)
         {

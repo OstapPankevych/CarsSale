@@ -7,36 +7,42 @@
 
 <h2>Create new advertisement</h2>
 <div>
-	@using (Html.BeginForm("CreateAdvertisement", "Advertisement"))
+	@using (Html.BeginForm("CreateAdvertisement", "Advertisement", FormMethod.Post))
 	{
 		<div>
 			@Html.Label("Region")
-			@Html.DropDownListFor(x => x.Region, new SelectList(Model.RegionOptions,
-				"Id", "Name"));
+			@Html.DropDownListFor(x => x.Region.Id, new SelectList(Model.RegionOptions,
+				"Id", "Name"))
 		</div>
 		<div>
 			@Html.Label("Brand")
-			@Html.DropDownListFor(x => x.Brand, new SelectList(Model.BrandOptions,
-				"Id", "Name"));
+			@Html.DropDownListFor(x => x.Brand.Id, new SelectList(Model.BrandOptions,
+				"Id", "Name"))
 		</div>
 		<div>
 			@Html.Label("Vehicl Type")
-			@Html.DropDownListFor(x => x.VehiclType, new SelectList(Model.VehiclTypeOptions,
-				"Id", "Name"));
+			@Html.DropDownListFor(x => x.VehiclType.Id, new SelectList(Model.VehiclTypeOptions,
+				"Id", "Name"))
 		</div>
 		<div>
 			@Html.Label("Transmission Type")
-			@Html.DropDownListFor(x => x.TransmissionType, new SelectList(Model.TransmissionTypeOptions,
-				"Id", "Name"));
+			@Html.DropDownListFor(x => x.TransmissionType.Id, new SelectList(Model.TransmissionTypeOptions,
+				"Id", "Name"))
 		</div>
 		<div>
 			@Html.Label("Engine Volume")
-			@Html.TextBoxFor(x => x.EngineVolume);
+			@Html.TextBoxFor(x => x.EngineVolume)
 		</div>
 		<div>
 			@Html.Label("Fuels")
-			@Html.DropDownListFor(x => x.Fuels, new SelectList(Model.FuelOptions,
-				"Id", "Name"));
+			@for (var i = 0; i < Model.FuelOptions.Length; i++)
+			{
+				<div>
+					@Html.HiddenFor(x => x.FuelOptions[i].Id)
+					@Html.CheckBoxFor(x => x.FuelOptions[i].IsChecked)
+					@Html.Label(Model.FuelOptions[i].Name);
+				</div>
+			}
 		</div>
 		<div>
 			<input type="submit" name="Create">
