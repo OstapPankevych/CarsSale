@@ -17,5 +17,12 @@ namespace CarsSale.DataAccess.DTO
             Id = entity.ID;
             Name = entity.NAME;
         }
+
+        public ROLE Convert() =>
+            new ROLE
+            {
+                ID = Id,
+                NAME = Name
+            };
     }
 }

@@ -13,10 +13,19 @@ namespace CarsSale.DataAccess.DTO
 
         public string Name { get; set; }
 
+        public Fuel() { }
+
         public Fuel(FUEL entity)
         {
             Id = entity.ID;
             Name = entity.NAME;
         }
+
+        public FUEL Convert() =>
+            new FUEL
+            {
+                ID = Id,
+                NAME = Name
+            };
     }
 }

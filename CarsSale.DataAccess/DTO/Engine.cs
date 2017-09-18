@@ -14,6 +14,7 @@ namespace CarsSale.DataAccess.DTO
         public int Volume { get; set; }
 
         public IEnumerable<Fuel> Fuels { get; set; }
+        public Engine() { }
 
         public Engine(ENGINE entity)
         {
@@ -23,5 +24,12 @@ namespace CarsSale.DataAccess.DTO
                 .Where(x => Id == x.ENGINE_ID)
                 .Select(x => new Fuel(x.FUEL));
         }
+
+        public ENGINE Convert() =>
+            new ENGINE
+            {
+                ID = Id,
+                VOLUME = Volume
+            };
     }
 }

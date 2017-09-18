@@ -1,24 +1,24 @@
-﻿using CarsSale.DataAccess.Repositories.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Repositories.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
-    public class VehiclTypeRepository : Repository<VEHICL_TYPE, int>, IVehiclTypeRepository
+    public class VehiclTypeRepository: Repository, IVehiclTypeRepository
     {
-        public VehiclTypeRepository(CarsSaleEntities context)
-            : base(context.VEHICL_TYPE)
+        public IEnumerable<VehiclType> GetVehiclTypes()
         {
-        }
-
-        public VEHICL_TYPE CreateIfNotExists(string name)
-        {
-            bool Query (VEHICL_TYPE x) => x.NAME == name;
-            var vehiclType = Get(Query);
-            if (vehiclType != null) return vehiclType;
-            Create(new VEHICL_TYPE
+            using (var context = CreateContext())
             {
-                NAME = name
-            });
-            return Get(Query);
+                return context.VEHICL_TYPE
+                    .AsEnumerable()
+                    .Select(x => new VehiclType(x))
+                    .ToList();
+            }
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using CarsSale.DataAccess;
 using CarsSale.WebUi.Models.Vehicl;
 
 namespace CarsSale.WebUi.Models.Advertisements
 {
     public class Advertisement
     {
+        public User User { get; set; }
         public Region Region { get; set; }
         public Brand Brand { get; set; }
         public VehiclType VehiclType { get; set; }

@@ -1,8 +1,33 @@
-﻿
+﻿@model IEnumerable<CarsSale.WebUi.Models.Advertisements.Advertisement>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div>
 	Main page
+</div>
+<div>
+	<hr>
+	@foreach (var x in Model)
+	{
+		<div>
+			<div>@x.User.Name sales @x.Brand.Name</div>
+			<div>there will picture</div>
+			<div>transmission: @x.TransmissionType</div>
+			<div>engine: @Math.Round((float) x.EngineVolume / 1000, 1)</div>
+			<div>
+				<span>Fuels:</span>
+				@foreach (var fuel in x.FuelOptions)
+				{
+					<ul>
+						<li>
+							@fuel.Name
+						</li>
+					</ul>
+				}
+			</div>
+			<hr>
+		</div>
+	}
+	<hr>
 </div>

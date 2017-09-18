@@ -1,24 +1,21 @@
-﻿using CarsSale.DataAccess.Repositories.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Repositories.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
-    public class FuelRepository : Repository<FUEL, int>, IFuelRepository
+    public class FuelRepository : Repository, IFuelRepository
     {
-        public FuelRepository(CarsSaleEntities context)
-            : base(context.FUELs)
+        public IEnumerable<Fuel> GetFuels()
         {
-        }
-
-        public FUEL CreateIfNotExists(string name)
-        {
-            bool Query (FUEL x) => x.NAME == name;
-            var fuel = Get(Query);
-            if (fuel != null) return fuel;
-            Create(new FUEL
+            using (var context = CreateContext())
             {
-                NAME = name
-            });
-            return Get(Query);
+                return context.FUELs
+                    .AsEnumerable()
+                    .Select(x => new Fuel(x))
+                    .ToList();
+            }
         }
     }
 }

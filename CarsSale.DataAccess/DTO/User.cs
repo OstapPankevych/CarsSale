@@ -39,7 +39,7 @@ namespace CarsSale.DataAccess.DTO
             Role = new Role(entity.ROLE);
         }
 
-        public USER CreateUser() =>
+        public USER Convert() =>
             new USER
             {
                 ID = Id,

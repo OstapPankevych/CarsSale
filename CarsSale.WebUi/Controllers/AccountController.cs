@@ -52,7 +52,7 @@ namespace CarsSale.WebUi.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            _userService.CreateUser(new User
+            _userService.CreateUser(new DataAccess.DTO.User
             {
                 Birthday = account.Birthday,
                 Phone = account.Phone,

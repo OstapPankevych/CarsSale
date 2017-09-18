@@ -1,7 +1,10 @@
-﻿namespace CarsSale.DataAccess.Repositories.Interfaces
+﻿using System.Collections.Generic;
+using CarsSale.DataAccess.DTO;
+
+namespace CarsSale.DataAccess.Repositories.Interfaces
 {
-    public interface IFuelRepository: IRepository<FUEL, int>
+    public interface IFuelRepository
     {
-        FUEL CreateIfNotExists(string name);
+        IEnumerable<Fuel> GetFuels();
     }
 }

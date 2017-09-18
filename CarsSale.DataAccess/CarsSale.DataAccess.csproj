@@ -70,13 +70,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CarsSale.edmx</DependentUpon>
     </Compile>
-    <Compile Include="COMPLETESET.cs">
-      <DependentUpon>CarsSale.tt</DependentUpon>
-    </Compile>
     <Compile Include="DTO\Advertisement.cs" />
-    <Compile Include="DTO\BaseDto.cs" />
     <Compile Include="DTO\Brand.cs" />
-    <Compile Include="DTO\CompleteSet.cs" />
     <Compile Include="DTO\Engine.cs" />
     <Compile Include="DTO\Fuel.cs" />
     <Compile Include="DTO\Region.cs" />
@@ -100,35 +95,22 @@
     </Compile>
     <Compile Include="Repositories\AdvertisementRepository.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
-    <Compile Include="Repositories\CompleteSetRepository.cs" />
-    <Compile Include="Repositories\EngineFuelRepository.cs" />
-    <Compile Include="Repositories\EngineRepository.cs" />
     <Compile Include="Repositories\FuelRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IEngineFuelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IAdvertisementRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBrandRepository.cs" />
-    <Compile Include="Repositories\Interfaces\ICompleteSetRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IEngineRepository.cs" />
     <Compile Include="Repositories\Interfaces\IFuelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRegionRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
     <Compile Include="Repositories\Interfaces\ITransmissionTypeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IVehiclRepository.cs" />
     <Compile Include="Repositories\Interfaces\IVehiclTypeRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Repositories\VehiclRepository.cs" />
     <Compile Include="Repositories\VehiclTypeRepository.cs" />
     <Compile Include="ROLE.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\AdvertisementService.cs" />
-    <Compile Include="Services\Interfaces\IAdvertisementService.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Service.cs" />
