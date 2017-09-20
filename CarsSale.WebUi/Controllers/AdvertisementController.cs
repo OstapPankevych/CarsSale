@@ -117,7 +117,14 @@ namespace CarsSale.WebUi.Controllers
                                 Id = x.Id
                             })
                     },
-                    TransmissionType = new DataAccess.DTO.TransmissionType()
+                    TransmissionType = new DataAccess.DTO.TransmissionType
+                        {
+                            Id = adv.TransmissionType.Id
+                        },
+                    VehiclType = new DataAccess.DTO.VehiclType
+                        {
+                            Id = adv.VehiclType.Id
+                        }
                 }
             };
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CarsSale.DataAccess.Repositories.Interfaces;
+using CarsSale.WebUi.Models;
 using CarsSale.WebUi.Models.Advertisements;
 using CarsSale.WebUi.Models.Vehicl;
 
@@ -24,23 +25,23 @@ namespace CarsSale.WebUi.Controllers
             var advertisements = _advertisementRepository.GetAdvertisements()
                 .Select(x => new Advertisement
                 {
-                    User =
+                    User = new User
                     {
                         Name = x.User.Name
                     },
-                    Region =
+                    Region = new Region
                     {
                         Name = x.Region.Name,
                     },
-                    Brand =
+                    Brand = new Brand
                     {
                         Name = x.Vehicl.Brand.Name
                     },
-                    VehiclType =
+                    VehiclType = new VehiclType
                     {
                         Name = x.Vehicl.VehiclType.Name
                     },
-                    TransmissionType =
+                    TransmissionType = new TransmissionType
                     {
                         Name = x.Vehicl.TransmissionType.Name
                     },

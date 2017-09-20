@@ -20,58 +20,79 @@ namespace CarsSale.DataAccess.Repositories
             }
         }
 
+        public Advertisement GetAdvertisement(int id)
+        {
+            using (var context = CreateContext())
+            {
+                return Get(id, context);
+            }
+        }
+
         public Advertisement Create(Advertisement advertisement)
         {
             using (var context = CreateContext())
             {
-                var vehicl = CreateVehiclIfNotExists(advertisement.Vehicl, context);
-                if (vehicl != null)
-                {
-                    advertisement.Vehicl = vehicl;
-                    advertisement.Vehicl.Engine =
-                        CreateEngineIfNotExist(advertisement.Vehicl.Engine, context) ?? advertisement.Vehicl.Engine;
-                }
+                advertisement.Vehicl.Id = CreateVehiclIfNotExists(advertisement.Vehicl, context);
 
                 var dbAdvr = context.ADVERTISEMENTs.Add(advertisement.Convert());
                 context.SaveChanges();
-                return new Advertisement(dbAdvr);
+                return Get(dbAdvr.ID, context);
             }
         }
 
-        private Vehicl CreateVehiclIfNotExists(Vehicl vehicl, CarsSaleEntities context)
+        private Advertisement Get(int id, CarsSaleEntities context)
         {
-            var dbVehicl =
-                context.VEHICLs.FirstOrDefault(v =>
-                    v.BRAND_ID == vehicl.Brand.Id
-                    && v.VEHICL_TYPE_ID == vehicl.VehiclType.Id
-                    && v.ENGINE_ID == vehicl.Engine.Id
-                    && v.TRANSMISSION_TYPE_ID == vehicl.TransmissionType.Id);
-
-            return dbVehicl != null && dbVehicl.ENGINE.ENGINE_FUEL.Select(x => x.FUEL_ID)
-                       .Equals(vehicl.Engine.Fuels.Select(x => x.Id))
-                       ? null
-                       : new Vehicl(context.VEHICLs.Add(vehicl.Convert()));
+            var db = context.ADVERTISEMENTs
+                .Where(adv => adv.ID == id)
+                    .Include(adv => adv.REGION)
+                    .Include(adv => adv.USER)
+                    .Include(adv => adv.VEHICL)
+                    .Include(adv => adv.VEHICL.BRAND)
+                    .Include(adv => adv.VEHICL.ENGINE)
+                    .Include(adv => adv.VEHICL.TRANSMISSION_TYPE)
+                    .Include(adv => adv.VEHICL.VEHICL_TYPE)
+                    .Include(adv => adv.VEHICL.ENGINE.ENGINE_FUEL.Select(f => f.FUEL))
+                .FirstOrDefault();
+            return db == null ? null : new Advertisement(db);
         }
 
-        private Engine CreateEngineIfNotExist(Engine engine, CarsSaleEntities context)
+        private int CreateVehiclIfNotExists(Vehicl vehicl, CarsSaleEntities context)
+        {
+            vehicl.Engine.Id =
+                CreateEngineIfNotExist(vehicl.Engine, context);
+
+            var dbVehicl =
+                context.VEHICLs
+                .FirstOrDefault(v => v.BRAND_ID == vehicl.Brand.Id
+                    && v.VEHICL_TYPE_ID == vehicl.VehiclType.Id
+                    && v.ENGINE_ID == vehicl.Engine.Id
+                    && v.TRANSMISSION_TYPE_ID == vehicl.TransmissionType.Id
+                    && v.ENGINE_ID == vehicl.Engine.Id);
+
+            dbVehicl = dbVehicl ?? context.VEHICLs.Add(vehicl.Convert());
+            return dbVehicl.ID;
+        }
+
+        private int CreateEngineIfNotExist(Engine engine, CarsSaleEntities context)
         {
             var dbEngine = context.ENGINEs
                 .Include(x => x.ENGINE_FUEL)
-                .FirstOrDefault(
-                    x => x.VOLUME == engine.Volume
-                    && engine.Fuels.Select(f => f.Id)
-                        .SequenceEqual(engine.Fuels.Select(ef => ef.Id)));
+                .FirstOrDefault(x => x.VOLUME == engine.Volume);
 
-            if (dbEngine != null) return null;
+            var existWithFuel = dbEngine?.ENGINE_FUEL.Select(f => f.ID)
+                                    .SequenceEqual(engine.Fuels.Select(ef => ef.Id))
+                                    ?? false;
+            if (existWithFuel) return dbEngine.ID;
+
             dbEngine = context.ENGINEs.Add(engine.Convert());
-            var engineFuels = context.ENGINE_FUEL.AddRange(
+            context.ENGINE_FUEL.AddRange(
                 engine.Fuels.Select(x => new ENGINE_FUEL
                 {
                     ENGINE_ID = dbEngine.ID,
                     FUEL_ID = x.Id
                 }));
-            dbEngine.ENGINE_FUEL = engineFuels.ToList();
-            return engine;
+            
+            return dbEngine.ID;
         }
     }
 }

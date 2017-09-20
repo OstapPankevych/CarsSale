@@ -111,9 +111,7 @@
     <Compile Include="ROLE.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\Interfaces\IService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
-    <Compile Include="Services\Service.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="TRANSMISSION_TYPE.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
