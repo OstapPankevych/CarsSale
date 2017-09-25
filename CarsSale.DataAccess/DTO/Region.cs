@@ -15,8 +15,9 @@ namespace CarsSale.DataAccess.DTO
 
         public Region() { }
 
-        public Region(REGION entity)
+        public Region(REGION entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Name = entity.NAME;
         }

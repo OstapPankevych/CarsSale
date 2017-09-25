@@ -18,12 +18,9 @@ namespace CarsSale.DataAccess.DTO
 
         public Region Region { get; set; }
 
-        public Advertisement()
+        public Advertisement(ADVERTISEMENT entity = null)
         {
-        }
-
-        public Advertisement(ADVERTISEMENT entity)
-        {
+            if (entity == null) return;
             Id = entity.ID;
             IsActive = entity.IS_ACTIVE;
             ExpirationDate = entity.EXPIRATION_DATE;

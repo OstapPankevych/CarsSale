@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44386</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -143,16 +143,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\Advertisements\Advertisement.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Vehicl\Fuel.cs" />
-    <Compile Include="Models\Vehicl\BodyType.cs" />
-    <Compile Include="Models\Vehicl\TransmissionType.cs" />
-    <Compile Include="Models\Vehicl\Engine.cs" />
-    <Compile Include="Models\Vehicl\VehiclType.cs" />
-    <Compile Include="Models\Vehicl\Brand.cs" />
-    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\Advertisements\AdvertisementViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\Vehicl\FuelViewModel.cs" />
+    <Compile Include="Models\Vehicl\BodyTypeViewModel.cs" />
+    <Compile Include="Models\Vehicl\TransmissionTypeViewModel.cs" />
+    <Compile Include="Models\Vehicl\EngineViewModel.cs" />
+    <Compile Include="Models\Vehicl\VehiclTypeViewModel.cs" />
+    <Compile Include="Models\Vehicl\BrandViewModel.cs" />
+    <Compile Include="Models\RegionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarsSale.DataAccess\CarsSale.DataAccess.csproj">

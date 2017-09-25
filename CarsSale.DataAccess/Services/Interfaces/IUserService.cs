@@ -10,6 +10,7 @@ namespace CarsSale.DataAccess.Services.Interfaces
     public interface IUserService
     {
         User CreateUser(User user);
-        User Get(string userName);
+        User Get(string login);
+        bool IsUserValid(string login, string password);
     }
 }

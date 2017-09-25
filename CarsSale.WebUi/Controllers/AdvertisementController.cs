@@ -7,12 +7,12 @@ using CarsSale.DataAccess;
 using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.Services.Interfaces;
-using Advertisement = CarsSale.WebUi.Models.Advertisements.Advertisement;
-using Brand = CarsSale.WebUi.Models.Vehicl.Brand;
-using Fuel = CarsSale.WebUi.Models.Vehicl.Fuel;
-using Region = CarsSale.WebUi.Models.Region;
-using TransmissionType = CarsSale.WebUi.Models.Vehicl.TransmissionType;
-using VehiclType = CarsSale.WebUi.Models.Vehicl.VehiclType;
+using CarsSale.WebUi.Models.Advertisements;
+using BrandViewModel = CarsSale.WebUi.Models.Vehicl.BrandViewModel;
+using FuelViewModel = CarsSale.WebUi.Models.Vehicl.FuelViewModel;
+using RegionViewModel = CarsSale.WebUi.Models.RegionViewModel;
+using TransmissionTypeViewModel = CarsSale.WebUi.Models.Vehicl.TransmissionTypeViewModel;
+using VehiclTypeViewModel = CarsSale.WebUi.Models.Vehicl.VehiclTypeViewModel;
 
 namespace CarsSale.WebUi.Controllers
 {
@@ -46,35 +46,35 @@ namespace CarsSale.WebUi.Controllers
 
         public ActionResult Index()
         {
-            var advertisement = new Advertisement
+            var advertisement = new AdvertisementViewModel
             {
                 RegionOptions = _regionRepository
                     .GetRegions()
-                    .Select(x => new Region
+                    .Select(x => new RegionViewModel
                     {
                         Name = x.Name,
                         Id = x.Id
                     }),
                 BrandOptions = _brandRepository.GetBrands()
-                    .Select(x => new Brand
+                    .Select(x => new BrandViewModel
                         {
                             Id = x.Id,
                             Name = x.Name
                         }),
                 VehiclTypeOptions = _vehiclTypeRepository.GetVehiclTypes()
-                    .Select(x => new VehiclType
+                    .Select(x => new VehiclTypeViewModel
                         {
                             Id = x.Id,
                             Name = x.Name
                         }),
                 TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes()
-                    .Select(x => new TransmissionType
+                    .Select(x => new TransmissionTypeViewModel
                         {
                             Id = x.Id,
                             Name = x.Name
                         }),
                 FuelOptions = _fuelRepository.GetFuels()
-                    .Select(x => new Fuel
+                    .Select(x => new FuelViewModel
                         {
                             Id = x.Id,
                             Name = x.Name
@@ -84,26 +84,27 @@ namespace CarsSale.WebUi.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateAdvertisement(Advertisement adv)
+        [Authorize(Roles = "user")]
+        public ActionResult CreateAdvertisement(AdvertisementViewModel adv)
         {
             if (!ModelState.IsValid)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var advertisement = new DataAccess.DTO.Advertisement
+            var advertisement = new Advertisement
             {
                 CreatedDate = DateTime.Today,
                 ExpirationDate = DateTime.Today.AddDays(30),
                 IsActive = false,
-                Region = new DataAccess.DTO.Region
+                Region = new Region
                 {
                     Id = adv.Region.Id
                 },
-                User = _userService.Get("OPANKEVYCH"),//User.Identity.Name),
+                User = _userService.Get(User.Identity.Name),
                 Vehicl = new Vehicl
                 {
-                    Brand = new DataAccess.DTO.Brand
+                    Brand = new Brand
                     {
                         Id = adv.Brand.Id
                     },
@@ -112,16 +113,16 @@ namespace CarsSale.WebUi.Controllers
                         Volume = adv.EngineVolume,
                         Fuels = adv.FuelOptions
                             .Where(x => x.IsChecked)
-                            .Select(x => new DataAccess.DTO.Fuel
+                            .Select(x => new Fuel
                             {
                                 Id = x.Id
                             })
                     },
-                    TransmissionType = new DataAccess.DTO.TransmissionType
+                    TransmissionType = new TransmissionType
                         {
                             Id = adv.TransmissionType.Id
                         },
-                    VehiclType = new DataAccess.DTO.VehiclType
+                    VehiclType = new VehiclType
                         {
                             Id = adv.VehiclType.Id
                         }

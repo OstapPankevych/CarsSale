@@ -7,8 +7,9 @@
         public string Name { get; set; }
         public Brand() { }
 
-        public Brand(BRAND entity)
+        public Brand(BRAND entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Name = entity.NAME;
         }

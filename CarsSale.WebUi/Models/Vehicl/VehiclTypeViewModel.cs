@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CarsSale.WebUi.Models
+namespace CarsSale.WebUi.Models.Vehicl
 {
-    public class Region
+    public class VehiclTypeViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

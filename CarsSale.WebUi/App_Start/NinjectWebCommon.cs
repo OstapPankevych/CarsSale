@@ -68,6 +68,7 @@ namespace CarsSale.WebUi.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<IRoleRepository>().To<RoleRepository>();
             kernel.Bind<IBrandRepository>().To<BrandRepository>();
             kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>();
             kernel.Bind<IFuelRepository>().To<FuelRepository>();

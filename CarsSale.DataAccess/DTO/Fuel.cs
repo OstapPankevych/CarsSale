@@ -15,8 +15,9 @@ namespace CarsSale.DataAccess.DTO
 
         public Fuel() { }
 
-        public Fuel(FUEL entity)
+        public Fuel(FUEL entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Name = entity.NAME;
         }

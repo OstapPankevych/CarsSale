@@ -27,8 +27,9 @@ namespace CarsSale.DataAccess.DTO
 
         public User() { }
 
-        public User(USER entity)
+        public User(USER entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Login = entity.LOGIN;
             Name = entity.NAME;

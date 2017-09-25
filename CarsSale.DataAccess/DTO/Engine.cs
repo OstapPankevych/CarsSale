@@ -17,8 +17,9 @@ namespace CarsSale.DataAccess.DTO
 
         public Engine() { }
 
-        public Engine(ENGINE entity)
+        public Engine(ENGINE entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Volume = entity.VOLUME;
             Fuels = entity.ENGINE_FUEL

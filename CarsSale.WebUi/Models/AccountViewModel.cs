@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CarsSale.WebUi.Models
 {
-    public class Account
+    public class AccountViewModel
     {
         [Required(ErrorMessage = "The Login is required")]
         [MaxLength(50, ErrorMessage = "The Login can not be longer 50 characters")]

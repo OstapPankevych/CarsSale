@@ -100,11 +100,13 @@
     <Compile Include="Repositories\Interfaces\IBrandRepository.cs" />
     <Compile Include="Repositories\Interfaces\IFuelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRegionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
     <Compile Include="Repositories\Interfaces\ITransmissionTypeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\Interfaces\IVehiclTypeRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VehiclTypeRepository.cs" />

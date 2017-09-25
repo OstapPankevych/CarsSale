@@ -23,30 +23,30 @@ namespace CarsSale.WebUi.Controllers
         public ActionResult Index()
         {
             var advertisements = _advertisementRepository.GetAdvertisements()
-                .Select(x => new Advertisement
+                .Select(x => new AdvertisementViewModel
                 {
-                    User = new User
+                    User = new UserViewModel
                     {
                         Name = x.User.Name
                     },
-                    Region = new Region
+                    Region = new RegionViewModel
                     {
                         Name = x.Region.Name,
                     },
-                    Brand = new Brand
+                    Brand = new BrandViewModel
                     {
                         Name = x.Vehicl.Brand.Name
                     },
-                    VehiclType = new VehiclType
+                    VehiclType = new VehiclTypeViewModel
                     {
                         Name = x.Vehicl.VehiclType.Name
                     },
-                    TransmissionType = new TransmissionType
+                    TransmissionType = new TransmissionTypeViewModel
                     {
                         Name = x.Vehicl.TransmissionType.Name
                     },
                     EngineVolume = x.Vehicl.Engine.Volume,
-                    FuelOptions = x.Vehicl.Engine.Fuels.Select(fuel => new Fuel
+                    FuelOptions = x.Vehicl.Engine.Fuels.Select(fuel => new FuelViewModel
                     {
                         Name = fuel.Name
                     }).ToArray()

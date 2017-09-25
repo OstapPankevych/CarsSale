@@ -21,8 +21,9 @@ namespace CarsSale.DataAccess.DTO
 
         public Vehicl() { }
 
-        public Vehicl(VEHICL entity)
+        public Vehicl(VEHICL entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Brand = new Brand(entity.BRAND);
             VehiclType = new VehiclType(entity.VEHICL_TYPE);

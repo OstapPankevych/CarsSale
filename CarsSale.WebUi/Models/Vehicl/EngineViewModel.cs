@@ -5,9 +5,9 @@ using System.Web;
 
 namespace CarsSale.WebUi.Models.Vehicl
 {
-    public class TransmissionType
+    public class EngineViewModel
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int Volume { get; set; }
     }
 }
