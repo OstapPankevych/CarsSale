@@ -13,15 +13,32 @@ namespace CarsSale.DataAccess.DTO
 
         public Brand Brand { get; set; }
 
-        public CompleteSet CompleteSet { get; set; }
-
         public VehiclType VehiclType { get; set; }
 
-        public Vehicl(VEHICL entity)
+        public Engine Engine { get; set; }
+
+        public TransmissionType TransmissionType { get; set; }
+
+        public Vehicl() { }
+
+        public Vehicl(VEHICL entity = null)
         {
+            if (entity == null) return;
+            Id = entity.ID;
             Brand = new Brand(entity.BRAND);
-            CompleteSet = new CompleteSet(entity.COMPLETESET);
             VehiclType = new VehiclType(entity.VEHICL_TYPE);
+            Engine = new Engine(entity.ENGINE);
+            TransmissionType = new TransmissionType(entity.TRANSMISSION_TYPE);
         }
+
+        public VEHICL Convert() =>
+            new VEHICL
+            {
+                ID = Id,
+                BRAND_ID = Brand.Id,
+                VEHICL_TYPE_ID = VehiclType.Id,
+                ENGINE_ID = Engine.Id,
+                TRANSMISSION_TYPE_ID = TransmissionType.Id
+            };
     }
 }

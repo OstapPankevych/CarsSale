@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CarsSale.DataAccess.DTO;
 
 namespace CarsSale.DataAccess.Repositories.Interfaces
 {
-    public interface IBrandRepository: IRepository<BRAND, int>
+    public interface IBrandRepository
     {
-        BRAND CreateIfNotExists(string name);
+        IEnumerable<Brand> GetBrands();
     }
 }

@@ -27,8 +27,9 @@ namespace CarsSale.DataAccess.DTO
 
         public User() { }
 
-        public User(USER entity)
+        public User(USER entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Login = entity.LOGIN;
             Name = entity.NAME;
@@ -39,7 +40,7 @@ namespace CarsSale.DataAccess.DTO
             Role = new Role(entity.ROLE);
         }
 
-        public USER CreateUser() =>
+        public USER Convert() =>
             new USER
             {
                 ID = Id,

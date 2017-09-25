@@ -13,10 +13,20 @@ namespace CarsSale.DataAccess.DTO
 
         public string Name { get; set; }
 
-        public VehiclType(VEHICL_TYPE entity)
+        public VehiclType() { }
+
+        public VehiclType(VEHICL_TYPE entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Name = entity.NAME;
         }
+
+        public VEHICL_TYPE Convert() =>
+            new VEHICL_TYPE
+            {
+                ID = Id,
+                NAME = Name
+            };
     }
 }

@@ -1,59 +1,59 @@
-﻿using CarsSale.DataAccess.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using CarsSale.DataAccess.Services.Interfaces;
 using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Repositories.Interfaces;
 
 namespace CarsSale.DataAccess.Services
 {
-    public class UserService : Service, IUserService
+    public class UserService : IUserService
     {
         private const string UserRole = "user";
 
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
 
-        public UserService(CarsSaleEntities dbContext,
-            IUserRepository userRepository,
+        public UserService(IUserRepository userRepository,
             IRoleRepository roleRepository)
-            : base(dbContext)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
         }
-        
-        public IEnumerable<Role> GetRoles()
+
+        public User CreateUser(User user)
         {
-            return _roleRepository.GetAll()
-                .AsEnumerable()
-                .Select(x => new Role(x));
+            user.Password = GetCrypto(user.Password);
+            user.Role = _roleRepository.GetRoleByName(UserRole.ToUpper());
+            return _userRepository.Add(user);
         }
 
-        public User GetUser(int userId)
+        public User Get(string login)
         {
-            var user = _userRepository.Get(x => x.ID == userId);
-            return user != null ? new User(user) : null;
+            return _userRepository.Get(x => x.LOGIN == login);
         }
 
-        public User GetUserWithRole(int userId)
+        public bool IsUserValid(string login, string password)
         {
-            var user = _userRepository
-                .GetAll()
-                .Include(x => x.ROLE)
-                .FirstOrDefault(x => x.ID == userId);
-            return user != null ? new User(user) : null;
+            var dbUser = _userRepository.Get(x => x.LOGIN == login);
+            return dbUser?.Password.Equals(GetCrypto(password)) ?? false;
         }
 
-        public void CreateUser(User user)
+        #region Helpers
+
+        private string GetCrypto(string password)
         {
-            user.Role = GetRoles()
-                .FirstOrDefault(x => x.Name == UserRole.ToUpper());
-            _userRepository.Create(user.CreateUser());
-            SaveChanges();
+            using (var crypto = MD5.Create())
+            {
+                var bytes = crypto.ComputeHash(Encoding.Unicode.GetBytes(password));
+                var cryptoPass = new StringBuilder();
+                foreach (var symbol in bytes)
+                {
+                    cryptoPass.Append(symbol.ToString("x2"));
+                }
+                return cryptoPass.ToString();
+            }
         }
+
+        #endregion
     }
 }

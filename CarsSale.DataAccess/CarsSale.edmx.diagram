@@ -4,30 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4102df9123db40cc86f08b64d36f4c53" Name="Diagram1">
-        <EntityTypeShape EntityType="CarsSaleModel.ADVERTISEMENT" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.BRAND" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.COMPLETESET" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.ENGINE" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.ENGINE_FUEL" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.FUEL" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.REGION" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.ROLE" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.TRANSMISSION_TYPE" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.USER" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.VEHICL" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsSaleModel.VEHICL_TYPE" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__REGIO__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__USER___38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__VEHIC__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__BRAND_ID__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__COMPLETES__ENGIN__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__COMPLETES__TRANS__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__COMPLETE__35BCFE0A" ManuallyRouted="false" />
+      <Diagram DiagramId="bbecb131f8d44f66a88f5b54e3bbb5af" Name="Diagram1">
+        <EntityTypeShape EntityType="CarsSaleModel.ADVERTISEMENT" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.BRAND" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.ENGINE" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.ENGINE_FUEL" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.FUEL" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.REGION" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.ROLE" Width="1.5" PointX="3.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.TRANSMISSION_TYPE" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.USER" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.VEHICL" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.VEHICL_TYPE" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__REGIO__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__USER___34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__VEHIC__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__BRAND_ID__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="CarsSaleModel.FK__ENGINE_FU__ENGIN__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__ENGINE_I__30F848ED" ManuallyRouted="false" />
         <AssociationConnector Association="CarsSaleModel.FK__ENGINE_FU__FUEL___286302EC" ManuallyRouted="false" />
         <AssociationConnector Association="CarsSaleModel.FK__USER__ROLE_ID__1920BF5C" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__VEHICL_T__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__TRANSMIS__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__VEHICL_T__300424B4" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

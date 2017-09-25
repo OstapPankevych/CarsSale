@@ -16,6 +16,17 @@
 	<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 </head>
 <body>
+<header>
+	<div>
+		<div>
+			@Html.ActionLink("Sign In", "Index", "Account")
+		</div>
+		<div>
+			@Html.ActionLink("Sign Out", "LogOut", "Account")
+		</div>
+	</div>
+	<hr>
+</header>
 <div>
 	@RenderBody()
 </div>

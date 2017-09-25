@@ -5,9 +5,9 @@ using System.Web;
 
 namespace CarsSale.WebUi.Models.Vehicl
 {
-    public class Engine
+    public class BodyTypeViewModel
     {
         public int Id { get; set; }
-        public int Volume { get; set; }
+        public string Name { get; set; }
     }
 }

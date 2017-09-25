@@ -13,10 +13,20 @@ namespace CarsSale.DataAccess.DTO
 
         public string Name { get; set; }
 
-        public TransmissionType(TRANSMISSION_TYPE entity)
+        public TransmissionType() { }
+
+        public TransmissionType(TRANSMISSION_TYPE entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Name = entity.NAME;
         }
+
+        public TRANSMISSION_TYPE Convert() =>
+            new TRANSMISSION_TYPE
+            {
+                ID = Id,
+                NAME = Name
+            };
     }
 }

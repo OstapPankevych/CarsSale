@@ -17,16 +17,16 @@ namespace CarsSale.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ENGINE()
         {
-            this.COMPLETESETs = new HashSet<COMPLETESET>();
             this.ENGINE_FUEL = new HashSet<ENGINE_FUEL>();
+            this.VEHICLs = new HashSet<VEHICL>();
         }
     
         public int ID { get; set; }
         public int VOLUME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<COMPLETESET> COMPLETESETs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ENGINE_FUEL> ENGINE_FUEL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VEHICL> VEHICLs { get; set; }
     }
 }

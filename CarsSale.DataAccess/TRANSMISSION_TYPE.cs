@@ -17,13 +17,13 @@ namespace CarsSale.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TRANSMISSION_TYPE()
         {
-            this.COMPLETESETs = new HashSet<COMPLETESET>();
+            this.VEHICLs = new HashSet<VEHICL>();
         }
     
         public int ID { get; set; }
         public string NAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<COMPLETESET> COMPLETESETs { get; set; }
+        public virtual ICollection<VEHICL> VEHICLs { get; set; }
     }
 }

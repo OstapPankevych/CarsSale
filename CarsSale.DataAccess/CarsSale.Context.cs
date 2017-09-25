@@ -27,7 +27,6 @@ namespace CarsSale.DataAccess
     
         public virtual DbSet<ADVERTISEMENT> ADVERTISEMENTs { get; set; }
         public virtual DbSet<BRAND> BRANDs { get; set; }
-        public virtual DbSet<COMPLETESET> COMPLETESETs { get; set; }
         public virtual DbSet<ENGINE> ENGINEs { get; set; }
         public virtual DbSet<ENGINE_FUEL> ENGINE_FUEL { get; set; }
         public virtual DbSet<FUEL> FUELs { get; set; }

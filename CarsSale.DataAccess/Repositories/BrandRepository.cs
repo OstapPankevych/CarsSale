@@ -1,24 +1,24 @@
-﻿using CarsSale.DataAccess.Repositories.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Repositories.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
-    public class BrandRepository : Repository<BRAND, int>, IBrandRepository
+    public class BrandRepository: Repository, IBrandRepository
     {
-        public BrandRepository(CarsSaleEntities context)
-            : base(context.BRANDs)
+        public IEnumerable<Brand> GetBrands()
         {
-        }
-
-        public BRAND CreateIfNotExists(string name)
-        {
-            bool Query(BRAND x) => x.NAME == name;
-            var vehiclType = Get(Query);
-            if (vehiclType != null) return vehiclType;
-            Create(new BRAND
+            using (var context = CreateContext())
             {
-                NAME = name
-            });
-            return Get(Query);
+                return context.BRANDs
+                    .AsEnumerable()
+                    .Select(x => new Brand(x))
+                    .ToList();
+            }
         }
     }
 }

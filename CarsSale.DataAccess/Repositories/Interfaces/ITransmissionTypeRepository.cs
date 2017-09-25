@@ -1,7 +1,14 @@
-﻿namespace CarsSale.DataAccess.Repositories.Interfaces
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CarsSale.DataAccess.DTO;
+
+namespace CarsSale.DataAccess.Repositories.Interfaces
 {
-    public interface ITransmissionTypeRepository: IRepository<TRANSMISSION_TYPE, int>
+    public interface ITransmissionTypeRepository
     {
-        TRANSMISSION_TYPE CreateIfNotExists(string name);
+        IEnumerable<TransmissionType> GetTransmissionTypes();
     }
 }

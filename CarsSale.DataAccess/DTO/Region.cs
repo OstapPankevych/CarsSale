@@ -13,10 +13,20 @@ namespace CarsSale.DataAccess.DTO
 
         public string Name { get; set; }
 
-        public Region(REGION entity)
+        public Region() { }
+
+        public Region(REGION entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Name = entity.NAME;
         }
-    }
+
+        public REGION Convert() =>
+            new REGION
+            {
+                ID = Id,
+                NAME = Name
+            };
+}
 }

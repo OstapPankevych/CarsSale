@@ -12,10 +12,20 @@ namespace CarsSale.DataAccess.DTO
 
         public string Name { get; set; }
 
-        public Role(ROLE entity)
+        public Role() { }
+
+        public Role(ROLE entity = null)
         {
+            if (entity == null) return;
             Id = entity.ID;
             Name = entity.NAME;
         }
+
+        public ROLE Convert() =>
+            new ROLE
+            {
+                ID = Id,
+                NAME = Name
+            };
     }
 }

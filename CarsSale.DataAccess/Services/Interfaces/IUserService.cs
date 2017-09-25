@@ -9,9 +9,8 @@ namespace CarsSale.DataAccess.Services.Interfaces
 {
     public interface IUserService
     {
-        User GetUserWithRole(int userId);
-        User GetUser(int userId);
-        IEnumerable<Role> GetRoles();
-        void CreateUser(User user);
+        User CreateUser(User user);
+        User Get(string login);
+        bool IsUserValid(string login, string password);
     }
 }

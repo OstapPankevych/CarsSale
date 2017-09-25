@@ -1,12 +1,19 @@
-﻿using CarsSale.DataAccess.Repositories.Interfaces;
+﻿using System.Linq;
+using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Repositories.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
-    public class RoleRepository : Repository<ROLE, int>, IRoleRepository
+    public class RoleRepository : Repository, IRoleRepository
     {
-        public RoleRepository(CarsSaleEntities context)
-            : base(context.ROLEs)
+        public Role GetRoleByName(string roleName)
         {
+            using (var context = CreateContext())
+            {
+                var dbRole = context.ROLEs
+                    .FirstOrDefault(x => x.NAME == roleName);
+                return dbRole != null ? new Role(dbRole) : null;
+            }
         }
     }
 }
