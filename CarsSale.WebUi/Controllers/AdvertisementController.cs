@@ -44,6 +44,7 @@ namespace CarsSale.WebUi.Controllers
             _userService = userService;
         }
 
+        [Authorize(Roles = "user")]
         public ActionResult Index()
         {
             var advertisement = new AdvertisementViewModel

@@ -22,13 +22,13 @@ namespace CarsSale.WebUi.Controllers
             _userService = userService;
         }
         
-        public ActionResult Index()
+        public ActionResult Login()
         {
-            return View("Login");
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel user)
+        public ActionResult SignIn(LoginViewModel user, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -44,8 +44,10 @@ namespace CarsSale.WebUi.Controllers
             var dbUser = _userService.Get(user.Login);
             AddOuthCookies(dbUser, user.Remember);
 
-            var url = FormsAuthentication.GetRedirectUrl(user.Login, user.Remember);
-            return Redirect(url ?? FormsAuthentication.DefaultUrl);
+            var url = !string.IsNullOrEmpty(returnUrl)
+                ? returnUrl
+                : FormsAuthentication.DefaultUrl;
+            return Redirect(url);
         }
 
         public ActionResult LogOut()

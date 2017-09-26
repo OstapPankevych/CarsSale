@@ -4,25 +4,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-	@using (Html.BeginForm("Login", "Account"))
-	{
-		<div>
-			@Html.Label("Login")
-			@Html.TextBoxFor(x => x.Login)
-			@Html.ValidationMessageFor(x => x.Login)
-		</div>
-		<div>
-			@Html.Label("Password")
-			@Html.PasswordFor(x => x.Password)
-			@Html.ValidationMessageFor(x => x.Password)
-		</div>
-		<div>
-			@Html.Label("remember me?")
-			@Html.CheckBoxFor(x => x.Remember)
-		</div>
-		<div>
-			<input type="submit" name="Log In">
-		</div>
-	}
+<div class="row">
+	<div id="login-form">
+		@using (Html.BeginForm("SignIn", "Account", new {ReturnUrl = Request.QueryString["ReturnUrl"]}))
+		{
+			<div class="row">
+				@Html.Label("Login", new { @class = "col-sm-4" })
+				@Html.TextBoxFor(x => x.Login, new { @class = "form-control col-sm-6" })
+				@Html.ValidationMessageFor(x => x.Login)
+			</div>
+			<div>
+				@Html.Label("Password")
+				@Html.PasswordFor(x => x.Password)
+				@Html.ValidationMessageFor(x => x.Password)
+			</div>
+			<div>
+				@Html.Label("remember me?")
+				@Html.CheckBoxFor(x => x.Remember)
+			</div>
+			<div>
+				<input type="submit" name="Log In">
+			</div>
+		}
+	</div>
 </div>
