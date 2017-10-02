@@ -1,29 +1,196 @@
-﻿@model IEnumerable<CarsSale.WebUi.Models.Advertisements.AdvertisementViewModel>
+﻿@model IEnumerable<CarsSale.DataAccess.DTO.Advertisement>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-	@foreach (var x in Model)
-	{
-		<div>
-			<div>@x.User.Name sales @x.Vehicl.Brand.Name</div>
-			<div>there will picture</div>
-			<div>transmission: @x.Vehicl.TransmissionType.Name</div>
-			<div>engine: @Math.Round((float) x.Vehicl.Engine.Volume / 1000, 1)</div>
-			<div>
-				<span>Fuels:</span>
-				@foreach (var fuel in x.Vehicl.Engine.Fuels)
-				{
-					<ul>
-						<li>
-							@fuel.Name
-						</li>
-					</ul>
-				}
-			</div>
-			<hr>
-		</div>
-	}
-	<hr>
+<legend class="text-center">Welcome to CarsSale</legend>
+<div class="col-sm-12">
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label class="glyphicon glyphicon-eye-open"></label>
+                <span class="right">
+                    Filter
+                </span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <label for="select" class="col-sm-12 control-label">Region</label>
+                        <div class="col-sm-12">
+                            <select class="form-control" id="select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <label for="select" class="col-sm-12 control-label">Brand</label>
+                        <div class="col-sm-12">
+                            <select class="form-control" id="select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <label for="select" class="col-sm-12 control-label">Body Type</label>
+                        <div class="col-sm-12">
+                            <select class="form-control" id="select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <label for="select" class="col-sm-12 control-label">Transmission</label>
+                        <div class="col-sm-12">
+                            <select class="form-control" id="select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-sm-12">
+                    <label for="select" class="col-sm-12 control-label">Engine</label>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+                            <div class="col-sm-4">From</div>
+                            <div class="col-sm-8">
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <hr>
+                            <div class="col-sm-4">To</div>
+                            <div class="col-sm-8">
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="panel panel-default col-sm-6">
+                            <div class="panel-body">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">Benzine
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">Electro
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">Diesel
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">Gas
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-sm-10">
+                    <label class="glyphicon glyphicon-search"></label>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        @foreach (var x in Model)
+        {
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="col-sm-12">
+                            <label class="col-sm-6 text-left">@x.Vehicl.Brand.Name</label>
+                            <label class="col-sm-6 text-right">@x.Region.Name</label>
+                        </div>
+                        <span class="badge">@Math.Round((float) x.Vehicl.Engine.Volume / 1000, 1)</span>
+                        <span class="badge">@x.Vehicl.TransmissionType.Name</span>
+                        @foreach (var fuel in x.Vehicl.Engine.Fuels)
+                        {
+                            <span class="badge">@fuel.Name</span>
+                        }
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6 text-center">
+                                <div>
+                                    <span class="glyphicon glyphicon-earphone"></span>
+                                    <label>@x.User.Phone</label>
+                                </div>
+                                <div>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    <label>@x.User.Email</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <div>
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <label class="">@x.User.Name</label>
+                                </div>
+                                <div>
+                                    <span class="glyphicon glyphicon-hourglass"></span>
+                                    <label class="">@x.CreatedDate</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-sm-12 text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>       
+    </div>
 </div>
