@@ -36,7 +36,7 @@ namespace CarsSale.DataAccess.Repositories
 
                 var dbAdvr = context.ADVERTISEMENTs.Add(advertisement.Convert());
                 context.SaveChanges();
-                return Get(dbAdvr.ID, context);
+                return new Advertisement(dbAdvr);
             }
         }
 

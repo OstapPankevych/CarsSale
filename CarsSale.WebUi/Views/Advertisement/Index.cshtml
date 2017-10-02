@@ -1,4 +1,4 @@
-﻿@model CarsSale.WebUi.Models.Advertisements.AdvertisementViewModel
+﻿@model CarsSale.WebUi.Models.Advertisements.NewAdvertisementViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -35,12 +35,12 @@
 		</div>
 		<div>
 			@Html.Label("Fuels")
-			@for (var i = 0; i < Model.FuelOptions.Length; i++)
+			@for (var i = 0; i < Model.Fuels.Count; i++)
 			{
 				<div>
-					@Html.HiddenFor(x => x.FuelOptions[i].Id)
-					@Html.CheckBoxFor(x => x.FuelOptions[i].IsChecked)
-					@Html.Label(Model.FuelOptions[i].Name);
+					@Html.HiddenFor(x => x.Fuels[i].Text)
+					@Html.HiddenFor(x => x.Fuels[i].Value)
+					@Html.CheckBoxFor(x => x.Fuels[i].Selected)
 				</div>
 			}
 		</div>

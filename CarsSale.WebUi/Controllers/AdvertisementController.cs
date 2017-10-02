@@ -8,11 +8,6 @@ using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.Services.Interfaces;
 using CarsSale.WebUi.Models.Advertisements;
-using BrandViewModel = CarsSale.WebUi.Models.Vehicl.BrandViewModel;
-using FuelViewModel = CarsSale.WebUi.Models.Vehicl.FuelViewModel;
-using RegionViewModel = CarsSale.WebUi.Models.RegionViewModel;
-using TransmissionTypeViewModel = CarsSale.WebUi.Models.Vehicl.TransmissionTypeViewModel;
-using VehiclTypeViewModel = CarsSale.WebUi.Models.Vehicl.VehiclTypeViewModel;
 
 namespace CarsSale.WebUi.Controllers
 {
@@ -47,46 +42,24 @@ namespace CarsSale.WebUi.Controllers
         [Authorize(Roles = "user")]
         public ActionResult Index()
         {
-            var advertisement = new AdvertisementViewModel
+            var advertisement = new NewAdvertisementViewModel
             {
-                RegionOptions = _regionRepository
-                    .GetRegions()
-                    .Select(x => new RegionViewModel
-                    {
-                        Name = x.Name,
-                        Id = x.Id
-                    }),
-                BrandOptions = _brandRepository.GetBrands()
-                    .Select(x => new BrandViewModel
-                        {
-                            Id = x.Id,
-                            Name = x.Name
-                        }),
-                VehiclTypeOptions = _vehiclTypeRepository.GetVehiclTypes()
-                    .Select(x => new VehiclTypeViewModel
-                        {
-                            Id = x.Id,
-                            Name = x.Name
-                        }),
-                TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes()
-                    .Select(x => new TransmissionTypeViewModel
-                        {
-                            Id = x.Id,
-                            Name = x.Name
-                        }),
-                FuelOptions = _fuelRepository.GetFuels()
-                    .Select(x => new FuelViewModel
-                        {
-                            Id = x.Id,
-                            Name = x.Name
-                        }).ToArray()
+                RegionOptions = _regionRepository.GetRegions(),
+                BrandOptions = _brandRepository.GetBrands(),
+                VehiclTypeOptions = _vehiclTypeRepository.GetVehiclTypes(),
+                TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes(),
+                Fuels = _fuelRepository.GetFuels().Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList()
             };
             return View(advertisement);
         }
 
         [HttpPost]
         [Authorize(Roles = "user")]
-        public ActionResult CreateAdvertisement(AdvertisementViewModel adv)
+        public ActionResult CreateAdvertisement(NewAdvertisementViewModel adv)
         {
             if (!ModelState.IsValid)
             {
@@ -98,35 +71,18 @@ namespace CarsSale.WebUi.Controllers
                 CreatedDate = DateTime.Today,
                 ExpirationDate = DateTime.Today.AddDays(30),
                 IsActive = false,
-                Region = new Region
-                {
-                    Id = adv.Region.Id
-                },
                 User = _userService.Get(User.Identity.Name),
+                Region = adv.Region,
                 Vehicl = new Vehicl
                 {
-                    Brand = new Brand
-                    {
-                        Id = adv.Brand.Id
-                    },
+                    Brand = adv.Brand,
                     Engine = new Engine
                     {
                         Volume = adv.EngineVolume,
-                        Fuels = adv.FuelOptions
-                            .Where(x => x.IsChecked)
-                            .Select(x => new Fuel
-                            {
-                                Id = x.Id
-                            })
+                        Fuels = adv.Fuels.Where(x => x.Selected).Select(x => new Fuel { Id = Convert.ToInt32(x.Value) })
                     },
-                    TransmissionType = new TransmissionType
-                        {
-                            Id = adv.TransmissionType.Id
-                        },
-                    VehiclType = new VehiclType
-                        {
-                            Id = adv.VehiclType.Id
-                        }
+                    TransmissionType = adv.TransmissionType,
+                    VehiclType = adv.VehiclType
                 }
             };
 
