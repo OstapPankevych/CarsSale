@@ -7,13 +7,13 @@
 	@foreach (var x in Model)
 	{
 		<div>
-			<div>@x.User.Name sales @x.Brand.Name</div>
+			<div>@x.User.Name sales @x.Vehicl.Brand.Name</div>
 			<div>there will picture</div>
-			<div>transmission: @x.TransmissionType.Name</div>
-			<div>engine: @Math.Round((float) x.EngineVolume / 1000, 1)</div>
+			<div>transmission: @x.Vehicl.TransmissionType.Name</div>
+			<div>engine: @Math.Round((float) x.Vehicl.Engine.Volume / 1000, 1)</div>
 			<div>
 				<span>Fuels:</span>
-				@foreach (var fuel in x.FuelOptions)
+				@foreach (var fuel in x.Vehicl.Engine.Fuels)
 				{
 					<ul>
 						<li>

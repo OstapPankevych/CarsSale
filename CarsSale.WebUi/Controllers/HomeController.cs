@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.WebUi.Models;
 using CarsSale.WebUi.Models.Advertisements;
-using CarsSale.WebUi.Models.Vehicl;
 
 namespace CarsSale.WebUi.Controllers
 {
@@ -25,31 +25,16 @@ namespace CarsSale.WebUi.Controllers
             var advertisements = _advertisementRepository.GetAdvertisements()
                 .Select(x => new AdvertisementViewModel
                 {
-                    User = new UserViewModel
+                    User = x.User,
+                    Region = x.Region,
+                    Vehicl = new Vehicl
                     {
-                        Name = x.User.Name
-                    },
-                    Region = new RegionViewModel
-                    {
-                        Name = x.Region.Name,
-                    },
-                    Brand = new BrandViewModel
-                    {
-                        Name = x.Vehicl.Brand.Name
-                    },
-                    VehiclType = new VehiclTypeViewModel
-                    {
-                        Name = x.Vehicl.VehiclType.Name
-                    },
-                    TransmissionType = new TransmissionTypeViewModel
-                    {
-                        Name = x.Vehicl.TransmissionType.Name
-                    },
-                    EngineVolume = x.Vehicl.Engine.Volume,
-                    FuelOptions = x.Vehicl.Engine.Fuels.Select(fuel => new FuelViewModel
-                    {
-                        Name = fuel.Name
-                    }).ToArray()
+                        Brand = x.Vehicl.Brand,
+                        VehiclType = x.Vehicl.VehiclType,
+                        TransmissionType = x.Vehicl.TransmissionType,
+                        Engine = x.Vehicl.Engine
+                    }
+                    
                 });
             return View("Index", advertisements);
         }

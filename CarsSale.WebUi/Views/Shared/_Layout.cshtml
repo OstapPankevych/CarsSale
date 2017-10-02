@@ -2,7 +2,6 @@
 
 @{
 	Layout = null;
-	<link href="~/Content/Styles/login.css" rel="stylesheet" />
 }
 
 <!DOCTYPE html>
@@ -10,32 +9,28 @@
 <html>
 <head>
 	<title>_Layout</title>
-	<meta name="viewport" content="width=device-width"/>
-
-	@Styles.Render("~/Content/bootstrap")
-	@Styles.Render("~/Content/styles")
 </head>
 <body>
-<div id="wrapper">
-	<div id="header">
-		<div class=".container">
+<div>
+	<div>
+		<div>
 			<div class="row">
-				<div class="col-sm-3 center">
+				<div>
 					@if (string.IsNullOrEmpty(User.Identity.Name))
 					{
-						<div class="col-sm-12">
-							<span class="glyphicon glyphicon-user"></span>
+						<div>
+							<span></span>
 							@Html.ActionLink("Login", "Login", "Account")
 						</div>
 					}
 					else
 					{
-						<div class="col-sm-12">
-							<span class="glyphicon glyphicon-user"></span>
+						<div>
+							<span></span>
 							@User.Identity.Name
 						</div>
-						<div class="col-sm-12">
-							<span class="glyphicon glyphicon-share"></span>
+						<div>
+							<span></span>
 							@Html.ActionLink("Sign Out", "LogOut", "Account")
 						</div>
 					}
@@ -43,12 +38,12 @@
 			</div>
 		</div>
 	</div>
-	<div id="content">
-		<div class="container">
+	<div>
+		<div>
 			@RenderBody()
 		</div>
 	</div>
-	<div id="footer">
+	<div>
 		Mentoring EPAM-Systems 2017
 	</div>
 </div>

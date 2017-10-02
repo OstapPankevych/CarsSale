@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
+<div class="">
 	<div id="login-form">
 		@using (Html.BeginForm("SignIn", "Account", new {ReturnUrl = Request.QueryString["ReturnUrl"]}))
 		{
-			<div class="row">
-				@Html.Label("Login", new { @class = "col-sm-4" })
-				@Html.TextBoxFor(x => x.Login, new { @class = "form-control col-sm-6" })
+			<div class="col-sm-6">
+				@Html.Label("Login")
+				@Html.TextBoxFor(x => x.Login)
 				@Html.ValidationMessageFor(x => x.Login)
 			</div>
 			<div>

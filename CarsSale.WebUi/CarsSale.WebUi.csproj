@@ -115,13 +115,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\login-background.jpg" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap.min.css" />
-    <Content Include="Content\Styles\layout.css" />
-    <Content Include="Content\Styles\login.css" />
+    <Content Include="Content\Styles\bootstrap\cosmo\bootstrap.min.css" />
     <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.woff2" />
@@ -163,14 +161,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\Advertisements\AdvertisementViewModel.cs" />
+    <Compile Include="Models\Advertisements\NewAdvertisementViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
-    <Compile Include="Models\Vehicl\FuelViewModel.cs" />
-    <Compile Include="Models\Vehicl\BodyTypeViewModel.cs" />
-    <Compile Include="Models\Vehicl\TransmissionTypeViewModel.cs" />
-    <Compile Include="Models\Vehicl\EngineViewModel.cs" />
-    <Compile Include="Models\Vehicl\VehiclTypeViewModel.cs" />
-    <Compile Include="Models\Vehicl\BrandViewModel.cs" />
     <Compile Include="Models\RegionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -193,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarsSale.DataAccess\CarsSale.DataAccess.csproj">

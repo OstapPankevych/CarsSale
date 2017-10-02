@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -8,8 +6,6 @@ using System.Web.Security;
 using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Services.Interfaces;
 using CarsSale.WebUi.Models;
-using CarsSale.WebUi.Models.Advertisements;
-using Microsoft.Ajax.Utilities;
 
 namespace CarsSale.WebUi.Controllers
 {
