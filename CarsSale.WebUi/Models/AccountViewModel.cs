@@ -26,12 +26,15 @@ namespace CarsSale.WebUi.Models
 
         [Required(ErrorMessage = "The Email is required")]
         [MaxLength(50, ErrorMessage = "The Password can not be longer 50 characters")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "The Phone is required")]
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "The Birthday is required")]
+        [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
     }
 }
