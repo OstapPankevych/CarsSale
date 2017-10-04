@@ -36,7 +36,7 @@ namespace CarsSale.DataAccess.Repositories
             using (var context = CreateContext())
             {
                 var user = context.USERs.FirstOrDefault(predicate);
-                return new User(user);
+                return user != null ? new User(user) : null;
             }
         }
     }

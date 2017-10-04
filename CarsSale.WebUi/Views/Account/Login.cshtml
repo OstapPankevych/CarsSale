@@ -10,6 +10,9 @@
         {
             <fieldset>
                 <legend>Sign in to CarsSale</legend>
+                <label class="has-error">
+                    @Html.ValidationSummary(true)
+                </label>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Login *</label>
                     <div class="col-sm-9">
@@ -40,7 +43,7 @@
                         @Html.ActionLink("Create an account", "Registry", "Account")
                     </div>
                 </div>
-            </fieldset>
+</fieldset>
         }
     </div>
 </div>

@@ -33,8 +33,8 @@ namespace CarsSale.WebUi.Controllers
 
             if (!_userService.IsUserValid(user.Login, user.Password))
             {
-                ModelState.AddModelError("", "wrong login or password!!!");
-                return View(user);
+                ModelState.AddModelError("", "Wrong Login or Password!");
+                return View("Login");
             }
 
             var dbUser = _userService.Get(user.Login);
