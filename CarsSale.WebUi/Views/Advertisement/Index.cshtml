@@ -18,8 +18,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-9">
-                            <label for="select" class="col-lg-6 control-label">Region</label>
-                            <div class="col-lg-6">
+                            <label for="select" class="col-lg-5 control-label">Region</label>
+                            <div class="col-lg-7">
                                 <select class="form-control" id="select"  name="@Html.NameFor(m => m.Region.Id)">
                                     @foreach (var x in Model.RegionOptions)
                                     {
@@ -33,8 +33,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-9">
-                            <label for="select" class="col-lg-6 control-label">Brand</label>
-                            <div class="col-lg-6">
+                            <label for="select" class="col-lg-5 control-label">Brand</label>
+                            <div class="col-lg-7">
                                 <select class="form-control" id="select"  name="@Html.NameFor(m => m.Brand.Id)">
                                     @foreach (var x in Model.BrandOptions)
                                     {
@@ -48,8 +48,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-9">
-                            <label for="select" class="col-lg-6 control-label">Vehicl Type</label>
-                            <div class="col-lg-6">
+                            <label for="select" class="col-lg-5 control-label">Vehicl Type</label>
+                            <div class="col-lg-7">
                                 <select class="form-control" id="select"  name="@Html.NameFor(m => m.VehiclType.Id)">
                                     @foreach (var x in Model.VehiclTypeOptions)
                                     {
@@ -63,8 +63,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-9">
-                            <label for="select" class="col-lg-6 control-label">Transmission Type</label>
-                            <div class="col-lg-6">
+                            <label for="select" class="col-lg-5 control-label">Transmission Type</label>
+                            <div class="col-lg-7">
                                 <select class="form-control" id="select"  name="@Html.NameFor(m => m.TransmissionType.Id)">
                                     @foreach (var x in Model.TransmissionTypeOptions)
                                     {
@@ -91,7 +91,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-9">
-                            <label for="select" class="col-lg-6 control-label">Engine Volume *</label>
+                            <label for="select" class="col-lg-5 control-label">Engine Volume *</label>
                             <div class="col-lg-4">
                                 @Html.TextBoxFor(x => x.EngineVolume, new {@class = "form-control", placeholder = "Login"})
                             </div>

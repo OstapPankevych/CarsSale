@@ -17,8 +17,9 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand active" href="#">To Sale</a>
-            <a class="navbar-brand" href="#">My Sales</a>
+            @Html.ActionLink("CarsSale", "Index", "Home", null, new {@class= "navbar-brand active" })
+            @Html.ActionLink("Create", "Index", "Advertisement", null, new { @class = "navbar-brand active" })
+            @Html.ActionLink("Registry", "Registry", "Account", null, new { @class = "navbar-brand active" })
         </div>
         <ul class="nav navbar-nav navbar-right">
             @if (string.IsNullOrEmpty(User.Identity.Name))
