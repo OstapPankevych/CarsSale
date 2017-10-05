@@ -48,27 +48,24 @@ namespace CarsSale.WebUi.Controllers
                 BrandOptions = _brandRepository.GetBrands(),
                 VehiclTypeOptions = _vehiclTypeRepository.GetVehiclTypes(),
                 TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes(),
-                Fuels = _fuelRepository.GetFuels().Select(x => new SelectListItem
-                {
-                    Text = x.Name,
-                    Value = x.Id.ToString()
-                }).ToList()
+                FuelOptions = _fuelRepository.GetFuels()
             };
             return View(advertisement);
         }
 
         [HttpPost]
         [Authorize(Roles = "user")]
-        public ActionResult CreateAdvertisement(NewAdvertisementViewModel adv)
+        public ActionResult Index(NewAdvertisementViewModel adv)
         {
             if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ModelState.AddModelError("", "The registered form is invalid! Please try again");
+                return View("Index", adv);
             }
 
             var advertisement = new Advertisement
             {
-                CreatedDate = DateTime.Today,
+                CreatedDate = DateTime.Now,
                 ExpirationDate = DateTime.Today.AddDays(30),
                 IsActive = false,
                 User = _userService.Get(User.Identity.Name),
@@ -79,7 +76,7 @@ namespace CarsSale.WebUi.Controllers
                     Engine = new Engine
                     {
                         Volume = adv.EngineVolume,
-                        Fuels = adv.Fuels.Where(x => x.Selected).Select(x => new Fuel { Id = Convert.ToInt32(x.Value) })
+                        Fuels = adv.Fuels.Select(x => new Fuel { Id = x })
                     },
                     TransmissionType = adv.TransmissionType,
                     VehiclType = adv.VehiclType
