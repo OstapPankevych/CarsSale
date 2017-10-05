@@ -15,10 +15,13 @@
 
 <div class="container col-lg-12 col-lg-offset-3">
     <div class="row clearfix center-block text-center">
-        @using (Html.BeginForm("SignIn", "Account", null, FormMethod.Post, new { @class = "form-horizontal col-lg-5", role = "form", ReturnUrl = Request.QueryString["ReturnUrl"] }))
+        @using (Html.BeginForm("SubmitRegistry", "Account", null, FormMethod.Post, new { @class = "form-horizontal col-lg-5", role = "form", ReturnUrl = Request.QueryString["ReturnUrl"] }))
         {
             <fieldset>
                 <legend>Create an account to CarsSale</legend>
+                <label class="has-error">
+                    @Html.ValidationSummary(true)
+                </label>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Login *</label>
                     <div class="col-lg-8 input-group">
@@ -66,7 +69,7 @@
                     <label class="col-lg-3 control-label">Phone *</label>
                     <div class="col-lg-3 input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        @Html.TextBoxFor(x => x.Phone, new {@class = "form-control", mask = "(999) 999 - 99 - 99", placeholder = "(999) 999 - 99 - 99"})
+                        @Html.TextBoxFor(x => x.Phone, new {@class = "form-control", mask = "(999) 999 - 99 - 99", placeholder = "(067) 123 - 45 - 67"})
                     </div>
                     @Html.ValidationMessageFor(x => x.Phone)
                 </div>
@@ -80,7 +83,7 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <div class="col-lg-3 col-lg-offset-3">
+                    <div class="col-lg-3 col-lg-offset-2">
                         <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </div>

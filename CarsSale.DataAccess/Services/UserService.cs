@@ -32,6 +32,21 @@ namespace CarsSale.DataAccess.Services
             return _userRepository.Get(x => x.LOGIN == login);
         }
 
+        public bool IsEmailExists(string email)
+        {
+            return _userRepository.IsEmailExists(email);
+        }
+
+        public bool IsLoginExists(string login)
+        {
+            return _userRepository.IsLoginExists(login);
+        }
+
+        public bool IsPhoneExists(string phone)
+        {
+            return _userRepository.IsPhoneExists(phone);
+        }
+
         public bool IsUserValid(string login, string password)
         {
             var dbUser = _userRepository.Get(x => x.LOGIN == login);

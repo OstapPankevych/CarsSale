@@ -17,7 +17,8 @@ namespace CarsSale.WebUi
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery.validate.js",
                 "~/Scripts/jquery.maskedinput.js",
-                "~/Scripts/jquery.validate.unobtrusive.js"));
+                "~/Scripts/jquery.validate.unobtrusive.js",
+                "~/Scripts/jquery.validate.unobtrusive-ajax.js"));
         }
     }
 }

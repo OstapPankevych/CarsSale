@@ -62,21 +62,65 @@ namespace CarsSale.WebUi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ModelState.AddModelError("", "The registered form is invalid! Please try again");
+                return View("Registry");
+            }
+
+            if (_userService.IsEmailExists(account.Email))
+            {
+                ModelState.AddModelError("Email", $"Email '{account.Email}' arleady registered");
+                return View("Registry");
+            }
+
+            if (_userService.IsLoginExists(account.Login))
+            {
+                ModelState.AddModelError("Email", $"Login '{account.Login}' arleady registered");
+                return View("Registry");
+            }
+
+            if (_userService.IsPhoneExists(account.Phone))
+            {
+                ModelState.AddModelError("Email", $"Phone '{account.Phone}' arleady registered");
+                return View("Registry");
             }
 
             _userService.CreateUser(new User
             {
                 Birthday = account.Birthday,
-                Phone = account.Phone,
+                Phone = FormatPhone(account.Phone),
                 Password = account.Password,
                 Name = account.Name,
                 Login = account.Login,
                 Email = account.Email
             });
 
-            return View("~/Views/Home/Index");
+            return RedirectToAction("Index", "Home");
         }
+
+        #region RemoteValidators
+
+        public ActionResult CheckEmail(string email)
+        {
+            return _userService.IsEmailExists(email)
+                ? Json($"Email '{email}' arleady registered", JsonRequestBehavior.AllowGet)
+                : Json("true", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CheckLogin(string login)
+        {
+            return _userService.IsLoginExists(login)
+                ? Json($"Login '{login}' arleady registered", JsonRequestBehavior.AllowGet)
+                : Json("true", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CheckPhone(string phone)
+        {
+            return _userService.IsPhoneExists(phone)
+                ? Json($"Phone '{phone}' arleady registered", JsonRequestBehavior.AllowGet)
+                : Json("true", JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
         #region Helpers
 
@@ -89,6 +133,13 @@ namespace CarsSale.WebUi.Controllers
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             HttpContext.Response.Cookies.Add(authCookie);
         }
+
+        private string FormatPhone(string phone) =>
+            phone
+            .Replace("(", "")
+            .Replace(")", "")
+            .Replace("-", "")
+            .Replace(" ", "");
 
         #endregion
     }

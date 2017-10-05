@@ -9,5 +9,8 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
         User Add(User user);
         IEnumerable<User> GetAll(Func<USER, bool> predicate);
         User Get(Func<USER, bool> predicate);
+        bool IsEmailExists(string email);
+        bool IsPhoneExists(string phone);
+        bool IsLoginExists(string login);
     }
 }
