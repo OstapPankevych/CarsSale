@@ -10,14 +10,15 @@ namespace CarsSale.WebUi
                 "~/Content/Styles/bootstrap/bootstrap.css",
                 "~/Content/Styles/bootstrap/bootstrap-theme.css"));
 
-            bundles.Add(new StyleBundle("~/Content/styles").Include(
-                "~/Content/Styles/layout.css"));
-
             bundles.Add(new ScriptBundle("~/Scripts/bootstrap").Include(
                 "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery")
-                .Include("~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.maskedinput.js",
+                "~/Scripts/jquery.validate.unobtrusive.js",
+                "~/Scripts/jquery.validate.unobtrusive-ajax.js"));
         }
     }
 }

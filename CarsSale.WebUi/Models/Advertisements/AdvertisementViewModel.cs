@@ -6,6 +6,6 @@ namespace CarsSale.WebUi.Models.Advertisements
     {
         public User User { get; set; }
         public Region Region { get; set; }
-        public Vehicl Vehicl { get; set; }
+        public Advertisement Advertisement { get; set; }
     }
 }

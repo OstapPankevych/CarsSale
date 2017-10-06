@@ -22,20 +22,7 @@ namespace CarsSale.WebUi.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var advertisements = _advertisementRepository.GetAdvertisements()
-                .Select(x => new AdvertisementViewModel
-                {
-                    User = x.User,
-                    Region = x.Region,
-                    Vehicl = new Vehicl
-                    {
-                        Brand = x.Vehicl.Brand,
-                        VehiclType = x.Vehicl.VehiclType,
-                        TransmissionType = x.Vehicl.TransmissionType,
-                        Engine = x.Vehicl.Engine
-                    }
-                    
-                });
+            var advertisements = _advertisementRepository.GetAdvertisements();
             return View("Index", advertisements);
         }
     }

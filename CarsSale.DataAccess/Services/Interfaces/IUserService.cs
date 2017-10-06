@@ -12,5 +12,9 @@ namespace CarsSale.DataAccess.Services.Interfaces
         User CreateUser(User user);
         User Get(string login);
         bool IsUserValid(string login, string password);
+
+        bool IsEmailExists(string email);
+        bool IsPhoneExists(string phone);
+        bool IsLoginExists(string login);
     }
 }

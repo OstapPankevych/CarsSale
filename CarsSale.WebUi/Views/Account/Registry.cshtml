@@ -5,50 +5,89 @@
 	ViewBag.Title = "Реєстрація";
 }
 
+<script>
+    $(function () {
+        $('[mask]').each(function (e) {
+            $(this).mask($(this).attr('mask'));
+        });
+    });
+</script>
 
-<div>
-	Реєстрація нового користувача
-</div>
-<div>
-	@using (Html.BeginForm("SubmitRegistry", "Account"))
-	{
-		<div>
-			@Html.Label("Login")
-			@Html.TextBoxFor(x => x.Login)
-			@Html.ValidationMessageFor(x => x.Login)
-		</div>
-		<div>
-			@Html.Label("Full Name")
-			@Html.TextBoxFor(x => x.Name)
-			@Html.ValidationMessageFor(x => x.Name)
-		</div>
-		<div>
-			@Html.Label("Password")
-			@Html.PasswordFor(x => x.Password)
-			@Html.ValidationMessageFor(x => x.Password)
-		</div>
-		<div>
-			@Html.Label("Confirm password")
-			@Html.PasswordFor(x => x.ConfirmPassword)
-			@Html.ValidationMessageFor(x => x.Password)
-		</div>
-		<div>
-			@Html.Label("Email")
-			@Html.TextBoxFor(x => x.Email)
-			@Html.ValidationMessageFor(x => x.Email)
-		</div>
-		<div>
-			@Html.Label("Phone")
-			@Html.TextBoxFor(x => x.Phone)
-			@Html.ValidationMessageFor(x => x.Phone)
-		</div>
-		<div>
-			@Html.Label("Birthday")
-			@Html.TextBoxFor(x => x.Birthday)
-			@Html.ValidationMessageFor(x => x.Birthday)
-		</div>
-		<div>
-			<input type="submit" name="Register">
-		</div>
-	}
+<div class="container col-lg-9 col-lg-offset-3">
+    <div class="row clearfix center-block text-center">
+        @using (Html.BeginForm("SubmitRegistry", "Account", null, FormMethod.Post, new { @class = "form-horizontal col-lg-5", role = "form", ReturnUrl = Request.QueryString["ReturnUrl"] }))
+        {
+            <fieldset>
+                <legend>Create an account to CarsSale</legend>
+                <label class="has-error">
+                    @Html.ValidationSummary(true)
+                </label>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Login *</label>
+                    <div class="col-lg-6 input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(x => x.Login, new {@class = "form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Login)
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Full Name *</label>
+                    <div class="col-lg-6 input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Password *</label>
+                    <div class="col-lg-6 input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.PasswordFor(x => x.Password, new {@class = "form-control", type = "password"})
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-3">
+                        <label class="col-lg-12 control-label text-left">*Confirm</label>
+                        <label class="col-lg-12 control-label text-left">Password</label>
+                    </div>
+                    <div class="col-lg-6 input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.PasswordFor(x => x.ConfirmPassword, new {@class = "form-control", type = "password"})
+                    </div>
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email *</label>
+                    <div class="col-lg-6 input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(x => x.Email, new {@class = "form-control", placeholder = "example@example.example"})
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Phone *</label>
+                    <div class="col-lg-3 input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(x => x.Phone, new {@class = "form-control", mask = "(999) 999 - 99 - 99", placeholder = "(067) 123 - 45 - 67"})
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Phone)
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Birthday *</label>
+                    <div class="col-lg-3 input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(x => x.Birthday, new {@class = "form-control", mask = "99 / 99 / 9999", placeholder = "MM / DD / YYYY"})
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Birthday)
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-lg-3 col-lg-offset-2">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
 </div>

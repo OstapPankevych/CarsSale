@@ -36,7 +36,34 @@ namespace CarsSale.DataAccess.Repositories
             using (var context = CreateContext())
             {
                 var user = context.USERs.FirstOrDefault(predicate);
-                return new User(user);
+                return user != null ? new User(user) : null;
+            }
+        }
+
+        public bool IsEmailExists(string email)
+        {
+            using (var context = CreateContext())
+            {
+                var user = context.USERs.FirstOrDefault(x => x.EMAIL == email);
+                return user != null;
+            }
+        }
+
+        public bool IsPhoneExists(string phone)
+        {
+            using (var context = CreateContext())
+            {
+                var user = context.USERs.FirstOrDefault(x => x.PHONE == phone);
+                return user != null;
+            }
+        }
+
+        public bool IsLoginExists(string login)
+        {
+            using (var context = CreateContext())
+            {
+                var user = context.USERs.FirstOrDefault(x => x.LOGIN == login);
+                return user != null;
             }
         }
     }
