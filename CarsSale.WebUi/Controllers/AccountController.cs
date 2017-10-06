@@ -78,7 +78,7 @@ namespace CarsSale.WebUi.Controllers
                 return View("Registry");
             }
 
-            if (_userService.IsPhoneExists(account.Phone))
+            if (_userService.IsPhoneExists(FormatPhone(account.Phone)))
             {
                 ModelState.AddModelError("Email", $"Phone '{account.Phone}' arleady registered");
                 return View("Registry");
