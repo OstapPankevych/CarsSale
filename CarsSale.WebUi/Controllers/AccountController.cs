@@ -115,7 +115,7 @@ namespace CarsSale.WebUi.Controllers
 
         public ActionResult CheckPhone(string phone)
         {
-            return _userService.IsPhoneExists(phone)
+            return _userService.IsPhoneExists(FormatPhone(phone))
                 ? Json($"Phone '{phone}' arleady registered", JsonRequestBehavior.AllowGet)
                 : Json("true", JsonRequestBehavior.AllowGet);
         }
