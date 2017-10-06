@@ -78,7 +78,7 @@ namespace CarsSale.WebUi.Controllers
                 return View("Registry");
             }
 
-            if (_userService.IsPhoneExists(account.Phone))
+            if (_userService.IsPhoneExists(FormatPhone(account.Phone)))
             {
                 ModelState.AddModelError("Email", $"Phone '{account.Phone}' arleady registered");
                 return View("Registry");
@@ -115,7 +115,7 @@ namespace CarsSale.WebUi.Controllers
 
         public ActionResult CheckPhone(string phone)
         {
-            return _userService.IsPhoneExists(phone)
+            return _userService.IsPhoneExists(FormatPhone(phone))
                 ? Json($"Phone '{phone}' arleady registered", JsonRequestBehavior.AllowGet)
                 : Json("true", JsonRequestBehavior.AllowGet);
         }
