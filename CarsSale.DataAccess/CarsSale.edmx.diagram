@@ -4,8 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bbecb131f8d44f66a88f5b54e3bbb5af" Name="Diagram1">
+      <Diagram DiagramId="bea6dc401c234651b5f33ea63acbfd8b" Name="Diagram1">
         <EntityTypeShape EntityType="CarsSaleModel.ADVERTISEMENT" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.AspNetRole" Width="1.5" PointX="8.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.AspNetUserClaim" Width="1.5" PointX="13.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.AspNetUserLogin" Width="1.5" PointX="13.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarsSaleModel.AspNetUser" Width="1.5" PointX="11" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CarsSaleModel.BRAND" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CarsSaleModel.ENGINE" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CarsSaleModel.ENGINE_FUEL" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
@@ -16,16 +20,19 @@
         <EntityTypeShape EntityType="CarsSaleModel.USER" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CarsSaleModel.VEHICL" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CarsSaleModel.VEHICL_TYPE" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
-        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__REGIO__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__USER___34C8D9D1" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__VEHIC__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__BRAND_ID__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__ENGINE_FU__ENGIN__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__ENGINE_I__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__ENGINE_FU__FUEL___286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__USER__ROLE_ID__1920BF5C" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__TRANSMIS__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__VEHICL_T__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__REGIO__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__USER___412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__VEHIC__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__BRAND_ID__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__ENGINE_FU__ENGIN__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__ENGINE_I__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__ENGINE_FU__FUEL___34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__USER__ROLE_ID__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__TRANSMIS__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.FK__VEHICL__VEHICL_T__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="CarsSaleModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

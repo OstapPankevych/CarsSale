@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CarsSaleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CarsSaleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADVERTISEMENT">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,6 +16,57 @@
           <Property Name="VEHICL_ID" Type="int" Nullable="false" />
           <Property Name="USER_ID" Type="int" Nullable="false" />
           <Property Name="REGION_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="BRAND">
           <Key>
@@ -97,7 +148,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ADVERTISE__REGIO__6EF57B66">
+        <Association Name="FK__ADVERTISE__REGIO__4316F928">
           <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__USER___6D0D32F4">
+        <Association Name="FK__ADVERTISE__USER___412EB0B6">
           <End Role="USER" Type="Self.USER" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__VEHIC__6E01572D">
+        <Association Name="FK__ADVERTISE__VEHIC__4222D4EF">
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,7 +184,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__ENGIN__5FB337D6">
+        <Association Name="FK__ENGINE_FU__ENGIN__33D4B598">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -145,7 +196,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__FUEL___60A75C0F">
+        <Association Name="FK__ENGINE_FU__FUEL___34C8D9D1">
           <End Role="FUEL" Type="Self.FUEL" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -157,7 +208,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__USER__ROLE_ID__52593CB8">
+        <Association Name="FK__USER__ROLE_ID__267ABA7A">
           <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
           <End Role="USER" Type="Self.USER" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,7 +220,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__BRAND_ID__6754599E">
+        <Association Name="FK__VEHICL__BRAND_ID__3B75D760">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -181,7 +232,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__ENGINE_I__693CA210">
+        <Association Name="FK__VEHICL__ENGINE_I__3D5E1FD2">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,7 +244,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__TRANSMIS__6A30C649">
+        <Association Name="FK__VEHICL__TRANSMIS__3E52440B">
           <End Role="TRANSMISSION_TYPE" Type="Self.TRANSMISSION_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -205,7 +256,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__VEHICL_T__68487DD7">
+        <Association Name="FK__VEHICL__VEHICL_T__3C69FB99">
           <End Role="VEHICL_TYPE" Type="Self.VEHICL_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,8 +268,69 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CarsSaleModelStoreContainer">
           <EntitySet Name="ADVERTISEMENT" EntityType="Self.ADVERTISEMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BRAND" EntityType="Self.BRAND" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENGINE" EntityType="Self.ENGINE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENGINE_FUEL" EntityType="Self.ENGINE_FUEL" Schema="dbo" store:Type="Tables" />
@@ -229,48 +341,65 @@
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICL" EntityType="Self.VEHICL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICL_TYPE" EntityType="Self.VEHICL_TYPE" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__ADVERTISE__REGIO__6EF57B66" Association="Self.FK__ADVERTISE__REGIO__6EF57B66">
+          <AssociationSet Name="FK__ADVERTISE__REGIO__4316F928" Association="Self.FK__ADVERTISE__REGIO__4316F928">
             <End Role="REGION" EntitySet="REGION" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__USER___6D0D32F4" Association="Self.FK__ADVERTISE__USER___6D0D32F4">
+          <AssociationSet Name="FK__ADVERTISE__USER___412EB0B6" Association="Self.FK__ADVERTISE__USER___412EB0B6">
             <End Role="USER" EntitySet="USER" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__VEHIC__6E01572D" Association="Self.FK__ADVERTISE__VEHIC__6E01572D">
+          <AssociationSet Name="FK__ADVERTISE__VEHIC__4222D4EF" Association="Self.FK__ADVERTISE__VEHIC__4222D4EF">
             <End Role="VEHICL" EntitySet="VEHICL" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__ENGIN__5FB337D6" Association="Self.FK__ENGINE_FU__ENGIN__5FB337D6">
+          <AssociationSet Name="FK__ENGINE_FU__ENGIN__33D4B598" Association="Self.FK__ENGINE_FU__ENGIN__33D4B598">
             <End Role="ENGINE" EntitySet="ENGINE" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__FUEL___60A75C0F" Association="Self.FK__ENGINE_FU__FUEL___60A75C0F">
+          <AssociationSet Name="FK__ENGINE_FU__FUEL___34C8D9D1" Association="Self.FK__ENGINE_FU__FUEL___34C8D9D1">
             <End Role="FUEL" EntitySet="FUEL" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__USER__ROLE_ID__52593CB8" Association="Self.FK__USER__ROLE_ID__52593CB8">
+          <AssociationSet Name="FK__USER__ROLE_ID__267ABA7A" Association="Self.FK__USER__ROLE_ID__267ABA7A">
             <End Role="ROLE" EntitySet="ROLE" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BRAND_ID__6754599E" Association="Self.FK__VEHICL__BRAND_ID__6754599E">
+          <AssociationSet Name="FK__VEHICL__BRAND_ID__3B75D760" Association="Self.FK__VEHICL__BRAND_ID__3B75D760">
             <End Role="BRAND" EntitySet="BRAND" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__ENGINE_I__693CA210" Association="Self.FK__VEHICL__ENGINE_I__693CA210">
+          <AssociationSet Name="FK__VEHICL__ENGINE_I__3D5E1FD2" Association="Self.FK__VEHICL__ENGINE_I__3D5E1FD2">
             <End Role="ENGINE" EntitySet="ENGINE" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__TRANSMIS__6A30C649" Association="Self.FK__VEHICL__TRANSMIS__6A30C649">
+          <AssociationSet Name="FK__VEHICL__TRANSMIS__3E52440B" Association="Self.FK__VEHICL__TRANSMIS__3E52440B">
             <End Role="TRANSMISSION_TYPE" EntitySet="TRANSMISSION_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__VEHICL_T__68487DD7" Association="Self.FK__VEHICL__VEHICL_T__68487DD7">
+          <AssociationSet Name="FK__VEHICL__VEHICL_T__3C69FB99" Association="Self.FK__VEHICL__VEHICL_T__3C69FB99">
             <End Role="VEHICL_TYPE" EntitySet="VEHICL_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarsSaleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -285,9 +414,58 @@
           <Property Name="VEHICL_ID" Type="Int32" Nullable="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="REGION_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="REGION" Relationship="Self.FK__ADVERTISE__REGIO__36B12243" FromRole="ADVERTISEMENT" ToRole="REGION" />
-          <NavigationProperty Name="USER" Relationship="Self.FK__ADVERTISE__USER___34C8D9D1" FromRole="ADVERTISEMENT" ToRole="USER" />
-          <NavigationProperty Name="VEHICL" Relationship="Self.FK__ADVERTISE__VEHIC__35BCFE0A" FromRole="ADVERTISEMENT" ToRole="VEHICL" />
+          <NavigationProperty Name="REGION" Relationship="Self.FK__ADVERTISE__REGIO__4316F928" FromRole="ADVERTISEMENT" ToRole="REGION" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__ADVERTISE__USER___412EB0B6" FromRole="ADVERTISEMENT" ToRole="USER" />
+          <NavigationProperty Name="VEHICL" Relationship="Self.FK__ADVERTISE__VEHIC__4222D4EF" FromRole="ADVERTISEMENT" ToRole="VEHICL" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="BRAND">
           <Key>
@@ -295,7 +473,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__BRAND_ID__2F10007B" FromRole="BRAND" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__BRAND_ID__3B75D760" FromRole="BRAND" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="ENGINE">
           <Key>
@@ -303,8 +481,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VOLUME" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__ENGIN__276EDEB3" FromRole="ENGINE" ToRole="ENGINE_FUEL" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__ENGINE_I__30F848ED" FromRole="ENGINE" ToRole="VEHICL" />
+          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__ENGIN__33D4B598" FromRole="ENGINE" ToRole="ENGINE_FUEL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__ENGINE_I__3D5E1FD2" FromRole="ENGINE" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="ENGINE_FUEL">
           <Key>
@@ -313,8 +491,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ENGINE_ID" Type="Int32" Nullable="false" />
           <Property Name="FUEL_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ENGINE" Relationship="Self.FK__ENGINE_FU__ENGIN__276EDEB3" FromRole="ENGINE_FUEL" ToRole="ENGINE" />
-          <NavigationProperty Name="FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___286302EC" FromRole="ENGINE_FUEL" ToRole="FUEL" />
+          <NavigationProperty Name="ENGINE" Relationship="Self.FK__ENGINE_FU__ENGIN__33D4B598" FromRole="ENGINE_FUEL" ToRole="ENGINE" />
+          <NavigationProperty Name="FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___34C8D9D1" FromRole="ENGINE_FUEL" ToRole="FUEL" />
         </EntityType>
         <EntityType Name="FUEL">
           <Key>
@@ -322,7 +500,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___286302EC" FromRole="FUEL" ToRole="ENGINE_FUEL" />
+          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___34C8D9D1" FromRole="FUEL" ToRole="ENGINE_FUEL" />
         </EntityType>
         <EntityType Name="REGION">
           <Key>
@@ -330,7 +508,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__REGIO__36B12243" FromRole="REGION" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__REGIO__4316F928" FromRole="REGION" ToRole="ADVERTISEMENT" />
         </EntityType>
         <EntityType Name="ROLE">
           <Key>
@@ -338,7 +516,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="USERs" Relationship="Self.FK__USER__ROLE_ID__1920BF5C" FromRole="ROLE" ToRole="USER" />
+          <NavigationProperty Name="USERs" Relationship="Self.FK__USER__ROLE_ID__267ABA7A" FromRole="ROLE" ToRole="USER" />
         </EntityType>
         <EntityType Name="TRANSMISSION_TYPE">
           <Key>
@@ -346,7 +524,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__TRANSMIS__31EC6D26" FromRole="TRANSMISSION_TYPE" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__TRANSMIS__3E52440B" FromRole="TRANSMISSION_TYPE" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -360,8 +538,8 @@
           <Property Name="PASSWORD" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LOGIN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__USER___34C8D9D1" FromRole="USER" ToRole="ADVERTISEMENT" />
-          <NavigationProperty Name="ROLE" Relationship="Self.FK__USER__ROLE_ID__1920BF5C" FromRole="USER" ToRole="ROLE" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__USER___412EB0B6" FromRole="USER" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="ROLE" Relationship="Self.FK__USER__ROLE_ID__267ABA7A" FromRole="USER" ToRole="ROLE" />
         </EntityType>
         <EntityType Name="VEHICL">
           <Key>
@@ -372,11 +550,11 @@
           <Property Name="VEHICL_TYPE_ID" Type="Int32" Nullable="false" />
           <Property Name="ENGINE_ID" Type="Int32" Nullable="false" />
           <Property Name="TRANSMISSION_TYPE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__VEHIC__35BCFE0A" FromRole="VEHICL" ToRole="ADVERTISEMENT" />
-          <NavigationProperty Name="BRAND" Relationship="Self.FK__VEHICL__BRAND_ID__2F10007B" FromRole="VEHICL" ToRole="BRAND" />
-          <NavigationProperty Name="ENGINE" Relationship="Self.FK__VEHICL__ENGINE_I__30F848ED" FromRole="VEHICL" ToRole="ENGINE" />
-          <NavigationProperty Name="TRANSMISSION_TYPE" Relationship="Self.FK__VEHICL__TRANSMIS__31EC6D26" FromRole="VEHICL" ToRole="TRANSMISSION_TYPE" />
-          <NavigationProperty Name="VEHICL_TYPE" Relationship="Self.FK__VEHICL__VEHICL_T__300424B4" FromRole="VEHICL" ToRole="VEHICL_TYPE" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__VEHIC__4222D4EF" FromRole="VEHICL" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="BRAND" Relationship="Self.FK__VEHICL__BRAND_ID__3B75D760" FromRole="VEHICL" ToRole="BRAND" />
+          <NavigationProperty Name="ENGINE" Relationship="Self.FK__VEHICL__ENGINE_I__3D5E1FD2" FromRole="VEHICL" ToRole="ENGINE" />
+          <NavigationProperty Name="TRANSMISSION_TYPE" Relationship="Self.FK__VEHICL__TRANSMIS__3E52440B" FromRole="VEHICL" ToRole="TRANSMISSION_TYPE" />
+          <NavigationProperty Name="VEHICL_TYPE" Relationship="Self.FK__VEHICL__VEHICL_T__3C69FB99" FromRole="VEHICL" ToRole="VEHICL_TYPE" />
         </EntityType>
         <EntityType Name="VEHICL_TYPE">
           <Key>
@@ -384,9 +562,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__VEHICL_T__300424B4" FromRole="VEHICL_TYPE" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__VEHICL_T__3C69FB99" FromRole="VEHICL_TYPE" ToRole="VEHICL" />
         </EntityType>
-        <Association Name="FK__ADVERTISE__REGIO__36B12243">
+        <Association Name="FK__ADVERTISE__REGIO__4316F928">
           <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -398,7 +576,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__USER___34C8D9D1">
+        <Association Name="FK__ADVERTISE__USER___412EB0B6">
           <End Role="USER" Type="Self.USER" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -410,7 +588,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__VEHIC__35BCFE0A">
+        <Association Name="FK__ADVERTISE__VEHIC__4222D4EF">
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -422,7 +600,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__BRAND_ID__2F10007B">
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VEHICL__BRAND_ID__3B75D760">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -434,7 +640,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__ENGIN__276EDEB3">
+        <Association Name="FK__ENGINE_FU__ENGIN__33D4B598">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -446,7 +652,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__ENGINE_I__30F848ED">
+        <Association Name="FK__VEHICL__ENGINE_I__3D5E1FD2">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -458,7 +664,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__FUEL___286302EC">
+        <Association Name="FK__ENGINE_FU__FUEL___34C8D9D1">
           <End Role="FUEL" Type="Self.FUEL" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -470,7 +676,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__USER__ROLE_ID__1920BF5C">
+        <Association Name="FK__USER__ROLE_ID__267ABA7A">
           <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
           <End Role="USER" Type="Self.USER" Multiplicity="*" />
           <ReferentialConstraint>
@@ -482,7 +688,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__TRANSMIS__31EC6D26">
+        <Association Name="FK__VEHICL__TRANSMIS__3E52440B">
           <End Role="TRANSMISSION_TYPE" Type="Self.TRANSMISSION_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -494,7 +700,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__VEHICL_T__300424B4">
+        <Association Name="FK__VEHICL__VEHICL_T__3C69FB99">
           <End Role="VEHICL_TYPE" Type="Self.VEHICL_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -506,8 +712,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CarsSaleEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADVERTISEMENTs" EntityType="Self.ADVERTISEMENT" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="BRANDs" EntityType="Self.BRAND" />
           <EntitySet Name="ENGINEs" EntityType="Self.ENGINE" />
           <EntitySet Name="ENGINE_FUEL" EntityType="Self.ENGINE_FUEL" />
@@ -518,45 +732,57 @@
           <EntitySet Name="USERs" EntityType="Self.USER" />
           <EntitySet Name="VEHICLs" EntityType="Self.VEHICL" />
           <EntitySet Name="VEHICL_TYPE" EntityType="Self.VEHICL_TYPE" />
-          <AssociationSet Name="FK__ADVERTISE__REGIO__36B12243" Association="Self.FK__ADVERTISE__REGIO__36B12243">
+          <AssociationSet Name="FK__ADVERTISE__REGIO__4316F928" Association="Self.FK__ADVERTISE__REGIO__4316F928">
             <End Role="REGION" EntitySet="REGIONs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__USER___34C8D9D1" Association="Self.FK__ADVERTISE__USER___34C8D9D1">
+          <AssociationSet Name="FK__ADVERTISE__USER___412EB0B6" Association="Self.FK__ADVERTISE__USER___412EB0B6">
             <End Role="USER" EntitySet="USERs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__VEHIC__35BCFE0A" Association="Self.FK__ADVERTISE__VEHIC__35BCFE0A">
+          <AssociationSet Name="FK__ADVERTISE__VEHIC__4222D4EF" Association="Self.FK__ADVERTISE__VEHIC__4222D4EF">
             <End Role="VEHICL" EntitySet="VEHICLs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BRAND_ID__2F10007B" Association="Self.FK__VEHICL__BRAND_ID__2F10007B">
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VEHICL__BRAND_ID__3B75D760" Association="Self.FK__VEHICL__BRAND_ID__3B75D760">
             <End Role="BRAND" EntitySet="BRANDs" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__ENGIN__276EDEB3" Association="Self.FK__ENGINE_FU__ENGIN__276EDEB3">
+          <AssociationSet Name="FK__ENGINE_FU__ENGIN__33D4B598" Association="Self.FK__ENGINE_FU__ENGIN__33D4B598">
             <End Role="ENGINE" EntitySet="ENGINEs" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__ENGINE_I__30F848ED" Association="Self.FK__VEHICL__ENGINE_I__30F848ED">
+          <AssociationSet Name="FK__VEHICL__ENGINE_I__3D5E1FD2" Association="Self.FK__VEHICL__ENGINE_I__3D5E1FD2">
             <End Role="ENGINE" EntitySet="ENGINEs" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__FUEL___286302EC" Association="Self.FK__ENGINE_FU__FUEL___286302EC">
+          <AssociationSet Name="FK__ENGINE_FU__FUEL___34C8D9D1" Association="Self.FK__ENGINE_FU__FUEL___34C8D9D1">
             <End Role="FUEL" EntitySet="FUELs" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__USER__ROLE_ID__1920BF5C" Association="Self.FK__USER__ROLE_ID__1920BF5C">
+          <AssociationSet Name="FK__USER__ROLE_ID__267ABA7A" Association="Self.FK__USER__ROLE_ID__267ABA7A">
             <End Role="ROLE" EntitySet="ROLEs" />
             <End Role="USER" EntitySet="USERs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__TRANSMIS__31EC6D26" Association="Self.FK__VEHICL__TRANSMIS__31EC6D26">
+          <AssociationSet Name="FK__VEHICL__TRANSMIS__3E52440B" Association="Self.FK__VEHICL__TRANSMIS__3E52440B">
             <End Role="TRANSMISSION_TYPE" EntitySet="TRANSMISSION_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__VEHICL_T__300424B4" Association="Self.FK__VEHICL__VEHICL_T__300424B4">
+          <AssociationSet Name="FK__VEHICL__VEHICL_T__3C69FB99" Association="Self.FK__VEHICL__VEHICL_T__3C69FB99">
             <End Role="VEHICL_TYPE" EntitySet="VEHICL_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -564,7 +790,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarsSaleModelStoreContainer" CdmEntityContainer="CarsSaleEntities">
+        <EntityContainerMapping StorageEntityContainer="CarsSaleModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="ADVERTISEMENTs">
             <EntityTypeMapping TypeName="CarsSaleModel.ADVERTISEMENT">
               <MappingFragment StoreEntitySet="ADVERTISEMENT">
@@ -575,6 +801,51 @@
                 <ScalarProperty Name="VEHICL_ID" ColumnName="VEHICL_ID" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="CarsSaleModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="CarsSaleModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="CarsSaleModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="CarsSaleModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -668,6 +939,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CarsSaleModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
