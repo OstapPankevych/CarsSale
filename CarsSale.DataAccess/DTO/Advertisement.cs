@@ -32,9 +32,9 @@ namespace CarsSale.DataAccess.DTO
             Region = new Region(entity.REGION);
             User = new ApplicationUser
             {
-                Email = entity.User.Email,
-                UserName = entity.User.UserClaims.FirstOrDefault(x => x.ClaimType == ClaimTypes.Name)?.ClaimValue,
-                PhoneNumber = entity.User.PhoneNumber
+                Email = entity.User?.Email,
+                UserName = entity.User?.UserClaims.FirstOrDefault(x => x.ClaimType == ClaimTypes.Name)?.ClaimValue,
+                PhoneNumber = entity.User?.PhoneNumber
             };
         }
 
