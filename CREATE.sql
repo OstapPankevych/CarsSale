@@ -1,243 +1,54 @@
-CREATE DATABASE CarsSale;
+--CREATE DATABASE CarsSale;
 
 USE CarsSale
 
-/* ASP.NET Identity */
-
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 15-Mar-17 10:27:06 PM ******/
-
-SET ANSI_NULLS ON
-
 GO
 
-SET QUOTED_IDENTIFIER ON
-
-GO
-
-CREATE TABLE [dbo].[AspNetRoles](
-
-    [Id] [nvarchar](128) NOT NULL,
-
-    [Name] [nvarchar](256) NOT NULL,
-
-CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED
-
-(
-
-    [Id] ASC
-
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-
-) ON [PRIMARY]
-
-
-
-GO
-
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 15-Mar-17 10:27:06 PM ******/
-
-SET ANSI_NULLS ON
-
-GO
-
-SET QUOTED_IDENTIFIER ON
-
-GO
-
-CREATE TABLE [dbo].[AspNetUserClaims](
-
-    [Id] [int] IDENTITY(1,1) NOT NULL,
-
-    [UserId] [nvarchar](128) NOT NULL,
-
-    [ClaimType] [nvarchar](max) NULL,
-
-    [ClaimValue] [nvarchar](max) NULL,
-
-CONSTRAINT [PK_dbo.AspNetUserClaims] PRIMARY KEY CLUSTERED
-
-(
-
-    [Id] ASC
-
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-
-
-GO
-
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 15-Mar-17 10:27:06 PM ******/
-
-SET ANSI_NULLS ON
-
-GO
-
-SET QUOTED_IDENTIFIER ON
-
-GO
-
-CREATE TABLE [dbo].[AspNetUserLogins](
-
-    [LoginProvider] [nvarchar](128) NOT NULL,
-
-    [ProviderKey] [nvarchar](128) NOT NULL,
-
-    [UserId] [nvarchar](128) NOT NULL,
-
-CONSTRAINT [PK_dbo.AspNetUserLogins] PRIMARY KEY CLUSTERED
-
-(
-
-    [LoginProvider] ASC,
-
-    [ProviderKey] ASC,
-
-    [UserId] ASC
-
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-
-) ON [PRIMARY]
-
-
-
-GO
-
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 15-Mar-17 10:27:06 PM ******/
-
-SET ANSI_NULLS ON
-
-GO
-
-SET QUOTED_IDENTIFIER ON
-
-GO
-
-CREATE TABLE [dbo].[AspNetUserRoles](
-
-    [UserId] [nvarchar](128) NOT NULL,
-
-    [RoleId] [nvarchar](128) NOT NULL,
-
-CONSTRAINT [PK_dbo.AspNetUserRoles] PRIMARY KEY CLUSTERED
-
-(
-
-    [UserId] ASC,
-
-    [RoleId] ASC
-
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-
-) ON [PRIMARY]
-
-
-
-GO
-
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 15-Mar-17 10:27:06 PM ******/
-
-SET ANSI_NULLS ON
-
-GO
-
-SET QUOTED_IDENTIFIER ON
-
-GO
-
-CREATE TABLE [dbo].[AspNetUsers](
-
-    [Id] [nvarchar](128) NOT NULL,
-
-    [Email] [nvarchar](256) NULL,
-
-    [EmailConfirmed] [bit] NOT NULL,
-
-    [PasswordHash] [nvarchar](max) NULL,
-
-    [SecurityStamp] [nvarchar](max) NULL,
-
-    [PhoneNumber] [nvarchar](max) NULL,
-
-    [PhoneNumberConfirmed] [bit] NOT NULL,
-
-    [TwoFactorEnabled] [bit] NOT NULL,
-
-    [LockoutEndDateUtc] [datetime] NULL,
-
-    [LockoutEnabled] [bit] NOT NULL,
-
-    [AccessFailedCount] [int] NOT NULL,
-
-    [UserName] [nvarchar](256) NOT NULL,
-
-CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED
-
-(
-
-    [Id] ASC
-
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-
-REFERENCES [dbo].[AspNetUsers] ([Id])
-
-ON DELETE CASCADE
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId]
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-
-REFERENCES [dbo].[AspNetUsers] ([Id])
-
-ON DELETE CASCADE
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
-
-REFERENCES [dbo].[AspNetRoles] ([Id])
-
-ON DELETE CASCADE
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-
-REFERENCES [dbo].[AspNetUsers] ([Id])
-
-ON DELETE CASCADE
-
-GO
-
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
-
-GO
-
-/*******************/
-
-
-GO
+CREATE TABLE [User](
+    [Id] INT IDENTITY(1,1) NOT NULL,
+	[UserName] NVARCHAR(50) NOT NULL,
+    [Email] NVARCHAR(256) NULL,
+    [EmailConfirmed] BIT NOT NULL,
+    [Password] NVARCHAR(max) NULL,
+    [SecurityStamp] NVARCHAR(max) NULL,
+    [PhoneNumber] NVARCHAR(max) NULL,
+    [PhoneNumberConfirmed] BIT NOT NULL,
+    [TwoFactorEnabled] BIT NOT NULL,
+    [LockoutEndDateUtc] DATETIME NULL,
+    [LockoutEnabled] BIT NOT NULL,
+    [AccessFailedCount] INT NOT NULL,
+	PRIMARY KEY([Id]),
+	UNIQUE ([UserName])
+);
+
+CREATE TABLE [Role](
+    [Id] INT IDENTITY(1,1) NOT NULL,
+    [Name] NVARCHAR(256) NOT NULL,
+	PRIMARY KEY([Id])
+);
+
+CREATE TABLE [UserRole](
+    [UserId] INT NOT NULL,
+    [RoleId] INT NOT NULL,
+	FOREIGN KEY ([UserId]) REFERENCES [User]([Id]),
+	FOREIGN KEY ([RoleId]) REFERENCES [Role]([Id])
+);
+
+CREATE TABLE [UserClaim](
+    [Id] INT IDENTITY(1,1) NOT NULL,
+    [UserId] INT NOT NULL,
+    [ClaimType] NVARCHAR(max) NULL,
+    [ClaimValue] NVARCHAR(max) NULL
+	PRIMARY KEY([ID])
+	FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
+);
+
+CREATE TABLE [UserLogin](
+    [LoginProvider] NVARCHAR(128) NOT NULL,
+    [ProviderKey] NVARCHAR(128) NOT NULL,
+    [UserId] INT NOT NULL
+	FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
+);
 
 CREATE TABLE [REGION]
 (
@@ -246,26 +57,6 @@ CREATE TABLE [REGION]
 	PRIMARY KEY ([ID])
 );
 
-CREATE TABLE [ROLE]
-(
-	[ID] INT IDENTITY(1, 1) NOT NULL,
-	[NAME] nvarchar(10) UNIQUE NOT NULL,
-	PRIMARY KEY([ID])
-);
-
-CREATE TABLE [USER]
-(
-	[ID] INT IDENTITY(1, 1) NOT NULL,
-	[NAME] nvarchar(30) NOT NULL,
-	[BIRTHDAY] DATE NOT NULL,
-	[PHONE] CHAR(11) UNIQUE NOT NULL,
-	[EMAIL] NVARCHAR(50) UNIQUE NOT NULL,
-	[PASSWORD] NVARCHAR(32) NOT NULL,
-	[LOGIN] NVARCHAR(30) UNIQUE NOT NULL,
-	[ROLE_ID] INT NOT NULL,
-	PRIMARY KEY ([ID]),
-	FOREIGN KEY ([ROLE_ID]) REFERENCES [ROLE]([ID])
-);
 
 CREATE TABLE [BRAND]
 (
