@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using CarsSale.DataAccess;
 using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Identity;
 using CarsSale.DataAccess.Repositories.Interfaces;
-using CarsSale.DataAccess.Services.Interfaces;
 using CarsSale.WebUi.Models.Advertisements;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace CarsSale.WebUi.Controllers
 {
@@ -19,7 +21,8 @@ namespace CarsSale.WebUi.Controllers
         private readonly IVehiclTypeRepository _vehiclTypeRepository;
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IRegionRepository _regionRepository;
-        private readonly IUserService _userService;
+
+        private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         public AdvertisementController(
             IBrandRepository brandRepository,
@@ -27,8 +30,7 @@ namespace CarsSale.WebUi.Controllers
             ITransmissionTypeRepository transmissionRepository,
             IVehiclTypeRepository vehiclTypeRepository,
             IAdvertisementRepository advertisementRepository,
-            IRegionRepository regionRepository,
-            IUserService userService)
+            IRegionRepository regionRepository)
         {
             _brandRepository = brandRepository;
             _fuelRepository = fuelRepository;
@@ -36,10 +38,9 @@ namespace CarsSale.WebUi.Controllers
             _vehiclTypeRepository = vehiclTypeRepository;
             _advertisementRepository = advertisementRepository;
             _regionRepository = regionRepository;
-            _userService = userService;
         }
 
-        [Authorize(Roles = "user")]
+        [Authorize]
         public ActionResult Index()
         {
             var advertisement = new NewAdvertisementViewModel
@@ -48,13 +49,14 @@ namespace CarsSale.WebUi.Controllers
                 BrandOptions = _brandRepository.GetBrands(),
                 VehiclTypeOptions = _vehiclTypeRepository.GetVehiclTypes(),
                 TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes(),
-                FuelOptions = _fuelRepository.GetFuels()
+                FuelOptions = _fuelRepository.GetFuels(),
+               
             };
             return View(advertisement);
         }
 
         [HttpPost]
-        [Authorize(Roles = "user")]
+        [Authorize]
         public ActionResult Index(NewAdvertisementViewModel adv)
         {
             if (!ModelState.IsValid)
@@ -68,7 +70,6 @@ namespace CarsSale.WebUi.Controllers
                 CreatedDate = DateTime.Now,
                 ExpirationDate = DateTime.Today.AddDays(30),
                 IsActive = false,
-                User = _userService.Get(User.Identity.Name),
                 Region = adv.Region,
                 Vehicl = new Vehicl
                 {
@@ -80,8 +81,9 @@ namespace CarsSale.WebUi.Controllers
                     },
                     TransmissionType = adv.TransmissionType,
                     VehiclType = adv.VehiclType
-                }
-            };
+                },
+                User = UserManager.FindByLogin(User.Identity.Name)
+        };
 
             var res = _advertisementRepository.Create(advertisement);
 

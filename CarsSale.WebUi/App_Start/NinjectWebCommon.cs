@@ -1,7 +1,6 @@
 using CarsSale.DataAccess;
 using CarsSale.DataAccess.Repositories.Interfaces;
-using CarsSale.DataAccess.Services;
-using CarsSale.DataAccess.Services.Interfaces;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CarsSale.WebUi.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CarsSale.WebUi.App_Start.NinjectWebCommon), "Stop")]
@@ -16,6 +15,7 @@ namespace CarsSale.WebUi.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using CarsSale.DataAccess.Repositories;
+    using Microsoft.AspNet.Identity;
 
     public static class NinjectWebCommon 
     {
@@ -67,8 +67,6 @@ namespace CarsSale.WebUi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IUserRepository>().To<UserRepository>();
-            kernel.Bind<IRoleRepository>().To<RoleRepository>();
             kernel.Bind<IBrandRepository>().To<BrandRepository>();
             kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>();
             kernel.Bind<IFuelRepository>().To<FuelRepository>();
@@ -76,7 +74,7 @@ namespace CarsSale.WebUi.App_Start
             kernel.Bind<IAdvertisementRepository>().To<AdvertisementRepository>();
             kernel.Bind<IRegionRepository>().To<RegionRepository>();
 
-            kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
         }        
     }
 }

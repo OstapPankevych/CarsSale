@@ -12,18 +12,12 @@ namespace CarsSale.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class UserLogin
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
-        {
-            this.Users = new HashSet<User>();
-        }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public int UserId { get; set; }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

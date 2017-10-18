@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using CarsSale.DataAccess.DTO;
+﻿using System.Web.Mvc;
 using CarsSale.DataAccess.Repositories.Interfaces;
-using CarsSale.WebUi.Models;
-using CarsSale.WebUi.Models.Advertisements;
 
 namespace CarsSale.WebUi.Controllers
 {
@@ -19,7 +12,6 @@ namespace CarsSale.WebUi.Controllers
             _advertisementRepository = advertisementRepository;
         }
 
-        // GET: Home
         public ActionResult Index()
         {
             var advertisements = _advertisementRepository.GetAdvertisements();

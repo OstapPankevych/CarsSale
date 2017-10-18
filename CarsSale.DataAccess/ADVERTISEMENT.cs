@@ -23,7 +23,7 @@ namespace CarsSale.DataAccess
         public int REGION_ID { get; set; }
     
         public virtual REGION REGION { get; set; }
-        public virtual USER USER { get; set; }
+        public virtual User User { get; set; }
         public virtual VEHICL VEHICL { get; set; }
     }
 }
