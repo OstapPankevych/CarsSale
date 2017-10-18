@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Claims;
+using CarsSale.DataAccess.Entities;
 
 namespace CarsSale.DataAccess.DTO
 {
@@ -12,7 +15,7 @@ namespace CarsSale.DataAccess.DTO
 
         public DateTime CreatedDate { get; set; }
 
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         public Vehicl Vehicl { get; set; }
 
@@ -25,9 +28,14 @@ namespace CarsSale.DataAccess.DTO
             IsActive = entity.IS_ACTIVE;
             ExpirationDate = entity.EXPIRATION_DATE;
             CreatedDate = entity.CREATED_DATE;
-            User = new User(entity.USER);
             Vehicl = new Vehicl(entity.VEHICL);
             Region = new Region(entity.REGION);
+            User = new ApplicationUser
+            {
+                Email = entity.User.Email,
+                UserName = entity.User.UserClaims.FirstOrDefault(x => x.ClaimType == ClaimTypes.Name)?.ClaimValue,
+                PhoneNumber = entity.User.PhoneNumber
+            };
         }
 
         public ADVERTISEMENT Convert()
@@ -38,8 +46,8 @@ namespace CarsSale.DataAccess.DTO
                 EXPIRATION_DATE = ExpirationDate,
                 CREATED_DATE = CreatedDate,
                 VEHICL_ID = Vehicl.Id,
-                USER_ID = User.Id,
-                REGION_ID = Region.Id
+                REGION_ID = Region.Id,
+                USER_ID = User.Id
             };
         }
     }

@@ -26,19 +26,17 @@ namespace CarsSale.DataAccess
         }
     
         public virtual DbSet<ADVERTISEMENT> ADVERTISEMENTs { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BRAND> BRANDs { get; set; }
         public virtual DbSet<ENGINE> ENGINEs { get; set; }
         public virtual DbSet<ENGINE_FUEL> ENGINE_FUEL { get; set; }
         public virtual DbSet<FUEL> FUELs { get; set; }
         public virtual DbSet<REGION> REGIONs { get; set; }
-        public virtual DbSet<ROLE> ROLEs { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<TRANSMISSION_TYPE> TRANSMISSION_TYPE { get; set; }
-        public virtual DbSet<USER> USERs { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<VEHICL> VEHICLs { get; set; }
         public virtual DbSet<VEHICL_TYPE> VEHICL_TYPE { get; set; }
+        public virtual DbSet<UserLogin> UserLogins { get; set; }
     }
 }

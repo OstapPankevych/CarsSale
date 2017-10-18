@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CarsSale.DataAccess.DTO.Advertisement>
+﻿@using System.IdentityModel.Claims
+@model IEnumerable<CarsSale.DataAccess.DTO.Advertisement>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -158,7 +159,7 @@
                             <div class="col-sm-6 text-center">
                                 <div>
                                     <span class="glyphicon glyphicon-earphone"></span>
-                                    <label>@x.User.Phone</label>
+                                    <label>@x.User.PhoneNumber</label>
                                 </div>
                                 <div>
                                     <span class="glyphicon glyphicon-envelope"></span>
@@ -168,7 +169,7 @@
                             <div class="col-lg-6 text-right">
                                 <div>
                                     <span class="glyphicon glyphicon-user"></span>
-                                    <label class="">@x.User.Name</label>
+                                    <label class="">@x.User.UserName</label>
                                 </div>
                                 <div>
                                     <span class="glyphicon glyphicon-hourglass"></span>

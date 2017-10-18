@@ -80,18 +80,6 @@
     <Compile Include="ADVERTISEMENT.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetRole.cs">
-      <DependentUpon>CarsSale.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUser.cs">
-      <DependentUpon>CarsSale.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>CarsSale.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>CarsSale.tt</DependentUpon>
-    </Compile>
     <Compile Include="BRAND.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
@@ -115,9 +103,7 @@
     <Compile Include="DTO\Engine.cs" />
     <Compile Include="DTO\Fuel.cs" />
     <Compile Include="DTO\Region.cs" />
-    <Compile Include="DTO\Role.cs" />
     <Compile Include="DTO\TransmissionType.cs" />
-    <Compile Include="DTO\User.cs" />
     <Compile Include="DTO\Vehicl.cs" />
     <Compile Include="DTO\VehiclType.cs" />
     <Compile Include="EF\ApplicationDbContext.cs" />
@@ -127,6 +113,11 @@
     <Compile Include="ENGINE_FUEL.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ApplicationClaim.cs" />
+    <Compile Include="Entities\ApplicationLogin.cs" />
+    <Compile Include="Entities\ApplicationRole.cs" />
+    <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\ApplicationUserRole.cs" />
     <Compile Include="FUEL.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
@@ -142,25 +133,25 @@
     <Compile Include="Repositories\Interfaces\IBrandRepository.cs" />
     <Compile Include="Repositories\Interfaces\IFuelRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRegionRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
     <Compile Include="Repositories\Interfaces\ITransmissionTypeRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\Interfaces\IVehiclTypeRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VehiclTypeRepository.cs" />
-    <Compile Include="ROLE.cs">
+    <Compile Include="Role.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\Interfaces\IUserService.cs" />
-    <Compile Include="Services\UserService.cs" />
     <Compile Include="TRANSMISSION_TYPE.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="USER.cs">
+    <Compile Include="User.cs">
+      <DependentUpon>CarsSale.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserClaim.cs">
+      <DependentUpon>CarsSale.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLogin.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
     <Compile Include="VEHICL.cs">

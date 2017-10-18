@@ -15,7 +15,7 @@
 
 <div class="container col-lg-9 col-lg-offset-3">
     <div class="row clearfix center-block text-center">
-        @using (Html.BeginForm("SubmitRegistry", "Account", null, FormMethod.Post, new { @class = "form-horizontal col-lg-5", role = "form", ReturnUrl = Request.QueryString["ReturnUrl"] }))
+        @using (Html.BeginForm("Registry", "Account", null, FormMethod.Post, new { @class = "form-horizontal col-lg-5", role = "form", ReturnUrl = Request.QueryString["ReturnUrl"] }))
         {
             <fieldset>
                 <legend>Create an account to CarsSale</legend>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Phone *</label>
-                    <div class="col-lg-3 input-group">
+                    <div class="col-lg-4 input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         @Html.TextBoxFor(x => x.Phone, new {@class = "form-control", mask = "(999) 999 - 99 - 99", placeholder = "(067) 123 - 45 - 67"})
                     </div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Birthday *</label>
-                    <div class="col-lg-3 input-group">
+                    <div class="col-lg-4 input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         @Html.TextBoxFor(x => x.Birthday, new {@class = "form-control", mask = "99 / 99 / 9999", placeholder = "MM / DD / YYYY"})
                     </div>
@@ -83,7 +83,7 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <div class="col-lg-3 col-lg-offset-2">
+                    <div class="col-lg-5 col-lg-offset-2">
                         <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </div>

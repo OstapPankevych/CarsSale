@@ -12,25 +12,37 @@ namespace CarsSale.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class USER
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USER()
+        public User()
         {
             this.ADVERTISEMENTs = new HashSet<ADVERTISEMENT>();
+            this.UserClaims = new HashSet<UserClaim>();
+            this.UserLogins = new HashSet<UserLogin>();
+            this.Roles = new HashSet<Role>();
         }
     
-        public int ID { get; set; }
-        public string NAME { get; set; }
-        public System.DateTime BIRTHDAY { get; set; }
-        public string PHONE { get; set; }
-        public string EMAIL { get; set; }
-        public string PASSWORD { get; set; }
-        public string LOGIN { get; set; }
-        public int ROLE_ID { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string Password { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ADVERTISEMENT> ADVERTISEMENTs { get; set; }
-        public virtual ROLE ROLE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserClaim> UserClaims { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserLogin> UserLogins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

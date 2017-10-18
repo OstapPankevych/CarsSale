@@ -44,8 +44,8 @@ namespace CarsSale.DataAccess.Repositories
         {
             var db = context.ADVERTISEMENTs
                 .Where(adv => adv.ID == id)
+                    .Include(adv => adv.User)
                     .Include(adv => adv.REGION)
-                    .Include(adv => adv.USER)
                     .Include(adv => adv.VEHICL)
                     .Include(adv => adv.VEHICL.BRAND)
                     .Include(adv => adv.VEHICL.ENGINE)

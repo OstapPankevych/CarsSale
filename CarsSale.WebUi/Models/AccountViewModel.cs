@@ -19,7 +19,7 @@ namespace CarsSale.WebUi.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "The Password is required")]
-        [MaxLength(30, ErrorMessage = "The Password can not be longer 30 characters")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "The ConfirmPassword is required")]
