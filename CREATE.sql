@@ -1,8 +1,54 @@
-CREATE DATABASE CarsSale;
+--CREATE DATABASE CarsSale;
 
 USE CarsSale
 
 GO
+
+CREATE TABLE [User](
+    [Id] INT IDENTITY(1,1) NOT NULL,
+	[UserName] NVARCHAR(50) NOT NULL,
+    [Email] NVARCHAR(256) NULL,
+    [EmailConfirmed] BIT NOT NULL,
+    [Password] NVARCHAR(max) NULL,
+    [SecurityStamp] NVARCHAR(max) NULL,
+    [PhoneNumber] NVARCHAR(max) NULL,
+    [PhoneNumberConfirmed] BIT NOT NULL,
+    [TwoFactorEnabled] BIT NOT NULL,
+    [LockoutEndDateUtc] DATETIME NULL,
+    [LockoutEnabled] BIT NOT NULL,
+    [AccessFailedCount] INT NOT NULL,
+	PRIMARY KEY([Id]),
+	UNIQUE ([UserName])
+);
+
+CREATE TABLE [Role](
+    [Id] INT IDENTITY(1,1) NOT NULL,
+    [Name] NVARCHAR(256) NOT NULL,
+	PRIMARY KEY([Id])
+);
+
+CREATE TABLE [UserRole](
+    [UserId] INT NOT NULL,
+    [RoleId] INT NOT NULL,
+	FOREIGN KEY ([UserId]) REFERENCES [User]([Id]),
+	FOREIGN KEY ([RoleId]) REFERENCES [Role]([Id])
+);
+
+CREATE TABLE [UserClaim](
+    [Id] INT IDENTITY(1,1) NOT NULL,
+    [UserId] INT NOT NULL,
+    [ClaimType] NVARCHAR(max) NULL,
+    [ClaimValue] NVARCHAR(max) NULL
+	PRIMARY KEY([ID])
+	FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
+);
+
+CREATE TABLE [UserLogin](
+    [LoginProvider] NVARCHAR(128) NOT NULL,
+    [ProviderKey] NVARCHAR(128) NOT NULL,
+    [UserId] INT NOT NULL
+	FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
+);
 
 CREATE TABLE [REGION]
 (
@@ -11,26 +57,6 @@ CREATE TABLE [REGION]
 	PRIMARY KEY ([ID])
 );
 
-CREATE TABLE [ROLE]
-(
-	[ID] INT IDENTITY(1, 1) NOT NULL,
-	[NAME] nvarchar(10) UNIQUE NOT NULL,
-	PRIMARY KEY([ID])
-);
-
-CREATE TABLE [USER]
-(
-	[ID] INT IDENTITY(1, 1) NOT NULL,
-	[NAME] nvarchar(30) NOT NULL,
-	[BIRTHDAY] DATE NOT NULL,
-	[PHONE] CHAR(11) UNIQUE NOT NULL,
-	[EMAIL] NVARCHAR(50) UNIQUE NOT NULL,
-	[PASSWORD] NVARCHAR(32) NOT NULL,
-	[LOGIN] NVARCHAR(30) UNIQUE NOT NULL,
-	[ROLE_ID] INT NOT NULL,
-	PRIMARY KEY ([ID]),
-	FOREIGN KEY ([ROLE_ID]) REFERENCES [ROLE]([ID])
-);
 
 CREATE TABLE [BRAND]
 (
