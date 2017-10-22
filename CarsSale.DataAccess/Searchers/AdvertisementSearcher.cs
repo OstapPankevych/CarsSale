@@ -5,7 +5,7 @@ using CarsSale.DataAccess.Searchers.Interfaces;
 
 namespace CarsSale.DataAccess.Searchers
 {
-    public class AdvertisementSearcher: Searcher<ADVERTISEMENT>, IAdvertisementSearcher
+    public class AdvertisementSearcher: Searcher<ADVERTISEMENT, AdvertisementSearcher>, IAdvertisementSearcher
     {
         public IAdvertisementSearcher ByRegion(Region region)
         {
