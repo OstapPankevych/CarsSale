@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarsSale.DataAccess.DTO;
@@ -14,28 +12,28 @@ namespace CarsSale.WebUi.Controllers
 {
     public class AdvertisementController : Controller
     {
+        private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IBrandRepository _brandRepository;
         private readonly IFuelRepository _fuelRepository;
         private readonly ITransmissionTypeRepository _transmissionRepository;
         private readonly IVehiclTypeRepository _vehiclTypeRepository;
-        private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IRegionRepository _regionRepository;
 
         private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
         public AdvertisementController(
+            IAdvertisementRepository advertisementRepository,
             IBrandRepository brandRepository,
             IFuelRepository fuelRepository,
             ITransmissionTypeRepository transmissionRepository,
             IVehiclTypeRepository vehiclTypeRepository,
-            IAdvertisementRepository advertisementRepository,
             IRegionRepository regionRepository)
         {
+            _advertisementRepository = advertisementRepository;
             _brandRepository = brandRepository;
             _fuelRepository = fuelRepository;
             _transmissionRepository = transmissionRepository;
             _vehiclTypeRepository = vehiclTypeRepository;
-            _advertisementRepository = advertisementRepository;
             _regionRepository = regionRepository;
         }
 

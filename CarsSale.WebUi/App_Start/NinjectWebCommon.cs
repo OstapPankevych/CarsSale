@@ -1,4 +1,3 @@
-using CarsSale.DataAccess;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -16,6 +15,8 @@ namespace CarsSale.WebUi.App_Start
     using Ninject.Web.Common;
     using CarsSale.DataAccess.Repositories;
     using Microsoft.AspNet.Identity;
+    using CarsSale.DataAccess.Searchers.Interfaces;
+    using CarsSale.DataAccess.Searchers;
 
     public static class NinjectWebCommon 
     {
@@ -67,6 +68,7 @@ namespace CarsSale.WebUi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IAdvertisementSearcher>().To<AdvertisementSearcher>();
             kernel.Bind<IBrandRepository>().To<BrandRepository>();
             kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>();
             kernel.Bind<IFuelRepository>().To<FuelRepository>();

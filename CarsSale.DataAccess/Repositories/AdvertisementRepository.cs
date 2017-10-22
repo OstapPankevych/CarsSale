@@ -1,19 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Searchers.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
     public class AdvertisementRepository: Repository, IAdvertisementRepository
     {
-        public IEnumerable<Advertisement> GetAdvertisements()
+        private readonly IAdvertisementSearcher _searcher;
+
+        public AdvertisementRepository(IAdvertisementSearcher searcher)
+        {
+            _searcher = searcher;
+        }
+
+        public IEnumerable<Advertisement> GetAdvertisements(
+            Brand brand = null,
+            Region region = null,
+            VehiclType vehiclType = null,
+            TransmissionType transmission = null,
+            Fuel[] fuels = null,
+            Engine from = null,
+            Engine to = null)
         {
             using (var context = CreateContext())
             {
-                return context.ADVERTISEMENTs
+                var advertisements = _searcher
+                    .For(context.ADVERTISEMENTs)
+                    .ByRegion(region)
+                    .ByBrand(brand)
+                    .ByFuelType(fuels)
+                    .ByRegion(region)
+                    .ByVehiclType(vehiclType)
+                    .CreateQuery(context.ADVERTISEMENTs);
+                return advertisements
                     .AsEnumerable()
                     .Select(x => new Advertisement(x))
                     .ToList();
@@ -94,5 +116,64 @@ namespace CarsSale.DataAccess.Repositories
             
             return dbEngine.ID;
         }
+
+        #region Helpers
+
+        public IQueryable<ADVERTISEMENT> ByRegion(IQueryable<ADVERTISEMENT> query, Region region)
+        {
+            query = region != null
+                ? query.Where(x => x.REGION_ID == region.Id)
+                : query;
+            return query;
+        }
+
+        public IQueryable<ADVERTISEMENT> ByVehiclType(IQueryable<ADVERTISEMENT> query, VehiclType vehiclType)
+        {
+            query = vehiclType != null
+                ? query.Where(x => x.VEHICL.VEHICL_TYPE_ID == vehiclType.Id)
+                : query;
+            return query;
+        }
+
+        public IQueryable<ADVERTISEMENT> ByBrand(IQueryable<ADVERTISEMENT> query, Brand brand)
+        {
+            query = brand != null
+                ? query.Where(x => x.VEHICL.BRAND_ID == brand.Id)
+                : query;
+            return query;
+        }
+
+        public IQueryable<ADVERTISEMENT> ByTransmission(IQueryable<ADVERTISEMENT> query, TransmissionType transmission)
+        {
+            query = transmission != null
+                ? query.Where(x => x.VEHICL.TRANSMISSION_TYPE_ID == transmission.Id)
+                : query;
+            return query;
+        }
+
+        public IQueryable<ADVERTISEMENT> ByEngineVolume(IQueryable<ADVERTISEMENT> query, Engine from, Engine to)
+        {
+            if (from == null && to == null) return q;
+            if (from != null)
+            {
+                query = query.Where(x => x.VEHICL.ENGINE.VOLUME >= from.Volume);
+            }
+            if (to != null)
+            {
+                query = query.Where(x => x.VEHICL.ENGINE.VOLUME <= to.Volume);
+            }
+            return query;
+        }
+
+        public IQueryable<ADVERTISEMENT> ByFuelType(IQueryable<ADVERTISEMENT> query, IEnumerable<Fuel> fuels)
+        {
+            query = fuels != null
+                ? query.Where(x => x.VEHICL.ENGINE.ENGINE_FUEL.Select(ef => ef.FUEL_ID)
+                    .SequenceEqual(fuels.Select(f => f.Id)))
+                : query;
+            return query;
+        }
+
+        #endregion
     }
 }
