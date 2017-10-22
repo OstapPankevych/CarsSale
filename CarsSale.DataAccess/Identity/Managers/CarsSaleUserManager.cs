@@ -1,16 +1,15 @@
 ﻿using System.Linq;
-using CarsSale.DataAccess.EF;
-using CarsSale.DataAccess.Entities;
+using CarsSale.DataAccess.Identity.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
-namespace CarsSale.DataAccess.Identity
+namespace CarsSale.DataAccess.Identity.Managers
 {
-    public class ApplicationUserManager: UserManager<ApplicationUser, int>
+    public class CarsSaleUserManager: UserManager<CarsSaleUser, int>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser, int> store)
+        public CarsSaleUserManager(IUserStore<CarsSaleUser, int> store)
             : base(store)
         {
         }
@@ -33,21 +32,21 @@ namespace CarsSale.DataAccess.Identity
             return user != null;
         }
 
-        public ApplicationUser FindByLogin(string login)
+        public CarsSaleUser FindByLogin(string login)
         {
             return Users.FirstOrDefault(x => x.UserName == login);
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static CarsSaleUserManager Create(IdentityFactoryOptions<CarsSaleUserManager> options, IOwinContext context)
         {
             var db = context.Get<ApplicationDbContext>();
-            var store = new UserStore<ApplicationUser,
-                ApplicationRole,
+            var store = new UserStore<CarsSaleUser,
+                CarsSaleRole,
                 int,
-                ApplicationLogin,
-                ApplicationUserRole,
-                ApplicationClaim>(db);
-            var manager = new ApplicationUserManager(store);
+                CarsSaleLogin,
+                CarsSaleUserRole,
+                CarsSaleClaim>(db);
+            var manager = new CarsSaleUserManager(store);
             return manager;
         }
     }

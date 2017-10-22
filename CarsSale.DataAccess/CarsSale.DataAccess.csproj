@@ -106,22 +106,22 @@
     <Compile Include="DTO\TransmissionType.cs" />
     <Compile Include="DTO\Vehicl.cs" />
     <Compile Include="DTO\VehiclType.cs" />
-    <Compile Include="EF\ApplicationDbContext.cs" />
+    <Compile Include="Identity\CarsSaleDbContext.cs" />
     <Compile Include="ENGINE.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
     <Compile Include="ENGINE_FUEL.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\ApplicationClaim.cs" />
-    <Compile Include="Entities\ApplicationLogin.cs" />
-    <Compile Include="Entities\ApplicationRole.cs" />
-    <Compile Include="Entities\ApplicationUser.cs" />
-    <Compile Include="Entities\ApplicationUserRole.cs" />
+    <Compile Include="Identity\Entities\CarsSaleClaim.cs" />
+    <Compile Include="Identity\Entities\CarsSaleLogin.cs" />
+    <Compile Include="Identity\Entities\CarsSaleRole.cs" />
+    <Compile Include="Identity\Entities\CarsSaleUser.cs" />
+    <Compile Include="Identity\Entities\CarsSaleUserRole.cs" />
     <Compile Include="FUEL.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\Managers\CarsSaleUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REGION.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>

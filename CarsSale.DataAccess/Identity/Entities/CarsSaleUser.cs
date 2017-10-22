@@ -1,14 +1,14 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using CarsSale.DataAccess.Identity;
+using CarsSale.DataAccess.Identity.Managers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace CarsSale.DataAccess.Entities
+namespace CarsSale.DataAccess.Identity.Entities
 {
-    public class ApplicationUser: IdentityUser<int, ApplicationLogin, ApplicationUserRole, ApplicationClaim>
+    public class CarsSaleUser: IdentityUser<int, CarsSaleLogin, CarsSaleUserRole, CarsSaleClaim>
     {
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager userManager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(CarsSaleUserManager userManager)
         {
             var userIdentity = await userManager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             return userIdentity;

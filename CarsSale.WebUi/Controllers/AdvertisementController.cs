@@ -4,9 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CarsSale.DataAccess;
 using CarsSale.DataAccess.DTO;
-using CarsSale.DataAccess.Identity;
+using CarsSale.DataAccess.Identity.Managers;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.WebUi.Models.Advertisements;
 using Microsoft.AspNet.Identity.Owin;
@@ -22,7 +21,7 @@ namespace CarsSale.WebUi.Controllers
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IRegionRepository _regionRepository;
 
-        private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
         public AdvertisementController(
             IBrandRepository brandRepository,

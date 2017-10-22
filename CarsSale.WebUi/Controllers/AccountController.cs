@@ -1,15 +1,12 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using CarsSale.DataAccess.DTO;
-using CarsSale.DataAccess.Entities;
-using CarsSale.DataAccess.Identity;
+using CarsSale.DataAccess.Identity.Entities;
+using CarsSale.DataAccess.Identity.Managers;
 using CarsSale.WebUi.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
@@ -17,7 +14,7 @@ namespace CarsSale.WebUi.Controllers
 {
     public class AccountController : Controller
     {
-        private ApplicationUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
         
@@ -88,13 +85,13 @@ namespace CarsSale.WebUi.Controllers
                 return View();
             }
 
-            var user = new ApplicationUser
+            var user = new CarsSaleUser
             {
                 UserName = account.Login,
                 PhoneNumber = account.Phone,
                 Logins =
                     {
-                        new ApplicationLogin
+                        new CarsSaleLogin
                         {
                             LoginProvider = "CarsSale", ProviderKey = account.Login
                         }
@@ -102,8 +99,8 @@ namespace CarsSale.WebUi.Controllers
                 Email = account.Email,
                 Claims =
                 {
-                    new ApplicationClaim { ClaimType = ClaimTypes.Name, ClaimValue = account.Name },
-                    new ApplicationClaim {ClaimType = ClaimTypes.DateOfBirth, ClaimValue = account.Birthday.ToLongDateString() }
+                    new CarsSaleClaim { ClaimType = ClaimTypes.Name, ClaimValue = account.Name },
+                    new CarsSaleClaim {ClaimType = ClaimTypes.DateOfBirth, ClaimValue = account.Birthday.ToLongDateString() }
                 }
             };
             var result = UserManager.Create(user, account.Password);
@@ -147,7 +144,7 @@ namespace CarsSale.WebUi.Controllers
 
         #region Helpers
 
-        private void SignIn(ApplicationUser user, bool isPersistent)
+        private void SignIn(CarsSaleUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties
