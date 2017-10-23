@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.WebUi.Models;
@@ -7,6 +8,8 @@ namespace CarsSale.WebUi.Controllers
 {
     public class HomeController : Controller
     {
+        private const int UnselectedId = -1;
+
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IBrandRepository _brandRepository;
         private readonly IFuelRepository _fuelRepository;
@@ -45,13 +48,13 @@ namespace CarsSale.WebUi.Controllers
         public PartialViewResult Search(SearchViewModel searchViewModel)
         {
             var advertisements = _advertisementRepository.GetAdvertisements(
-                searchViewModel.Brand,
-                searchViewModel.Region,
-                searchViewModel.VehiclType,
-                searchViewModel.TransmissionType,
-                searchViewModel.Fuels,
-                new Engine { Volume = searchViewModel.EngineVolumeFrom },
-                new Engine { Volume = searchViewModel.EngineVolumeTo });
+                searchViewModel.Brand.Id != UnselectedId ? searchViewModel.Brand : null,
+                searchViewModel.Region.Id != UnselectedId ? searchViewModel.Region : null,
+                searchViewModel.VehiclType.Id != UnselectedId ? searchViewModel.VehiclType : null,
+                searchViewModel.TransmissionType.Id != UnselectedId ? searchViewModel.TransmissionType : null,
+                searchViewModel.FuelIds.Select(x => new Fuel { Id = x }).ToList(),
+                searchViewModel.EngineVolumeFrom != null ? new Engine { Volume = searchViewModel.EngineVolumeFrom.Value } : null,
+                searchViewModel.EngineVolumeFrom != null ? new Engine { Volume = searchViewModel.EngineVolumeFrom.Value } : null);
             return PartialView("Partials/Advertisement", advertisements);
         }
     }

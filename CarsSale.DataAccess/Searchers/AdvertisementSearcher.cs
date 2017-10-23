@@ -5,7 +5,7 @@ using CarsSale.DataAccess.Searchers.Interfaces;
 
 namespace CarsSale.DataAccess.Searchers
 {
-    public class AdvertisementSearcher: Searcher<ADVERTISEMENT, AdvertisementSearcher>, IAdvertisementSearcher
+    public class AdvertisementSearcher: Searcher<ADVERTISEMENT>, IAdvertisementSearcher
     {
         public IAdvertisementSearcher ByRegion(Region region)
         {
@@ -59,12 +59,6 @@ namespace CarsSale.DataAccess.Searchers
                 ? Query.Where(x => x.VEHICL.ENGINE.ENGINE_FUEL.Select(ef => ef.FUEL_ID)
                     .SequenceEqual(fuels.Select(f => f.Id)))
                 : Query;
-            return this;
-        }
-
-        public new IAdvertisementSearcher For(IQueryable<ADVERTISEMENT> query)
-        {
-            base.For(query);
             return this;
         }
     }

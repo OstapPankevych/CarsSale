@@ -1,12 +1,10 @@
 ﻿using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using CarsSale.DataAccess.Searchers.Interfaces;
 
 namespace CarsSale.DataAccess.Searchers
 {
-    public abstract class Searcher<T, TS>: ISearcher<T, TS>
+    public abstract class Searcher<T>: ISearcher<T>
         where T: class
-        where TS: Searcher<T, TS>
     {
         private IQueryable<T> _query;
         
@@ -16,10 +14,11 @@ namespace CarsSale.DataAccess.Searchers
             set => _query = value;
         }
 
-        public Searcher<T, TS> For(IQueryable<T> query)
+        public IQueryable<T> CreateQuery(IQueryable<T> query)
         {
-            Query = query;
-            return this;
+            query.Provider.CreateQuery(Query.Expression);
+            Query = null;
+            return query;
         }
     }
 }

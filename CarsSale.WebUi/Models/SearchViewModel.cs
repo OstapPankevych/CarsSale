@@ -7,12 +7,12 @@ namespace CarsSale.WebUi.Models
     public class SearchViewModel
     {
         [Range(1, 10000)]
-        public int EngineVolumeFrom { get; set; }
+        public int? EngineVolumeFrom { get; set; }
 
         [Range(1, 10000)]
-        public int EngineVolumeTo { get; set; }
+        public int? EngineVolumeTo { get; set; }
 
-        public Fuel[] Fuels { get; set; }
+        public int[] FuelIds { get; set; }
         public Region Region { get; set; }
         public Brand Brand { get; set; }
         public VehiclType VehiclType { get; set; }

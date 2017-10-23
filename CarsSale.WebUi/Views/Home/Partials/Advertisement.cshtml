@@ -1,50 +1,56 @@
 ﻿@model IEnumerable<CarsSale.DataAccess.DTO.Advertisement>
 
-
-<div class="col-sm-9">
-	@foreach (var x in Model)
-	{
-		<div class="col-sm-4">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="col-sm-12">
-						<label class="col-sm-6 text-left">@x.Vehicl.Brand.Name</label>
-						<label class="col-sm-6 text-right">@x.Region.Name</label>
-					</div>
-					<span class="badge">@Math.Round((float)x.Vehicl.Engine.Volume / 1000, 1)</span>
-					<span class="badge">@x.Vehicl.TransmissionType.Name</span>
-					@foreach (var fuel in x.Vehicl.Engine.Fuels)
-					{
-						<span class="badge">@fuel.Name</span>
-					}
-				</div>
-				<div class="panel-body">
-				</div>
-				<div class="panel-footer">
-					<div class="row">
-						<div class="col-sm-6 text-center">
-							<div>
-								<span class="glyphicon glyphicon-earphone"></span>
-								<label>@x.User.PhoneNumber</label>
-							</div>
-							<div>
-								<span class="glyphicon glyphicon-envelope"></span>
-								<label>@x.User.Email</label>
-							</div>
-						</div>
-						<div class="col-lg-6 text-right">
-							<div>
-								<span class="glyphicon glyphicon-user"></span>
-								<label class="">@x.User.UserName</label>
-							</div>
-							<div>
-								<span class="glyphicon glyphicon-hourglass"></span>
-								<label class="">@x.CreatedDate.ToString("MM/dd/yyyy HH:mm")</label>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	}
-</div>
+@if (!Model.Any())
+{
+    <div>No Content Found</div>
+}
+else
+{
+    <div class="col-sm-9">
+        @foreach (var x in Model)
+        {
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="col-sm-12">
+                            <label class="col-sm-6 text-left">@x.Vehicl.Brand.Name</label>
+                            <label class="col-sm-6 text-right">@x.Region.Name</label>
+                        </div>
+                        <span class="badge">@Math.Round((float) x.Vehicl.Engine.Volume / 1000, 1)</span>
+                        <span class="badge">@x.Vehicl.TransmissionType.Name</span>
+                        @foreach (var fuel in x.Vehicl.Engine.Fuels)
+                        {
+                            <span class="badge">@fuel.Name</span>
+                        }
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6 text-center">
+                                <div>
+                                    <span class="glyphicon glyphicon-earphone"></span>
+                                    <label>@x.User.PhoneNumber</label>
+                                </div>
+                                <div>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    <label>@x.User.Email</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <div>
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <label class="">@x.User.UserName</label>
+                                </div>
+                                <div>
+                                    <span class="glyphicon glyphicon-hourglass"></span>
+                                    <label class="">@x.CreatedDate.ToString("MM/dd/yyyy HH:mm")</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
