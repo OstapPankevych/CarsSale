@@ -21,12 +21,13 @@
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Region</label>
 							<div class="col-sm-12">
-								<select class="form-control" name="@Html.NameFor(m => m.Region.Id)">
-									@foreach (var x in Model.RegionOptions)
-									{
-										<option value="@x.Id">@x.Name</option>
-									}
-								</select>
+							    <select class="form-control" name="@Html.NameFor(m => m.Region.Id)">
+                                    <option value="-1">-- Select --</option>
+							        @foreach (var x in Model.RegionOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
 							</div>
 						</div>
 					</div>
@@ -35,12 +36,13 @@
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Brand</label>
 							<div class="col-sm-12">
-								<select class="form-control" name="@Html.NameFor(m => m.Brand.Id)">
-									@foreach (var x in Model.BrandOptions)
-									{
-										<option value="@x.Id">@x.Name</option>
-									}
-								</select>
+							    <select class="form-control" name="@Html.NameFor(m => m.Brand.Id)">
+                                    <option value="-1">-- Select --</option>
+							        @foreach (var x in Model.BrandOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
 							</div>
 						</div>
 					</div>
@@ -49,12 +51,13 @@
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Vehicl Type</label>
 							<div class="col-sm-12">
-								<select class="form-control" name="@Html.NameFor(m => m.VehiclType.Id)">
-									@foreach (var x in Model.VehiclTypeOptions)
-									{
-										<option value="@x.Id">@x.Name</option>
-									}
-								</select>
+							    <select class="form-control" name="@Html.NameFor(m => m.VehiclType.Id)">
+                                    <option value="-1">-- Select --</option>
+							        @foreach (var x in Model.VehiclTypeOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
 							</div>
 						</div>
 					</div>
@@ -63,12 +66,13 @@
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Transmission</label>
 							<div class="col-sm-12">
-								<select class="form-control" name="@Html.NameFor(m => m.TransmissionType.Id)">
-									@foreach (var x in Model.TransmissionTypeOptions)
-									{
-										<option value="@x.Id">@x.Name</option>
-									}
-								</select>
+							    <select class="form-control" name="@Html.NameFor(m => m.TransmissionType.Id)">
+                                    <option value="-1">-- Select --</option>
+							        @foreach (var x in Model.TransmissionTypeOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
 							</div>
 						</div>
 					</div>
@@ -92,7 +96,7 @@
 										{
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" value="@x.Id" name="@Html.NameFor(m => m.Fuels)">@x.Name
+													<input type="checkbox" value="@x.Id" name="@Html.NameFor(m => m.FuelIds)">@x.Name
 												</label>
 											</div>
 										}

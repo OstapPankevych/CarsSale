@@ -3,7 +3,7 @@ using CarsSale.DataAccess.DTO;
 
 namespace CarsSale.DataAccess.Searchers.Interfaces
 {
-    public interface IAdvertisementSearcher: ISearcher<ADVERTISEMENT, ISearcher<ADVERTISEMENT, this>>
+    public interface IAdvertisementSearcher: ISearcher<ADVERTISEMENT>
     {
         IAdvertisementSearcher ByBrand(Brand brand);
         IAdvertisementSearcher ByFuelType(IEnumerable<Fuel> fuels);

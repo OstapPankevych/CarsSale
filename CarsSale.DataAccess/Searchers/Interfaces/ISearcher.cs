@@ -5,10 +5,9 @@ using System.Threading;
 
 namespace CarsSale.DataAccess.Searchers.Interfaces
 {
-    public interface ISearcher<in T, out TS>
+    public interface ISearcher<T>
         where T : class
-        where TS: ISearcher<T, TS>
     {
-        TS For(IQueryable<T> query);
+        IQueryable<T> CreateQuery(IQueryable<T> query);
     }
 }

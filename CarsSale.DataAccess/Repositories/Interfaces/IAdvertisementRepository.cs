@@ -11,7 +11,7 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
             Region region = null,
             VehiclType vehiclType = null,
             TransmissionType transmission = null,
-            Fuel[] fuels = null,
+            List<Fuel> fuels = null,
             Engine from = null,
             Engine to = null);
     }
