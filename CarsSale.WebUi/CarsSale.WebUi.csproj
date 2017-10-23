@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44386</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -142,6 +143,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Scripts\home.js" />
+    <Content Include="Content\Scripts\modules\index.js" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap.css" />

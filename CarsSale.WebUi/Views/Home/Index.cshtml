@@ -4,6 +4,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Content/Scripts/modules/index.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const beforeSend = () => {
+            document.getElementById("results").innerHTML = "";
+        };
+
+        const success = data => {
+            document.getElementById("results").innerHTML = data;
+        };
+
+        const unselectedValue = -1;
+        const getRegion = () => {
+            const e = document.getElementById("region");
+            const regionId = e.options[e.selectedIndex].value;
+            return regionId === unselectedValue ? null : { Id: Number(regionId) };
+        }
+
+        const { contentLoader, urls } = carsSale;
+        const { searchAdvertisements: url } = urls;
+
+        const options = {
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            beforeSend, success
+        };
+        contentLoader.init(url, options);
+
+        const searchBtn = document.getElementById("search");
+        searchBtn.addEventListener("click", () => {
+            const data = {
+                    Region: getRegion()   
+            };
+            contentLoader.loadContent(data);
+        });
+    });
+</script>
 <legend class="text-center">Welcome to CarsSale</legend>
 <div class="col-sm-12">
     <div class="col-sm-3">
@@ -14,14 +51,14 @@
 			        Filter
 		        </span>
 	        </div>
-			@using (Ajax.BeginForm("Search", new AjaxOptions { UpdateTargetId = "results" }))
-			{
+			@*@using (Ajax.BeginForm("Search", new AjaxOptions { UpdateTargetId = "results" }))
+			{*@
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Region</label>
 							<div class="col-sm-12">
-							    <select class="form-control" name="@Html.NameFor(m => m.Region.Id)">
+							    <select class="form-control" id="region" name="@Html.NameFor(m => m.Region.Id)">
                                     <option value="-1">-- Select --</option>
 							        @foreach (var x in Model.RegionOptions)
 							        {
@@ -115,10 +152,10 @@
 					</div>
 					<div class="col-sm-10">
 						<label class="glyphicon glyphicon-search"></label>
-						<button type="submit" class="btn btn-primary">Search</button>
+						<button id="search" type="submit" class="btn btn-primary">Search</button>
 					</div>
 				</div>
-			}
+			@*}*@
         </div>
     </div>
     <div id="results">
