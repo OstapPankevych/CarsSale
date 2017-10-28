@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Repositories.Interfaces;
@@ -48,11 +49,11 @@ namespace CarsSale.WebUi.Controllers
         public PartialViewResult Search(SearchViewModel searchViewModel)
         {
             var advertisements = _advertisementRepository.GetAdvertisements(
-                searchViewModel.Brand.Id != UnselectedId ? searchViewModel.Brand : null,
-                searchViewModel.Region.Id != UnselectedId ? searchViewModel.Region : null,
-                searchViewModel.VehiclType.Id != UnselectedId ? searchViewModel.VehiclType : null,
-                searchViewModel.TransmissionType.Id != UnselectedId ? searchViewModel.TransmissionType : null,
-                searchViewModel.FuelIds.Select(x => new Fuel { Id = x }).ToList(),
+                searchViewModel.Brand?.Id != UnselectedId ? searchViewModel.Brand : null,
+                searchViewModel.Region?.Id != UnselectedId ? searchViewModel.Region : null,
+                searchViewModel.VehiclType?.Id != UnselectedId ? searchViewModel.VehiclType : null,
+                searchViewModel.TransmissionType?.Id != UnselectedId ? searchViewModel.TransmissionType : null,
+                searchViewModel.FuelIds?.Select(x => new Fuel { Id = x }).ToList(),
                 searchViewModel.EngineVolumeFrom != null ? new Engine { Volume = searchViewModel.EngineVolumeFrom.Value } : null,
                 searchViewModel.EngineVolumeFrom != null ? new Engine { Volume = searchViewModel.EngineVolumeFrom.Value } : null);
             return PartialView("Partials/Advertisement", advertisements);
