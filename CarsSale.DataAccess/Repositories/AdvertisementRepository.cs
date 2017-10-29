@@ -1,22 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Searchers.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
     public class AdvertisementRepository: Repository, IAdvertisementRepository
     {
-        public IEnumerable<Advertisement> GetAdvertisements()
+        private readonly IAdvertisementSearcher _searcher;
+
+        public AdvertisementRepository(IAdvertisementSearcher searcher)
+        {
+            _searcher = searcher;
+        }
+
+        public IEnumerable<Advertisement> GetAdvertisements(
+            Brand brand = null,
+            Region region = null,
+            VehiclType vehiclType = null,
+            TransmissionType transmission = null,
+            List<Fuel> fuels = null,
+            Engine from = null,
+            Engine to = null)
         {
             using (var context = CreateContext())
             {
-                return context.ADVERTISEMENTs
+                var query = context.ADVERTISEMENTs.AsQueryable();
+                if (brand != null) query = query.Where(x => x.VEHICL.BRAND_ID == brand.Id);
+                if (region != null) query = query.Where(x => x.REGION_ID == region.Id);
+                if (vehiclType != null) query = query.Where(x => x.VEHICL.VEHICL_TYPE_ID == vehiclType.Id);
+                if (transmission != null) query = query.Where(x => x.VEHICL.TRANSMISSION_TYPE_ID == transmission.Id);
+                if (fuels != null)
+                {
+                    var fuelIds = fuels.Select(x => x.Id).ToList();
+                    query = query.Where(
+                        x => fuelIds.All(id => x.VEHICL.ENGINE.ENGINE_FUEL.Select(ef => ef.FUEL_ID).Any(f => f == id))
+                        && fuelIds.Count == x.VEHICL.ENGINE.ENGINE_FUEL.Count);
+                }
+                if (from != null) query = query.Where(x => x.VEHICL.ENGINE.VOLUME >= from.Volume);
+                if (to != null) query = query.Where(x => x.VEHICL.ENGINE.VOLUME <= to.Volume);
+
+                return query
                     .AsEnumerable()
                     .Select(x => new Advertisement(x))
                     .ToList();
+
+                //var advertisements = _searcher
+                //    .For(context.ADVERTISEMENTs)
+                //    .ByRegion(region)
+                //    .ByBrand(brand)
+                //    .ByFuelType(fuels)
+                //    .ByRegion(region)
+                //    .ByVehiclType(vehiclType)
+                //    .CreateQuery(context.ADVERTISEMENTs);
             }
         }
 

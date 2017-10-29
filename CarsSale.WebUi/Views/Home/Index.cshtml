@@ -1,186 +1,119 @@
-﻿@using System.IdentityModel.Claims
-@model IEnumerable<CarsSale.DataAccess.DTO.Advertisement>
+﻿@model CarsSale.WebUi.Models.SearchViewModel
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script src="~/Content/Scripts/modules/cars-sale.js"></script>
+<script src="~/Content/Scripts/cars-sale.home.js"></script>
 
 <legend class="text-center">Welcome to CarsSale</legend>
 <div class="col-sm-12">
     <div class="col-sm-3">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <label class="glyphicon glyphicon-eye-open"></label>
-                <span class="right">
-                    Filter
-                </span>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="select" class="col-sm-12 control-label">Region</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" id="select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="select" class="col-sm-12 control-label">Brand</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" id="select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="select" class="col-sm-12 control-label">Body Type</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" id="select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <label for="select" class="col-sm-12 control-label">Transmission</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" id="select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="col-sm-12">
-                    <label for="select" class="col-sm-12 control-label">Engine</label>
-                    <div class="col-sm-12">
-                        <div class="col-sm-6">
-                            <div class="col-sm-4">From</div>
-                            <div class="col-sm-8">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <hr>
-                            <div class="col-sm-4">To</div>
-                            <div class="col-sm-8">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="panel panel-default col-sm-6">
-                            <div class="panel-body">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Benzine
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Electro
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Diesel
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Gas
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="col-sm-10">
-                    <label class="glyphicon glyphicon-search"></label>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </div>
+	        <div class="panel-heading">
+		        <label class="glyphicon glyphicon-eye-open"></label>
+		        <span class="right">
+			        Filter
+		        </span>
+	        </div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-9">
+							<label class="col-sm-12 control-label">Region</label>
+							<div class="col-sm-12">
+							    <select class="form-control" id="region">
+                                    <option value="">-- Select --</option>
+							        @foreach (var x in Model.RegionOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-9">
+							<label class="col-sm-12 control-label">Brand</label>
+							<div class="col-sm-12">
+							    <select class="form-control" id ="brand">
+                                    <option value="">-- Select --</option>
+							        @foreach (var x in Model.BrandOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-9">
+							<label class="col-sm-12 control-label">Vehicl Type</label>
+							<div class="col-sm-12">
+							    <select class="form-control" id="vehicl-type">
+                                    <option value="">-- Select --</option>
+							        @foreach (var x in Model.VehiclTypeOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-9">
+							<label class="col-sm-12 control-label">Transmission</label>
+							<div class="col-sm-12">
+							    <select class="form-control" id="transmission">
+                                    <option value="">-- Select --</option>
+							        @foreach (var x in Model.TransmissionTypeOptions)
+							        {
+							            <option value="@x.Id">@x.Name</option>
+							        }
+							    </select>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="col-sm-12">
+						<form id="engine-volume-search-form" min="1" max="10000" class="col-sm-12">
+							<label class="col-sm-6 control-label">Engine</label>
+							<div class="col-sm-6">
+								<div class="col-sm-4">From</div>
+								<div class="form-group">
+									<input class="form-control" type="number" id="search-volume-from" name="searchVolumeFrom"/>
+								</div>
+								<hr>
+								<div class="col-sm-4">To</div>
+								<div class="form-group">
+									<input class="form-control" type="number" id="search-volume-to" name="searchVolumeTo"/>
+								</div>
+								<div class="panel panel-default col-sm-12">
+									<div class="panel-body">
+										@foreach (var x in Model.FuelOptions)
+										{
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" name="fuel" value="@x.Id">@x.Name
+												</label>
+											</div>
+										}
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-10">
+						<label class="glyphicon glyphicon-search"></label>
+						<button id="search" type="submit" class="btn btn-primary">Search</button>
+					</div>
+				</div>
         </div>
     </div>
-    <div class="col-sm-9">
-        @foreach (var x in Model)
-        {
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="col-sm-12">
-                            <label class="col-sm-6 text-left">@x.Vehicl.Brand.Name</label>
-                            <label class="col-sm-6 text-right">@x.Region.Name</label>
-                        </div>
-                        <span class="badge">@Math.Round((float) x.Vehicl.Engine.Volume / 1000, 1)</span>
-                        <span class="badge">@x.Vehicl.TransmissionType.Name</span>
-                        @foreach (var fuel in x.Vehicl.Engine.Fuels)
-                        {
-                            <span class="badge">@fuel.Name</span>
-                        }
-                    </div>
-                    <div class="panel-body">
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-sm-6 text-center">
-                                <div>
-                                    <span class="glyphicon glyphicon-earphone"></span>
-                                    <label>@x.User.PhoneNumber</label>
-                                </div>
-                                <div>
-                                    <span class="glyphicon glyphicon-envelope"></span>
-                                    <label>@x.User.Email</label>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 text-right">
-                                <div>
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    <label class="">@x.User.UserName</label>
-                                </div>
-                                <div>
-                                    <span class="glyphicon glyphicon-hourglass"></span>
-                                    <label class="">@x.CreatedDate.ToString("MM/dd/yyyy HH:mm")</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
+    <div id="search-result">
     </div>
 
     <div class="col-sm-12 text-center">
