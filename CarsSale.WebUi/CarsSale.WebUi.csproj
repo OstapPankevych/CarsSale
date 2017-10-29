@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44386</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -143,8 +142,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Scripts\home.js" />
-    <Content Include="Content\Scripts\modules\index.js" />
+    <Content Include="Content\Scripts\cars-sale.home.js" />
+    <Content Include="Content\Scripts\modules\cars-sale.js" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap.css" />
@@ -186,6 +185,8 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Compile Include="Models\EngineViewModel.cs" />
+    <Compile Include="Validators\RangeNullableAttribute.cs" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -216,7 +217,7 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Advertisement\Index.cshtml" />
     <Content Include="Views\Advertisement\Success.cshtml" />
-    <Content Include="Views\Home\Partials\Advertisement.cshtml" />
+    <Content Include="Views\Partials\Advertisement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

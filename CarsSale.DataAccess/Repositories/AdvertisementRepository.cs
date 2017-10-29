@@ -28,7 +28,7 @@ namespace CarsSale.DataAccess.Repositories
             using (var context = CreateContext())
             {
                 var query = context.ADVERTISEMENTs.AsQueryable();
-                if (brand != null) query = query.Where(x => x.REGION_ID == region.Id);
+                if (brand != null) query = query.Where(x => x.VEHICL.BRAND_ID == brand.Id);
                 if (region != null) query = query.Where(x => x.REGION_ID == region.Id);
                 if (vehiclType != null) query = query.Where(x => x.VEHICL.VEHICL_TYPE_ID == vehiclType.Id);
                 if (transmission != null) query = query.Where(x => x.VEHICL.TRANSMISSION_TYPE_ID == transmission.Id);

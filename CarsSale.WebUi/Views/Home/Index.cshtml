@@ -4,43 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/Content/Scripts/modules/index.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const beforeSend = () => {
-            document.getElementById("results").innerHTML = "";
-        };
+<script src="~/Content/Scripts/modules/cars-sale.js"></script>
+<script src="~/Content/Scripts/cars-sale.home.js"></script>
 
-        const success = data => {
-            document.getElementById("results").innerHTML = data;
-        };
-
-        const unselectedValue = -1;
-        const getRegion = () => {
-            const e = document.getElementById("region");
-            const regionId = e.options[e.selectedIndex].value;
-            return regionId === unselectedValue ? null : { Id: Number(regionId) };
-        }
-
-        const { contentLoader, urls } = carsSale;
-        const { searchAdvertisements: url } = urls;
-
-        const options = {
-            contentType: "application/json; charset=utf-8",
-            dataType: "html",
-            beforeSend, success
-        };
-        contentLoader.init(url, options);
-
-        const searchBtn = document.getElementById("search");
-        searchBtn.addEventListener("click", () => {
-            const data = {
-                    Region: getRegion()   
-            };
-            contentLoader.loadContent(data);
-        });
-    });
-</script>
 <legend class="text-center">Welcome to CarsSale</legend>
 <div class="col-sm-12">
     <div class="col-sm-3">
@@ -51,15 +17,13 @@
 			        Filter
 		        </span>
 	        </div>
-			@*@using (Ajax.BeginForm("Search", new AjaxOptions { UpdateTargetId = "results" }))
-			{*@
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Region</label>
 							<div class="col-sm-12">
-							    <select class="form-control" id="region" name="@Html.NameFor(m => m.Region.Id)">
-                                    <option value="-1">-- Select --</option>
+							    <select class="form-control" id="region">
+                                    <option value="">-- Select --</option>
 							        @foreach (var x in Model.RegionOptions)
 							        {
 							            <option value="@x.Id">@x.Name</option>
@@ -73,8 +37,8 @@
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Brand</label>
 							<div class="col-sm-12">
-							    <select class="form-control" name="@Html.NameFor(m => m.Brand.Id)">
-                                    <option value="-1">-- Select --</option>
+							    <select class="form-control" id ="brand">
+                                    <option value="">-- Select --</option>
 							        @foreach (var x in Model.BrandOptions)
 							        {
 							            <option value="@x.Id">@x.Name</option>
@@ -88,8 +52,8 @@
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Vehicl Type</label>
 							<div class="col-sm-12">
-							    <select class="form-control" name="@Html.NameFor(m => m.VehiclType.Id)">
-                                    <option value="-1">-- Select --</option>
+							    <select class="form-control" id="vehicl-type">
+                                    <option value="">-- Select --</option>
 							        @foreach (var x in Model.VehiclTypeOptions)
 							        {
 							            <option value="@x.Id">@x.Name</option>
@@ -103,8 +67,8 @@
 						<div class="col-sm-9">
 							<label class="col-sm-12 control-label">Transmission</label>
 							<div class="col-sm-12">
-							    <select class="form-control" name="@Html.NameFor(m => m.TransmissionType.Id)">
-                                    <option value="-1">-- Select --</option>
+							    <select class="form-control" id="transmission">
+                                    <option value="">-- Select --</option>
 							        @foreach (var x in Model.TransmissionTypeOptions)
 							        {
 							            <option value="@x.Id">@x.Name</option>
@@ -115,17 +79,17 @@
 					</div>
 					<hr>
 					<div class="col-sm-12">
-						<div class="col-sm-12">
+						<form id="engine-volume-search-form" min="1" max="10000" class="col-sm-12">
 							<label class="col-sm-6 control-label">Engine</label>
 							<div class="col-sm-6">
 								<div class="col-sm-4">From</div>
 								<div class="form-group">
-									@Html.TextBoxFor(x => x.EngineVolumeFrom, new {@class = "form-control"})
+									<input class="form-control" type="number" id="search-volume-from" name="searchVolumeFrom"/>
 								</div>
 								<hr>
 								<div class="col-sm-4">To</div>
 								<div class="form-group">
-									@Html.TextBoxFor(x => x.EngineVolumeTo, new {@class = "form-control"})
+									<input class="form-control" type="number" id="search-volume-to" name="searchVolumeTo"/>
 								</div>
 								<div class="panel panel-default col-sm-12">
 									<div class="panel-body">
@@ -133,32 +97,23 @@
 										{
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" value="@x.Id" name="@Html.NameFor(m => m.FuelIds)">@x.Name
+													<input type="checkbox" name="fuel" value="@x.Id">@x.Name
 												</label>
 											</div>
 										}
 									</div>
 								</div>
 							</div>
-						</div>
-							<div class="col-sm-12">
-								<div>
-									@Html.ValidationMessageFor(m => m.EngineVolumeFrom)
-								</div>
-								<div>
-									@Html.ValidationMessageFor(m => m.EngineVolumeTo)
-								</div>
-							</div>
+						</form>
 					</div>
 					<div class="col-sm-10">
 						<label class="glyphicon glyphicon-search"></label>
 						<button id="search" type="submit" class="btn btn-primary">Search</button>
 					</div>
 				</div>
-			@*}*@
         </div>
     </div>
-    <div id="results">
+    <div id="search-result">
     </div>
 
     <div class="col-sm-12 text-center">

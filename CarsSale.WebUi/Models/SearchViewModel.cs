@@ -1,18 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using CarsSale.DataAccess.DTO;
 
 namespace CarsSale.WebUi.Models
 {
     public class SearchViewModel
     {
-        [Range(1, 10000)]
-        public int? EngineVolumeFrom { get; set; }
-
-        [Range(1, 10000)]
-        public int? EngineVolumeTo { get; set; }
-
-        public int[] FuelIds { get; set; }
+        public EngineViewModel EngineFrom { get; set; }
+        public EngineViewModel EngineTo { get; set; }
+        public IEnumerable<Fuel> Fuels { get; set; }
         public Region Region { get; set; }
         public Brand Brand { get; set; }
         public VehiclType VehiclType { get; set; }
