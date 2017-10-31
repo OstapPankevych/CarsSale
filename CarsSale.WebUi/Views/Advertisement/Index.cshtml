@@ -5,109 +5,133 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/Styles/image-viewer/image-viewer.css" rel="stylesheet" />
+<script src="~/Content/Scripts/image-viewer/image-viewer.js"></script>
 
 <div class="container col-lg-offset-3 col-lg-9">
-    <div class="row clearfix center-block">
-        @using (Html.BeginForm("Index", "Advertisement", null, FormMethod.Post, new { @class = "form-horizontal col-lg-5", role = "form" }))
-        {
-            <fieldset>
-                <legend class=" text-center">Create new advertisement for sale to CarsSale</legend>
-                <label class="has-error">
-                    @Html.ValidationSummary(true)
-                </label>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <label for="select" class="col-lg-5 control-label">Region</label>
-                            <div class="col-lg-7">
-                                <select class="form-control" id="select"  name="@Html.NameFor(m => m.Region.Id)">
-                                    @foreach (var x in Model.RegionOptions)
-                                    {
-                                        <option value="@x.Id">@x.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <label for="select" class="col-lg-5 control-label">Brand</label>
-                            <div class="col-lg-7">
-                                <select class="form-control" id="select"  name="@Html.NameFor(m => m.Brand.Id)">
-                                    @foreach (var x in Model.BrandOptions)
-                                    {
-                                        <option value="@x.Id">@x.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <label for="select" class="col-lg-5 control-label">Vehicl Type</label>
-                            <div class="col-lg-7">
-                                <select class="form-control" id="select"  name="@Html.NameFor(m => m.VehiclType.Id)">
-                                    @foreach (var x in Model.VehiclTypeOptions)
-                                    {
-                                        <option value="@x.Id">@x.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <label for="select" class="col-lg-5 control-label">Transmission Type</label>
-                            <div class="col-lg-7">
-                                <select class="form-control" id="select"  name="@Html.NameFor(m => m.TransmissionType.Id)">
-                                    @foreach (var x in Model.TransmissionTypeOptions)
-                                    {
-                                        <option value="@x.Id">@x.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Fuels *</label>
-                    <div class="col-lg-9">
-                        @foreach (var x in Model.FuelOptions)
-                        {
-                            <div class="checkbox text-left col-lg-offset-3">
-                                <label>
-                                    <input type="checkbox" value="@x.Id" checked="@x.Id.Equals(Model.FuelOptions.ElementAt(0).Id)" name="@Html.NameFor(m => m.Fuels)" />@x.Name
-                                </label>
-                            </div>       
-                        }
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <label for="select" class="col-lg-5 control-label">Engine Volume *</label>
-                            <div class="col-lg-4">
-                                @Html.TextBoxFor(x => x.EngineVolume, new {@class = "form-control", placeholder = "Login"})
-                            </div>
-                            @Html.ValidationMessageFor(x => x.EngineVolume)
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <div class="col-lg-3 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                    </div>
-                </div>
-            </fieldset>
-        }
-    </div>
+	<div class="row clearfix center-block">
+		@using (Html.BeginForm("Index", "Advertisement", null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal col-lg-5", role = "form" }))
+		{
+			<fieldset>
+				<legend class=" text-center">Create new advertisement for sale to CarsSale</legend>
+				<label class="has-error">
+					@Html.ValidationSummary(true)
+				</label>
+				<div class="container">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-10">
+								<label for="select" class="control-label col-lg-2">Photo *</label>
+								<div class="input-group image-preview col-lg-5">
+									<input type="text" class="form-control image-preview-filename" disabled="disabled">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-default image-preview-clear" style="display: none;">
+											<span class="glyphicon glyphicon-remove"></span> Clear
+										</button>
+										<div class="btn btn-default image-preview-input">
+											<span class="glyphicon glyphicon-folder-open"></span>
+											<span class="image-preview-input-title">Browse</span>
+											@Html.TextBoxFor(x => x.Image, null, new { type="file", accept = "image/png, image/jpeg, image/gif" })
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-9">
+							<label for="select" class="col-lg-5 control-label">Region</label>
+							<div class="col-lg-7">
+								<select class="form-control" id="select"  name="@Html.NameFor(m => m.Region.Id)">
+									@foreach (var x in Model.RegionOptions)
+									{
+										<option value="@x.Id">@x.Name</option>
+									}
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-9">
+							<label for="select" class="col-lg-5 control-label">Brand</label>
+							<div class="col-lg-7">
+								<select class="form-control" id="select"  name="@Html.NameFor(m => m.Brand.Id)">
+									@foreach (var x in Model.BrandOptions)
+									{
+										<option value="@x.Id">@x.Name</option>
+									}
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-9">
+							<label for="select" class="col-lg-5 control-label">Vehicl Type</label>
+							<div class="col-lg-7">
+								<select class="form-control" id="select"  name="@Html.NameFor(m => m.VehiclType.Id)">
+									@foreach (var x in Model.VehiclTypeOptions)
+									{
+										<option value="@x.Id">@x.Name</option>
+									}
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-9">
+							<label for="select" class="col-lg-5 control-label">Transmission Type</label>
+							<div class="col-lg-7">
+								<select class="form-control" id="select"  name="@Html.NameFor(m => m.TransmissionType.Id)">
+									@foreach (var x in Model.TransmissionTypeOptions)
+									{
+										<option value="@x.Id">@x.Name</option>
+									}
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3 control-label">Fuels *</label>
+					<div class="col-lg-9">
+						@foreach (var x in Model.FuelOptions)
+						{
+							<div class="checkbox text-left col-lg-offset-3">
+								<label>
+									<input type="checkbox" value="@x.Id" checked="@x.Id.Equals(Model.FuelOptions.ElementAt(0).Id)" name="@Html.NameFor(m => m.Fuels)" />@x.Name
+								</label>
+							</div>       
+						}
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-9">
+							<label for="select" class="col-lg-5 control-label">Engine Volume *</label>
+							<div class="col-lg-4">
+								@Html.TextBoxFor(x => x.EngineVolume, new {@class = "form-control", placeholder = "Login"})
+							</div>
+							@Html.ValidationMessageFor(x => x.EngineVolume)
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="form-group">
+					<div class="col-lg-3 col-lg-offset-2">
+						<button type="submit" class="btn btn-primary">Create</button>
+					</div>
+				</div>
+			</fieldset>
+		}
+	</div>
 </div>
 
 

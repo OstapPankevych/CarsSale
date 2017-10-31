@@ -23,8 +23,9 @@ else
                             <span class="badge">@fuel.Name</span>
                         }
                     </div>
-                    <div class="panel-body">
-                    </div>
+	                <div class="panel-body">
+		                <img src="@Url.Action("GetImage", "Advertisement", new { imagePath = x.ImagePath })" alt="" height="300" width="300"/>
+	                </div>
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col-sm-6 text-center">

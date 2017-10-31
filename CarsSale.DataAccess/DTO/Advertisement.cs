@@ -21,6 +21,8 @@ namespace CarsSale.DataAccess.DTO
 
         public Region Region { get; set; }
 
+        public string ImagePath { get; set; }
+
         public Advertisement(ADVERTISEMENT entity = null)
         {
             if (entity == null) return;
@@ -30,6 +32,7 @@ namespace CarsSale.DataAccess.DTO
             CreatedDate = entity.CREATED_DATE;
             Vehicl = new Vehicl(entity.VEHICL);
             Region = new Region(entity.REGION);
+            ImagePath = entity.IMAGE_PATH;
             User = new CarsSaleUser
             {
                 Email = entity.User?.Email,
@@ -47,7 +50,8 @@ namespace CarsSale.DataAccess.DTO
                 CREATED_DATE = CreatedDate,
                 VEHICL_ID = Vehicl.Id,
                 REGION_ID = Region.Id,
-                USER_ID = User.Id
+                USER_ID = User.Id,
+                IMAGE_PATH = ImagePath
             };
         }
     }

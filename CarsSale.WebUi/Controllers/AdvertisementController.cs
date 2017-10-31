@@ -1,18 +1,23 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Identity.Managers;
+using CarsSale.DataAccess.Providers.Content;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.WebUi.Models;
 using CarsSale.WebUi.Models.Advertisements;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace CarsSale.WebUi.Controllers
 {
     public class AdvertisementController : Controller
     {
+        private readonly IContentProvider _contentProvider;
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly IBrandRepository _brandRepository;
         private readonly IFuelRepository _fuelRepository;
@@ -23,6 +28,7 @@ namespace CarsSale.WebUi.Controllers
         private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
         public AdvertisementController(
+            IContentProvider contentProvider,
             IAdvertisementRepository advertisementRepository,
             IBrandRepository brandRepository,
             IFuelRepository fuelRepository,
@@ -30,6 +36,7 @@ namespace CarsSale.WebUi.Controllers
             IVehiclTypeRepository vehiclTypeRepository,
             IRegionRepository regionRepository)
         {
+            _contentProvider = contentProvider;
             _advertisementRepository = advertisementRepository;
             _brandRepository = brandRepository;
             _fuelRepository = fuelRepository;
@@ -60,8 +67,10 @@ namespace CarsSale.WebUi.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "The registered form is invalid! Please try again");
-                return View("Index", adv);
+                return Index();
             }
+
+            var imagesFolder = new Guid();
 
             var advertisement = new Advertisement
             {
@@ -80,12 +89,15 @@ namespace CarsSale.WebUi.Controllers
                     TransmissionType = adv.TransmissionType,
                     VehiclType = adv.VehiclType
                 },
-                User = UserManager.FindByLogin(User.Identity.Name)
-        };
+                User = UserManager.FindByLogin(User.Identity.Name),
+                ImagePath = Path.Combine(imagesFolder.ToString(), adv.Image.FileName)
+            };
 
-            var res = _advertisementRepository.Create(advertisement);
+            _contentProvider.Upload(Path.Combine(imagesFolder.ToString(), adv.Image.FileName), adv.Image.InputStream);
 
-            return View("Success", res);
+            _advertisementRepository.Create(advertisement);
+
+            return RedirectToAction("Index", "Home");
         }
 
         public PartialViewResult Search(SearchViewModel searchViewModel)
@@ -99,6 +111,15 @@ namespace CarsSale.WebUi.Controllers
                 searchViewModel.EngineFrom != null ? new Engine { Volume = searchViewModel.EngineFrom.Volume } : null,
                 searchViewModel.EngineTo != null ? new Engine { Volume = searchViewModel.EngineTo.Volume } : null);
             return PartialView("~/Views/Partials/Advertisement.cshtml", advertisements);
+        }
+
+        public FileContentResult GetImage(string imagePath)
+        {
+            var stream = _contentProvider.Load(imagePath);
+            var ms = new MemoryStream();
+            stream.Position = 0;
+            stream.CopyTo(ms);
+            return new FileContentResult(ms.ToArray(), $"image/{Path.GetExtension(imagePath)}");
         }
     }
 }

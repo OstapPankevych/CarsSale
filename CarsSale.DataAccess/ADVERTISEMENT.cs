@@ -21,6 +21,7 @@ namespace CarsSale.DataAccess
         public int VEHICL_ID { get; set; }
         public int USER_ID { get; set; }
         public int REGION_ID { get; set; }
+        public string IMAGE_PATH { get; set; }
     
         public virtual REGION REGION { get; set; }
         public virtual User User { get; set; }

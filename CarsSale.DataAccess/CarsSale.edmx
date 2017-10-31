@@ -16,6 +16,7 @@
           <Property Name="VEHICL_ID" Type="int" Nullable="false" />
           <Property Name="USER_ID" Type="int" Nullable="false" />
           <Property Name="REGION_ID" Type="int" Nullable="false" />
+          <Property Name="IMAGE_PATH" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="BRAND">
           <Key>
@@ -132,7 +133,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ADVERTISE__REGIO__38996AB5">
+        <Association Name="FK__ADVERTISE__REGIO__398D8EEE">
           <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,7 +145,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__USER___36B12243">
+        <Association Name="FK__ADVERTISE__USER___37A5467C">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -156,7 +157,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__VEHIC__37A5467C">
+        <Association Name="FK__ADVERTISE__VEHIC__38996AB5">
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -168,7 +169,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__ENGIN__29572725">
+        <Association Name="FK__ENGINE_FU__ENGIN__2A4B4B5E">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,7 +181,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__FUEL___2A4B4B5E">
+        <Association Name="FK__ENGINE_FU__FUEL___2B3F6F97">
           <End Role="FUEL" Type="Self.FUEL" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +193,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserClaim__Claim__173876EA">
+        <Association Name="FK__UserClaim__Claim__182C9B23">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="UserClaim" Type="Self.UserClaim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,7 +205,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserLogin__UserI__1920BF5C">
+        <Association Name="FK__UserLogin__UserI__1A14E395">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="*" />
           <ReferentialConstraint>
@@ -216,7 +217,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRole__RoleId__145C0A3F">
+        <Association Name="FK__UserRole__RoleId__15502E78">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
@@ -228,7 +229,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRole__UserId__1367E606">
+        <Association Name="FK__UserRole__UserId__145C0A3F">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
@@ -240,7 +241,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__BRAND_ID__30F848ED">
+        <Association Name="FK__VEHICL__BRAND_ID__31EC6D26">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -252,7 +253,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__ENGINE_I__32E0915F">
+        <Association Name="FK__VEHICL__ENGINE_I__33D4B598">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -264,7 +265,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__TRANSMIS__33D4B598">
+        <Association Name="FK__VEHICL__TRANSMIS__34C8D9D1">
           <End Role="TRANSMISSION_TYPE" Type="Self.TRANSMISSION_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -276,7 +277,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__VEHICL_T__31EC6D26">
+        <Association Name="FK__VEHICL__VEHICL_T__32E0915F">
           <End Role="VEHICL_TYPE" Type="Self.VEHICL_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -314,55 +315,55 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
     [UserRole].[RoleId] AS [RoleId]
     FROM [dbo].[UserRole] AS [UserRole]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__ADVERTISE__REGIO__38996AB5" Association="Self.FK__ADVERTISE__REGIO__38996AB5">
+          <AssociationSet Name="FK__ADVERTISE__REGIO__398D8EEE" Association="Self.FK__ADVERTISE__REGIO__398D8EEE">
             <End Role="REGION" EntitySet="REGION" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__USER___36B12243" Association="Self.FK__ADVERTISE__USER___36B12243">
+          <AssociationSet Name="FK__ADVERTISE__USER___37A5467C" Association="Self.FK__ADVERTISE__USER___37A5467C">
             <End Role="User" EntitySet="User" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__VEHIC__37A5467C" Association="Self.FK__ADVERTISE__VEHIC__37A5467C">
+          <AssociationSet Name="FK__ADVERTISE__VEHIC__38996AB5" Association="Self.FK__ADVERTISE__VEHIC__38996AB5">
             <End Role="VEHICL" EntitySet="VEHICL" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__ENGIN__29572725" Association="Self.FK__ENGINE_FU__ENGIN__29572725">
+          <AssociationSet Name="FK__ENGINE_FU__ENGIN__2A4B4B5E" Association="Self.FK__ENGINE_FU__ENGIN__2A4B4B5E">
             <End Role="ENGINE" EntitySet="ENGINE" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__FUEL___2A4B4B5E" Association="Self.FK__ENGINE_FU__FUEL___2A4B4B5E">
+          <AssociationSet Name="FK__ENGINE_FU__FUEL___2B3F6F97" Association="Self.FK__ENGINE_FU__FUEL___2B3F6F97">
             <End Role="FUEL" EntitySet="FUEL" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserClaim__Claim__173876EA" Association="Self.FK__UserClaim__Claim__173876EA">
+          <AssociationSet Name="FK__UserClaim__Claim__182C9B23" Association="Self.FK__UserClaim__Claim__182C9B23">
             <End Role="User" EntitySet="User" />
             <End Role="UserClaim" EntitySet="UserClaim" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserLogin__UserI__1920BF5C" Association="Self.FK__UserLogin__UserI__1920BF5C">
+          <AssociationSet Name="FK__UserLogin__UserI__1A14E395" Association="Self.FK__UserLogin__UserI__1A14E395">
             <End Role="User" EntitySet="User" />
             <End Role="UserLogin" EntitySet="UserLogin" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRole__RoleId__145C0A3F" Association="Self.FK__UserRole__RoleId__145C0A3F">
+          <AssociationSet Name="FK__UserRole__RoleId__15502E78" Association="Self.FK__UserRole__RoleId__15502E78">
             <End Role="Role" EntitySet="Role" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRole__UserId__1367E606" Association="Self.FK__UserRole__UserId__1367E606">
+          <AssociationSet Name="FK__UserRole__UserId__145C0A3F" Association="Self.FK__UserRole__UserId__145C0A3F">
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BRAND_ID__30F848ED" Association="Self.FK__VEHICL__BRAND_ID__30F848ED">
+          <AssociationSet Name="FK__VEHICL__BRAND_ID__31EC6D26" Association="Self.FK__VEHICL__BRAND_ID__31EC6D26">
             <End Role="BRAND" EntitySet="BRAND" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__ENGINE_I__32E0915F" Association="Self.FK__VEHICL__ENGINE_I__32E0915F">
+          <AssociationSet Name="FK__VEHICL__ENGINE_I__33D4B598" Association="Self.FK__VEHICL__ENGINE_I__33D4B598">
             <End Role="ENGINE" EntitySet="ENGINE" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__TRANSMIS__33D4B598" Association="Self.FK__VEHICL__TRANSMIS__33D4B598">
+          <AssociationSet Name="FK__VEHICL__TRANSMIS__34C8D9D1" Association="Self.FK__VEHICL__TRANSMIS__34C8D9D1">
             <End Role="TRANSMISSION_TYPE" EntitySet="TRANSMISSION_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__VEHICL_T__31EC6D26" Association="Self.FK__VEHICL__VEHICL_T__31EC6D26">
+          <AssociationSet Name="FK__VEHICL__VEHICL_T__32E0915F" Association="Self.FK__VEHICL__VEHICL_T__32E0915F">
             <End Role="VEHICL_TYPE" EntitySet="VEHICL_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICL" />
           </AssociationSet>
@@ -383,9 +384,10 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <Property Name="VEHICL_ID" Type="Int32" Nullable="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="REGION_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="REGION" Relationship="Self.FK__ADVERTISE__REGIO__38996AB5" FromRole="ADVERTISEMENT" ToRole="REGION" />
-          <NavigationProperty Name="User" Relationship="Self.FK__ADVERTISE__USER___36B12243" FromRole="ADVERTISEMENT" ToRole="User" />
-          <NavigationProperty Name="VEHICL" Relationship="Self.FK__ADVERTISE__VEHIC__37A5467C" FromRole="ADVERTISEMENT" ToRole="VEHICL" />
+          <Property Name="IMAGE_PATH" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="REGION" Relationship="Self.FK__ADVERTISE__REGIO__398D8EEE" FromRole="ADVERTISEMENT" ToRole="REGION" />
+          <NavigationProperty Name="User" Relationship="Self.FK__ADVERTISE__USER___37A5467C" FromRole="ADVERTISEMENT" ToRole="User" />
+          <NavigationProperty Name="VEHICL" Relationship="Self.FK__ADVERTISE__VEHIC__38996AB5" FromRole="ADVERTISEMENT" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="BRAND">
           <Key>
@@ -393,7 +395,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__BRAND_ID__30F848ED" FromRole="BRAND" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__BRAND_ID__31EC6D26" FromRole="BRAND" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="ENGINE">
           <Key>
@@ -401,8 +403,8 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VOLUME" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__ENGIN__29572725" FromRole="ENGINE" ToRole="ENGINE_FUEL" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__ENGINE_I__32E0915F" FromRole="ENGINE" ToRole="VEHICL" />
+          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__ENGIN__2A4B4B5E" FromRole="ENGINE" ToRole="ENGINE_FUEL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__ENGINE_I__33D4B598" FromRole="ENGINE" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="ENGINE_FUEL">
           <Key>
@@ -411,8 +413,8 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ENGINE_ID" Type="Int32" Nullable="false" />
           <Property Name="FUEL_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ENGINE" Relationship="Self.FK__ENGINE_FU__ENGIN__29572725" FromRole="ENGINE_FUEL" ToRole="ENGINE" />
-          <NavigationProperty Name="FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___2A4B4B5E" FromRole="ENGINE_FUEL" ToRole="FUEL" />
+          <NavigationProperty Name="ENGINE" Relationship="Self.FK__ENGINE_FU__ENGIN__2A4B4B5E" FromRole="ENGINE_FUEL" ToRole="ENGINE" />
+          <NavigationProperty Name="FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___2B3F6F97" FromRole="ENGINE_FUEL" ToRole="FUEL" />
         </EntityType>
         <EntityType Name="FUEL">
           <Key>
@@ -420,7 +422,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___2A4B4B5E" FromRole="FUEL" ToRole="ENGINE_FUEL" />
+          <NavigationProperty Name="ENGINE_FUEL" Relationship="Self.FK__ENGINE_FU__FUEL___2B3F6F97" FromRole="FUEL" ToRole="ENGINE_FUEL" />
         </EntityType>
         <EntityType Name="REGION">
           <Key>
@@ -428,7 +430,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__REGIO__38996AB5" FromRole="REGION" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__REGIO__398D8EEE" FromRole="REGION" ToRole="ADVERTISEMENT" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -444,7 +446,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__TRANSMIS__33D4B598" FromRole="TRANSMISSION_TYPE" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__TRANSMIS__34C8D9D1" FromRole="TRANSMISSION_TYPE" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -462,9 +464,9 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__USER___36B12243" FromRole="User" ToRole="ADVERTISEMENT" />
-          <NavigationProperty Name="UserClaims" Relationship="Self.FK__UserClaim__Claim__173876EA" FromRole="User" ToRole="UserClaim" />
-          <NavigationProperty Name="UserLogins" Relationship="Self.FK__UserLogin__UserI__1920BF5C" FromRole="User" ToRole="UserLogin" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__USER___37A5467C" FromRole="User" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="UserClaims" Relationship="Self.FK__UserClaim__Claim__182C9B23" FromRole="User" ToRole="UserClaim" />
+          <NavigationProperty Name="UserLogins" Relationship="Self.FK__UserLogin__UserI__1A14E395" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Roles" Relationship="Self.UserRole" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="UserClaim">
@@ -475,7 +477,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK__UserClaim__Claim__173876EA" FromRole="UserClaim" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserClaim__Claim__182C9B23" FromRole="UserClaim" ToRole="User" />
         </EntityType>
         <EntityType Name="VEHICL">
           <Key>
@@ -486,11 +488,11 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <Property Name="VEHICL_TYPE_ID" Type="Int32" Nullable="false" />
           <Property Name="ENGINE_ID" Type="Int32" Nullable="false" />
           <Property Name="TRANSMISSION_TYPE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__VEHIC__37A5467C" FromRole="VEHICL" ToRole="ADVERTISEMENT" />
-          <NavigationProperty Name="BRAND" Relationship="Self.FK__VEHICL__BRAND_ID__30F848ED" FromRole="VEHICL" ToRole="BRAND" />
-          <NavigationProperty Name="ENGINE" Relationship="Self.FK__VEHICL__ENGINE_I__32E0915F" FromRole="VEHICL" ToRole="ENGINE" />
-          <NavigationProperty Name="TRANSMISSION_TYPE" Relationship="Self.FK__VEHICL__TRANSMIS__33D4B598" FromRole="VEHICL" ToRole="TRANSMISSION_TYPE" />
-          <NavigationProperty Name="VEHICL_TYPE" Relationship="Self.FK__VEHICL__VEHICL_T__31EC6D26" FromRole="VEHICL" ToRole="VEHICL_TYPE" />
+          <NavigationProperty Name="ADVERTISEMENTs" Relationship="Self.FK__ADVERTISE__VEHIC__38996AB5" FromRole="VEHICL" ToRole="ADVERTISEMENT" />
+          <NavigationProperty Name="BRAND" Relationship="Self.FK__VEHICL__BRAND_ID__31EC6D26" FromRole="VEHICL" ToRole="BRAND" />
+          <NavigationProperty Name="ENGINE" Relationship="Self.FK__VEHICL__ENGINE_I__33D4B598" FromRole="VEHICL" ToRole="ENGINE" />
+          <NavigationProperty Name="TRANSMISSION_TYPE" Relationship="Self.FK__VEHICL__TRANSMIS__34C8D9D1" FromRole="VEHICL" ToRole="TRANSMISSION_TYPE" />
+          <NavigationProperty Name="VEHICL_TYPE" Relationship="Self.FK__VEHICL__VEHICL_T__32E0915F" FromRole="VEHICL" ToRole="VEHICL_TYPE" />
         </EntityType>
         <EntityType Name="VEHICL_TYPE">
           <Key>
@@ -498,7 +500,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__VEHICL_T__31EC6D26" FromRole="VEHICL_TYPE" ToRole="VEHICL" />
+          <NavigationProperty Name="VEHICLs" Relationship="Self.FK__VEHICL__VEHICL_T__32E0915F" FromRole="VEHICL_TYPE" ToRole="VEHICL" />
         </EntityType>
         <EntityType Name="UserLogin">
           <Key>
@@ -509,9 +511,9 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK__UserLogin__UserI__1920BF5C" FromRole="UserLogin" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserLogin__UserI__1A14E395" FromRole="UserLogin" ToRole="User" />
         </EntityType>
-        <Association Name="FK__ADVERTISE__REGIO__38996AB5">
+        <Association Name="FK__ADVERTISE__REGIO__398D8EEE">
           <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -523,7 +525,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__USER___36B12243">
+        <Association Name="FK__ADVERTISE__USER___37A5467C">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -535,7 +537,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ADVERTISE__VEHIC__37A5467C">
+        <Association Name="FK__ADVERTISE__VEHIC__38996AB5">
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="1" />
           <End Role="ADVERTISEMENT" Type="Self.ADVERTISEMENT" Multiplicity="*" />
           <ReferentialConstraint>
@@ -547,7 +549,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__BRAND_ID__30F848ED">
+        <Association Name="FK__VEHICL__BRAND_ID__31EC6D26">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -559,7 +561,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__ENGIN__29572725">
+        <Association Name="FK__ENGINE_FU__ENGIN__2A4B4B5E">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -571,7 +573,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__ENGINE_I__32E0915F">
+        <Association Name="FK__VEHICL__ENGINE_I__33D4B598">
           <End Role="ENGINE" Type="Self.ENGINE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -583,7 +585,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ENGINE_FU__FUEL___2A4B4B5E">
+        <Association Name="FK__ENGINE_FU__FUEL___2B3F6F97">
           <End Role="FUEL" Type="Self.FUEL" Multiplicity="1" />
           <End Role="ENGINE_FUEL" Type="Self.ENGINE_FUEL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -595,7 +597,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__TRANSMIS__33D4B598">
+        <Association Name="FK__VEHICL__TRANSMIS__34C8D9D1">
           <End Role="TRANSMISSION_TYPE" Type="Self.TRANSMISSION_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -607,7 +609,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserClaim__Claim__173876EA">
+        <Association Name="FK__UserClaim__Claim__182C9B23">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="UserClaim" Type="Self.UserClaim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -619,7 +621,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserLogin__UserI__1920BF5C">
+        <Association Name="FK__UserLogin__UserI__1A14E395">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="*" />
           <ReferentialConstraint>
@@ -631,7 +633,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VEHICL__VEHICL_T__31EC6D26">
+        <Association Name="FK__VEHICL__VEHICL_T__32E0915F">
           <End Role="VEHICL_TYPE" Type="Self.VEHICL_TYPE" Multiplicity="1" />
           <End Role="VEHICL" Type="Self.VEHICL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -661,47 +663,47 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
           <EntitySet Name="VEHICLs" EntityType="Self.VEHICL" />
           <EntitySet Name="VEHICL_TYPE" EntityType="Self.VEHICL_TYPE" />
           <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
-          <AssociationSet Name="FK__ADVERTISE__REGIO__38996AB5" Association="Self.FK__ADVERTISE__REGIO__38996AB5">
+          <AssociationSet Name="FK__ADVERTISE__REGIO__398D8EEE" Association="Self.FK__ADVERTISE__REGIO__398D8EEE">
             <End Role="REGION" EntitySet="REGIONs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__USER___36B12243" Association="Self.FK__ADVERTISE__USER___36B12243">
+          <AssociationSet Name="FK__ADVERTISE__USER___37A5467C" Association="Self.FK__ADVERTISE__USER___37A5467C">
             <End Role="User" EntitySet="Users" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ADVERTISE__VEHIC__37A5467C" Association="Self.FK__ADVERTISE__VEHIC__37A5467C">
+          <AssociationSet Name="FK__ADVERTISE__VEHIC__38996AB5" Association="Self.FK__ADVERTISE__VEHIC__38996AB5">
             <End Role="VEHICL" EntitySet="VEHICLs" />
             <End Role="ADVERTISEMENT" EntitySet="ADVERTISEMENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__BRAND_ID__30F848ED" Association="Self.FK__VEHICL__BRAND_ID__30F848ED">
+          <AssociationSet Name="FK__VEHICL__BRAND_ID__31EC6D26" Association="Self.FK__VEHICL__BRAND_ID__31EC6D26">
             <End Role="BRAND" EntitySet="BRANDs" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__ENGIN__29572725" Association="Self.FK__ENGINE_FU__ENGIN__29572725">
+          <AssociationSet Name="FK__ENGINE_FU__ENGIN__2A4B4B5E" Association="Self.FK__ENGINE_FU__ENGIN__2A4B4B5E">
             <End Role="ENGINE" EntitySet="ENGINEs" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__ENGINE_I__32E0915F" Association="Self.FK__VEHICL__ENGINE_I__32E0915F">
+          <AssociationSet Name="FK__VEHICL__ENGINE_I__33D4B598" Association="Self.FK__VEHICL__ENGINE_I__33D4B598">
             <End Role="ENGINE" EntitySet="ENGINEs" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ENGINE_FU__FUEL___2A4B4B5E" Association="Self.FK__ENGINE_FU__FUEL___2A4B4B5E">
+          <AssociationSet Name="FK__ENGINE_FU__FUEL___2B3F6F97" Association="Self.FK__ENGINE_FU__FUEL___2B3F6F97">
             <End Role="FUEL" EntitySet="FUELs" />
             <End Role="ENGINE_FUEL" EntitySet="ENGINE_FUEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__TRANSMIS__33D4B598" Association="Self.FK__VEHICL__TRANSMIS__33D4B598">
+          <AssociationSet Name="FK__VEHICL__TRANSMIS__34C8D9D1" Association="Self.FK__VEHICL__TRANSMIS__34C8D9D1">
             <End Role="TRANSMISSION_TYPE" EntitySet="TRANSMISSION_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserClaim__Claim__173876EA" Association="Self.FK__UserClaim__Claim__173876EA">
+          <AssociationSet Name="FK__UserClaim__Claim__182C9B23" Association="Self.FK__UserClaim__Claim__182C9B23">
             <End Role="User" EntitySet="Users" />
             <End Role="UserClaim" EntitySet="UserClaims" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserLogin__UserI__1920BF5C" Association="Self.FK__UserLogin__UserI__1920BF5C">
+          <AssociationSet Name="FK__UserLogin__UserI__1A14E395" Association="Self.FK__UserLogin__UserI__1A14E395">
             <End Role="User" EntitySet="Users" />
             <End Role="UserLogin" EntitySet="UserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__VEHICL__VEHICL_T__31EC6D26" Association="Self.FK__VEHICL__VEHICL_T__31EC6D26">
+          <AssociationSet Name="FK__VEHICL__VEHICL_T__32E0915F" Association="Self.FK__VEHICL__VEHICL_T__32E0915F">
             <End Role="VEHICL_TYPE" EntitySet="VEHICL_TYPE" />
             <End Role="VEHICL" EntitySet="VEHICLs" />
           </AssociationSet>
@@ -726,6 +728,7 @@ warning 6002: The table/view 'CarsSale.dbo.UserRole' does not have a primary key
                 <ScalarProperty Name="VEHICL_ID" ColumnName="VEHICL_ID" />
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+                <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

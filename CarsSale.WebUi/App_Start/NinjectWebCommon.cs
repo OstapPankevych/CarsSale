@@ -1,3 +1,4 @@
+using CarsSale.DataAccess.Providers.Content;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -68,6 +69,8 @@ namespace CarsSale.WebUi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IContentProvider>().To<AzureProvider>();
+
             kernel.Bind<IAdvertisementSearcher>().To<AdvertisementSearcher>();
             kernel.Bind<IBrandRepository>().To<BrandRepository>();
             kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>();

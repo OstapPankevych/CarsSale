@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using System.Web.Mvc;
 using CarsSale.DataAccess.DTO;
 
@@ -14,6 +15,8 @@ namespace CarsSale.WebUi.Models.Advertisements
         [Required(ErrorMessage = "Please select at least one fuel type")]
         public int[] Fuels { get; set; }
 
+        [Required(ErrorMessage = "Image is required!")]
+        public HttpPostedFileBase Image { get; set; }
         public Region Region { get; set; }
         public Brand Brand { get; set; }
         public VehiclType VehiclType { get; set; }

@@ -6,22 +6,22 @@ namespace CarsSale.WebUi
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
-                "~/Content/Styles/bootstrap/bootstrap.css",
-                "~/Content/Styles/bootstrap/bootstrap-theme.css"));
+            bundles.Add(new StyleBundle("~/Content/bootstrap")
+                .Include("~/Content/Styles/bootstrap/bootstrap.css",
+                    "~/Content/Styles/bootstrap/bootstrap-theme.css"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/bootstrap").Include(
-                "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/bootstrap")
+                .Include("~/Content/Scripts/src/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery.validate.js",
-                "~/Scripts/jquery.maskedinput.js",
-                "~/Scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/jquery.unobtrusive-ajax.js",
-                "~/Scripts/jquery.validate.unobtrusive-ajax.js",
-                "~/Scripts/MicrosoftAjax.js",
-                "~/Scripts/MicrosoftMvcAjax.js"));
+                "~/Content/Scripts/src/jquery-{version}.js",
+                "~/Content/Scripts/src/jquery.validate.js",
+                "~/Content/Scripts/src/jquery.maskedinput.js",
+                "~/Content/Scripts/src/jquery.validate.unobtrusive.js",
+                "~/Content/Scripts/src/jquery.unobtrusive-ajax.js",
+                "~/Content/Scripts/src/jquery.validate.unobtrusive-ajax.js",
+                "~/Content/Scripts/src/MicrosoftAjax.js",
+                "~/Content/Scripts/src/MicrosoftMvcAjax.js"));
         }
     }
 }
