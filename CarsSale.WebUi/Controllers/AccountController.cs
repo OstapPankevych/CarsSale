@@ -1,10 +1,14 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CarsSale.DataAccess.Identity.Entities;
 using CarsSale.DataAccess.Identity.Managers;
+using CarsSale.WebUi.Exceptions;
+using CarsSale.WebUi.Filters;
+using CarsSale.WebUi.Logger;
 using CarsSale.WebUi.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -12,12 +16,20 @@ using Microsoft.Owin.Security;
 
 namespace CarsSale.WebUi.Controllers
 {
+    [CarsSaleExceptionFilter]
     public class AccountController : Controller
     {
+        private readonly ILogger _logger;
+
         private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
-        
+
+        public AccountController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public ActionResult Login()
         {
             return View();
@@ -31,11 +43,19 @@ namespace CarsSale.WebUi.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var dbUser = UserManager.Find(user.Login, user.Password);
-            if (dbUser == null)
+            CarsSaleUser dbUser;
+            try
             {
-                ModelState.AddModelError("", "Wrong Login or Password!");
-                return View("Login");
+                dbUser = UserManager.Find(user.Login, user.Password);
+                if (dbUser == null)
+                {
+                    ModelState.AddModelError("", "Wrong Login or Password!");
+                    return View("Login");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new AccountException($"Error during find user by login {user.Login}. Message: {ex.Message}");
             }
 
             SignIn(dbUser, user.Remember);
@@ -49,8 +69,15 @@ namespace CarsSale.WebUi.Controllers
 
         public ActionResult LogOut()
         {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            try
+            {
+                AuthenticationManager.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                throw new AccountException($"Error during SingOut user. Message: {ex.Message}");
+            }
         }
 
         public ActionResult Registry()
@@ -103,7 +130,16 @@ namespace CarsSale.WebUi.Controllers
                     new CarsSaleClaim {ClaimType = ClaimTypes.DateOfBirth, ClaimValue = account.Birthday.ToLongDateString() }
                 }
             };
-            var result = UserManager.Create(user, account.Password);
+
+            IdentityResult result;
+            try
+            {
+                result = UserManager.Create(user, account.Password);
+            }
+            catch (Exception ex)
+            {
+                throw new AccountException($"Cannot create user: {new { user.UserName, user.PhoneNumber, account.Login, user.Email }}. Message = {ex.Message}");
+            }
             if (result.Succeeded)
             {
                 SignIn(user, false);
@@ -121,23 +157,47 @@ namespace CarsSale.WebUi.Controllers
 
         public ActionResult CheckEmail(string email)
         {
-            return UserManager.IsEmailExists(email)
-                ? Json($"Email '{email}' arleady registered", JsonRequestBehavior.AllowGet)
-                : Json("true", JsonRequestBehavior.AllowGet);
+            try
+            {
+                return UserManager.IsEmailExists(email)
+                    ? Json($"Email '{email}' arleady registered", JsonRequestBehavior.AllowGet)
+                    : Json("true", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(new AccountValidationException($"Error during check email '{email}'. Message: {ex.Message}"));
+            }
+            return Json("true", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult CheckLogin(string login)
         {
-            return UserManager.IsLoginExists(login)
-                ? Json($"Login '{login}' arleady registered", JsonRequestBehavior.AllowGet)
-                : Json("true", JsonRequestBehavior.AllowGet);
+            try
+            {
+                return UserManager.IsLoginExists(login)
+                    ? Json($"Login '{login}' arleady registered", JsonRequestBehavior.AllowGet)
+                    : Json("true", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(new AccountValidationException($"Error during check login '{login}'. Message: {ex.Message}"));
+            }
+            return Json("true", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult CheckPhone(string phone)
         {
-            return UserManager.IsPhoneExists(FormatPhone(phone))
-                ? Json($"Phone '{phone}' arleady registered", JsonRequestBehavior.AllowGet)
-                : Json("true", JsonRequestBehavior.AllowGet);
+            try
+            {
+                return UserManager.IsPhoneExists(FormatPhone(phone))
+                    ? Json($"Phone '{phone}' arleady registered", JsonRequestBehavior.AllowGet)
+                    : Json("true", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(new AccountValidationException($"Error during check phone '{phone}'. Message: {ex.Message}"));
+            }
+            return Json("true", JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -146,12 +206,19 @@ namespace CarsSale.WebUi.Controllers
 
         private void SignIn(CarsSaleUser user, bool isPersistent)
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties
-                {
-                    IsPersistent = isPersistent
-                },
-                UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie));
+            try
+            {
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                AuthenticationManager.SignIn(new AuthenticationProperties
+                    {
+                        IsPersistent = isPersistent
+                    },
+                    UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie));
+            }
+            catch (Exception ex)
+            {
+                throw new AccountException($"Cannot login { new {UserId = user.Id }}. Message = {ex.Message}");
+            }
         }
 
         private string FormatPhone(string phone) =>

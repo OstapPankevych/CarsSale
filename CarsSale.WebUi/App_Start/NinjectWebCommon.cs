@@ -1,6 +1,9 @@
+using System.Web.Mvc;
 using CarsSale.DataAccess.Providers.Content;
 using CarsSale.DataAccess.Repositories.Interfaces;
+using CarsSale.WebUi.Filters;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Ninject.Web.Mvc.FilterBindingSyntax;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CarsSale.WebUi.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CarsSale.WebUi.App_Start.NinjectWebCommon), "Stop")]
@@ -18,6 +21,7 @@ namespace CarsSale.WebUi.App_Start
     using Microsoft.AspNet.Identity;
     using CarsSale.DataAccess.Searchers.Interfaces;
     using CarsSale.DataAccess.Searchers;
+    using CarsSale.WebUi.Logger;
 
     public static class NinjectWebCommon 
     {
@@ -69,8 +73,8 @@ namespace CarsSale.WebUi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<ILogger>().To<Logger>();
             kernel.Bind<IContentProvider>().To<AzureProvider>();
-
             kernel.Bind<IAdvertisementSearcher>().To<AdvertisementSearcher>();
             kernel.Bind<IBrandRepository>().To<BrandRepository>();
             kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>();
@@ -80,6 +84,8 @@ namespace CarsSale.WebUi.App_Start
             kernel.Bind<IRegionRepository>().To<RegionRepository>();
 
             kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
+
+            kernel.BindFilter<CarsSaleExceptionFilter>(FilterScope.Global, 0);
         }        
     }
 }

@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44386</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -53,6 +54,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -246,8 +250,13 @@
     <Content Include="Content\Scripts\src\MicrosoftMvcValidation.debug.js" />
     <Content Include="Content\Scripts\src\MicrosoftMvcValidation.js" />
     <Content Include="Content\Scripts\src\modernizr-2.8.3.js" />
+    <Compile Include="Exceptions\AccountException.cs" />
+    <Compile Include="Exceptions\AccountValidationException.cs" />
+    <Compile Include="Exceptions\AdvertisementException.cs" />
+    <Compile Include="Filters\CarsSaleExceptionFilter.cs" />
+    <Compile Include="Logger\Ilogger.cs" />
+    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Models\EngineViewModel.cs" />
-    <Compile Include="Validators\RangeNullableAttribute.cs" />
     <Content Include="Content\Scripts\src\plugins\piexif.js" />
     <Content Include="Content\Scripts\src\plugins\piexif.min.js" />
     <Content Include="Content\Scripts\src\plugins\purify.js" />
@@ -285,6 +294,8 @@
     <Content Include="Views\Advertisement\Index.cshtml" />
     <Content Include="Views\Advertisement\Success.cshtml" />
     <Content Include="Views\Partials\Advertisement.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
