@@ -1,130 +1,29 @@
-﻿@model CarsSale.WebUi.Models.SearchViewModel
+﻿@using System.Web.Mvc.Html
+@model CarsSale.WebUi.Models.SearchViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/Content/Scripts/modules/cars-sale.js"></script>
-<script src="~/Content/Scripts/cars-sale.home.js"></script>
+@*<script src="~/Content/Scripts/cars-sale.home.js"></script>*@
 
 <legend class="text-center">Welcome to CarsSale</legend>
-<div class="col-sm-12">
-    <div class="col-sm-3">
-        <div class="panel panel-default">
-	        <div class="panel-heading">
-		        <label class="glyphicon glyphicon-eye-open"></label>
-		        <span class="right">
-			        Filter
-		        </span>
-	        </div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-sm-9">
-							<label class="col-sm-12 control-label">Region</label>
-							<div class="col-sm-12">
-							    <select class="form-control" id="region">
-                                    <option value="">-- Select --</option>
-							        @foreach (var x in Model.RegionOptions)
-							        {
-							            <option value="@x.Id">@x.Name</option>
-							        }
-							    </select>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-9">
-							<label class="col-sm-12 control-label">Brand</label>
-							<div class="col-sm-12">
-							    <select class="form-control" id ="brand">
-                                    <option value="">-- Select --</option>
-							        @foreach (var x in Model.BrandOptions)
-							        {
-							            <option value="@x.Id">@x.Name</option>
-							        }
-							    </select>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-9">
-							<label class="col-sm-12 control-label">Vehicl Type</label>
-							<div class="col-sm-12">
-							    <select class="form-control" id="vehicl-type">
-                                    <option value="">-- Select --</option>
-							        @foreach (var x in Model.VehiclTypeOptions)
-							        {
-							            <option value="@x.Id">@x.Name</option>
-							        }
-							    </select>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-9">
-							<label class="col-sm-12 control-label">Transmission</label>
-							<div class="col-sm-12">
-							    <select class="form-control" id="transmission">
-                                    <option value="">-- Select --</option>
-							        @foreach (var x in Model.TransmissionTypeOptions)
-							        {
-							            <option value="@x.Id">@x.Name</option>
-							        }
-							    </select>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="col-sm-12">
-						<form id="engine-volume-search-form" min="1" max="10000" class="col-sm-12">
-							<label class="col-sm-6 control-label">Engine</label>
-							<div class="col-sm-6">
-								<div class="col-sm-4">From</div>
-								<div class="form-group">
-									<input class="form-control" type="number" id="search-volume-from" name="searchVolumeFrom"/>
-								</div>
-								<hr>
-								<div class="col-sm-4">To</div>
-								<div class="form-group">
-									<input class="form-control" type="number" id="search-volume-to" name="searchVolumeTo"/>
-								</div>
-								<div class="panel panel-default col-sm-12">
-									<div class="panel-body">
-										@foreach (var x in Model.FuelOptions)
-										{
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="fuel" value="@x.Id">@x.Name
-												</label>
-											</div>
-										}
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="col-sm-10">
-						<label class="glyphicon glyphicon-search"></label>
-						<button id="search" type="submit" class="btn btn-primary">Search</button>
-					</div>
-				</div>
-        </div>
-    </div>
-    <div id="search-result">
-    </div>
+<div class="col-sm-12">	
+	@Html.Partial("Partials/SearchForm", Model)
 
-    <div class="col-sm-12 text-center">
-        <ul class="pagination">
-            <li class="disabled"><a href="#">&laquo;</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>       
-    </div>
+	<div id="search-result">
+	</div>
+
+	<div class="col-sm-12 text-center">
+		<ul class="pagination">
+			<li class="disabled"><a href="#">&laquo;</a></li>
+			<li class="active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+	</div>
 </div>

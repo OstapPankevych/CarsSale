@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Styles\default.css" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
     <Compile Include="Support\ConnectionStringBuilder.cs" />
     <Compile Include="Support\LogProvider.cs" />
@@ -167,7 +168,7 @@
     <Content Include="Content\Styles\bootstrap-fileinput\themes\fa\theme.min.js" />
     <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.js" />
     <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.min.js" />
-    <Content Include="Content\Scripts\cars-sale.home.js" />
+    <Content Include="Content\Scripts\cars-sale.search-form.js" />
     <Content Include="Content\Scripts\modules\cars-sale.js" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css" />
@@ -291,9 +292,10 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Advertisement\Index.cshtml" />
     <Content Include="Views\Advertisement\Success.cshtml" />
-    <Content Include="Views\Partials\Advertisement.cshtml" />
+    <Content Include="Views\Shared\Partials\Advertisement.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Partials\SearchForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

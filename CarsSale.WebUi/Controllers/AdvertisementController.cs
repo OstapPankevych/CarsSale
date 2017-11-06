@@ -112,7 +112,7 @@ namespace CarsSale.WebUi.Controllers
                 searchViewModel.Fuels?.ToList(),
                 searchViewModel.EngineFrom != null ? new Engine {Volume = searchViewModel.EngineFrom.Volume} : null,
                 searchViewModel.EngineTo != null ? new Engine {Volume = searchViewModel.EngineTo.Volume} : null);
-            return PartialView("~/Views/Partials/Advertisement.cshtml", advertisements);
+            return PartialView("Partials/Advertisement", advertisements);
         }
 
         public FileContentResult GetImage(string imagePath)
