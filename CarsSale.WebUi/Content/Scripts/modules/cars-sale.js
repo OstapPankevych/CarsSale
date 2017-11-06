@@ -79,7 +79,7 @@ carsSale.modules = (() => {
             var options = {
                 url: carsSale.urls.search,
                 data: { searchViewModel: getSearchOptions() },
-                success: (data) => getFormElement(resultId).html(data)
+                success: (data) => $("#" + resultId).html(data)
             };
             $.post(options);
         };

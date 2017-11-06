@@ -8,9 +8,9 @@
 <link href="~/Content/Styles/image-viewer/image-viewer.css" rel="stylesheet" />
 <script src="~/Content/Scripts/image-viewer/image-viewer.js"></script>
 
-<div class="container col-lg-offset-3 col-lg-9">
+<div class="container col-sm-offset-3 col-sm-9 col-xs-12">
 	<div class="row clearfix center-block">
-		@using (Html.BeginForm("Index", "Advertisement", null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal col-lg-5", role = "form" }))
+		@using (Html.BeginForm("Index", "Advertisement", null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal col-sm-5", role = "form" }))
 		{
 			<fieldset>
 				<legend class=" text-center">Create new advertisement for sale to CarsSale</legend>
@@ -20,9 +20,9 @@
 				<div class="container">
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-lg-10">
-								<label for="select" class="control-label col-lg-2">Photo *</label>
-								<div class="input-group image-preview col-lg-5">
+							<div class="col-sm-10">
+								<label for="select" class="control-label col-sm-2">Photo *</label>
+								<div class="input-group image-preview col-sm-5">
 									<input type="text" class="form-control image-preview-filename" disabled="disabled">
 									<div class="input-group-btn">
 										<button type="button" class="btn btn-default image-preview-clear" style="display: none;">
@@ -41,9 +41,9 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-lg-9">
-							<label for="select" class="col-lg-5 control-label">Region</label>
-							<div class="col-lg-7">
+						<div class="col-sm-9">
+							<label for="select" class="col-sm-5 control-label">Region</label>
+							<div class="col-sm-7">
 								<select class="form-control" id="select"  name="@Html.NameFor(m => m.Region.Id)">
 									@foreach (var x in Model.RegionOptions)
 									{
@@ -56,9 +56,9 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-lg-9">
-							<label for="select" class="col-lg-5 control-label">Brand</label>
-							<div class="col-lg-7">
+						<div class="col-sm-9">
+							<label for="select" class="col-sm-5 control-label">Brand</label>
+							<div class="col-sm-7">
 								<select class="form-control" id="select"  name="@Html.NameFor(m => m.Brand.Id)">
 									@foreach (var x in Model.BrandOptions)
 									{
@@ -71,9 +71,9 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-lg-9">
-							<label for="select" class="col-lg-5 control-label">Vehicl Type</label>
-							<div class="col-lg-7">
+						<div class="col-sm-9">
+							<label for="select" class="col-sm-5 control-label">Vehicl Type</label>
+							<div class="col-sm-7">
 								<select class="form-control" id="select"  name="@Html.NameFor(m => m.VehiclType.Id)">
 									@foreach (var x in Model.VehiclTypeOptions)
 									{
@@ -86,9 +86,9 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-lg-9">
-							<label for="select" class="col-lg-5 control-label">Transmission Type</label>
-							<div class="col-lg-7">
+						<div class="col-sm-9">
+							<label for="select" class="col-sm-5 control-label">Transmission Type</label>
+							<div class="col-sm-7">
 								<select class="form-control" id="select"  name="@Html.NameFor(m => m.TransmissionType.Id)">
 									@foreach (var x in Model.TransmissionTypeOptions)
 									{
@@ -100,11 +100,11 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-3 control-label">Fuels *</label>
-					<div class="col-lg-9">
+					<label class="col-sm-3 control-label">Fuels *</label>
+					<div class="col-sm-9">
 						@foreach (var x in Model.FuelOptions)
 						{
-							<div class="checkbox text-left col-lg-offset-3">
+							<div class="checkbox text-left col-sm-offset-3">
 								<label>
 									<input type="checkbox" value="@x.Id" checked="@x.Id.Equals(Model.FuelOptions.ElementAt(0).Id)" name="@Html.NameFor(m => m.Fuels)" />@x.Name
 								</label>
@@ -114,9 +114,9 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-lg-9">
-							<label for="select" class="col-lg-5 control-label">Engine Volume *</label>
-							<div class="col-lg-4">
+						<div class="col-sm-9">
+							<label for="select" class="col-sm-5 control-label">Engine Volume *</label>
+							<div class="col-sm-4">
 								@Html.TextBoxFor(x => x.EngineVolume, new {@class = "form-control", placeholder = "Login"})
 							</div>
 							@Html.ValidationMessageFor(x => x.EngineVolume)
@@ -125,7 +125,7 @@
 				</div>
 				<hr>
 				<div class="form-group">
-					<div class="col-lg-3 col-lg-offset-2">
+					<div class="col-sm-3 col-sm-offset-2">
 						<button type="submit" class="btn btn-primary">Create</button>
 					</div>
 				</div>

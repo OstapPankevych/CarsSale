@@ -168,7 +168,7 @@
     <Content Include="Content\Styles\bootstrap-fileinput\themes\fa\theme.min.js" />
     <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.js" />
     <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.min.js" />
-    <Content Include="Content\Scripts\cars-sale.search-form.js" />
+    <Content Include="Content\Scripts\cars-sale.home.js" />
     <Content Include="Content\Scripts\modules\cars-sale.js" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css" />

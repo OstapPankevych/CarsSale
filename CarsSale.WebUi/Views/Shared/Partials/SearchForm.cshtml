@@ -1,9 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @model CarsSale.WebUi.Models.SearchViewModel
 
-<script src="~/Content/Scripts/cars-sale.search-form.js"></script>
-
-<div class="col-sm-3" id="search-form">
+<div class="col-sm-3 col-lg-3 col-md-3 col-xs-12" id="search-form">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<label class="glyphicon glyphicon-eye-open"></label>
@@ -13,7 +11,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-12">
 					<label class="col-sm-12 control-label">Region</label>
 					<div class="col-sm-12">
 						<select class="form-control" id="region">
@@ -28,7 +26,7 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-12">
 					<label class="col-sm-12 control-label">Brand</label>
 					<div class="col-sm-12">
 						<select class="form-control" id="brand">
@@ -43,7 +41,7 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-12">
 					<label class="col-sm-12 control-label">Vehicl Type</label>
 					<div class="col-sm-12">
 						<select class="form-control" id="vehicl-type">
@@ -58,7 +56,7 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-12">
 					<label class="col-sm-12 control-label">Transmission</label>
 					<div class="col-sm-12">
 						<select class="form-control" id="transmission">
@@ -74,14 +72,14 @@
 			<hr>
 			<div class="col-sm-12">
 				<form id="engine-volume-search-form" min="1" max="10000" class="col-sm-12">
-					<label class="col-sm-6 control-label">Engine</label>
-					<div class="col-sm-6">
-						<div class="col-sm-4">From</div>
+					<label class="col-sm-12 control-label text-center">Engine</label>
+					<div class="col-sm-12">
+						<div class="col-sm-6">From</div>
 						<div class="form-group">
 							<input class="form-control" type="number" id="search-volume-from" name="searchVolumeFrom" />
 						</div>
 						<hr>
-						<div class="col-sm-4">To</div>
+						<div class="col-sm-6">To</div>
 						<div class="form-group">
 							<input class="form-control" type="number" id="search-volume-to" name="searchVolumeTo" />
 						</div>
