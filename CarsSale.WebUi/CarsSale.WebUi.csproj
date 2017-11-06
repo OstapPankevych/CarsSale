@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44386</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -146,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Support\ConnectionStringBuilder.cs" />
     <Content Include="Content\Scripts\image-viewer\image-viewer.js" />
     <Content Include="Content\Styles\bootstrap-fileinput\css\fileinput-rtl.css" />
     <Content Include="Content\Styles\bootstrap-fileinput\css\fileinput-rtl.min.css" />

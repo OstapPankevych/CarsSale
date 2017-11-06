@@ -7,6 +7,10 @@ namespace CarsSale.DataAccess.Repositories
 {
     public class FuelRepository : Repository, IFuelRepository
     {
+        public FuelRepository(string connectionString)
+            : base(connectionString)
+        { }
+
         public IEnumerable<Fuel> GetFuels()
         {
             using (var context = CreateContext())

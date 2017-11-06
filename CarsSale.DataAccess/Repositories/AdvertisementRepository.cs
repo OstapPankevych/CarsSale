@@ -9,9 +9,11 @@ namespace CarsSale.DataAccess.Repositories
 {
     public class AdvertisementRepository: Repository, IAdvertisementRepository
     {
+
         private readonly IAdvertisementSearcher _searcher;
 
-        public AdvertisementRepository(IAdvertisementSearcher searcher)
+        public AdvertisementRepository(string connectionString, IAdvertisementSearcher searcher)
+            : base(connectionString)
         {
             _searcher = searcher;
         }

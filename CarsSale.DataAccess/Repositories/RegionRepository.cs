@@ -7,6 +7,10 @@ namespace CarsSale.DataAccess.Repositories
 {
     public class RegionRepository : Repository, IRegionRepository
     {
+        public RegionRepository(string connectionString)
+            : base(connectionString)
+        { }
+
         public IEnumerable<Region> GetRegions()
         {
             using (var context = CreateContext())

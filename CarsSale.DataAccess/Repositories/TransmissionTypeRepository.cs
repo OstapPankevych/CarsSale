@@ -10,6 +10,10 @@ namespace CarsSale.DataAccess.Repositories
 {
     public class TransmissionTypeRepository: Repository, ITransmissionTypeRepository
     {
+        public TransmissionTypeRepository(string connectionString)
+            : base(connectionString)
+        { }
+
         public IEnumerable<TransmissionType> GetTransmissionTypes()
         {
             using (var context = CreateContext())

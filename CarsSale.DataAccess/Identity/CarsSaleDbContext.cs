@@ -5,13 +5,19 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CarsSale.DataAccess.Identity
 {
-    public class ApplicationDbContext: IdentityDbContext<CarsSaleUser, CarsSaleRole, int, CarsSaleLogin, CarsSaleUserRole, CarsSaleClaim>
+    public class CarsSaleDbContext: IdentityDbContext<CarsSaleUser, CarsSaleRole, int, CarsSaleLogin, CarsSaleUserRole, CarsSaleClaim>
     {
-        public ApplicationDbContext(): base("IdentityCarsSaleEntities") { }
-
-        public static ApplicationDbContext Create()
+        public CarsSaleDbContext()
         {
-            return new ApplicationDbContext();
+        }
+
+        public CarsSaleDbContext(string connectionString)
+            : base(connectionString)
+        { }
+
+        public static CarsSaleDbContext Create(string connectionString)
+        {
+            return new CarsSaleDbContext(connectionString);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

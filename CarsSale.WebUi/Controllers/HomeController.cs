@@ -37,7 +37,6 @@ namespace CarsSale.WebUi.Controllers
 
         public ActionResult Index()
         {
-            throw new Exception("testing");
             try
             {
                 var searchViewModel = new SearchViewModel

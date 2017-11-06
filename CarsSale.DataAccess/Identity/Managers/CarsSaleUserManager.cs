@@ -39,7 +39,7 @@ namespace CarsSale.DataAccess.Identity.Managers
 
         public static CarsSaleUserManager Create(IdentityFactoryOptions<CarsSaleUserManager> options, IOwinContext context)
         {
-            var db = context.Get<ApplicationDbContext>();
+            var db = context.Get<CarsSaleDbContext>();
             var store = new UserStore<CarsSaleUser,
                 CarsSaleRole,
                 int,

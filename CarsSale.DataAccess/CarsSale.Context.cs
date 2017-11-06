@@ -15,8 +15,8 @@ namespace CarsSale.DataAccess
     
     public partial class CarsSaleEntities : DbContext
     {
-        public CarsSaleEntities()
-            : base("name=CarsSaleEntities")
+        public CarsSaleEntities(string connectionString)
+            : base(connectionString)
         {
         }
     

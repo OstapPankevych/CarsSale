@@ -2,6 +2,7 @@ using System.Web.Mvc;
 using CarsSale.DataAccess.Providers.Content;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.WebUi.Filters;
+using CarsSale.WebUi.Support;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Ninject.Web.Mvc.FilterBindingSyntax;
 
@@ -75,13 +76,20 @@ namespace CarsSale.WebUi.App_Start
         {
             kernel.Bind<ILogger>().To<Logger>();
             kernel.Bind<IContentProvider>().To<AzureProvider>();
-            kernel.Bind<IAdvertisementSearcher>().To<AdvertisementSearcher>();
-            kernel.Bind<IBrandRepository>().To<BrandRepository>();
-            kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>();
-            kernel.Bind<IFuelRepository>().To<FuelRepository>();
-            kernel.Bind<ITransmissionTypeRepository>().To<TransmissionTypeRepository>();
-            kernel.Bind<IAdvertisementRepository>().To<AdvertisementRepository>();
-            kernel.Bind<IRegionRepository>().To<RegionRepository>();
+            kernel.Bind<IAdvertisementSearcher>().To<AdvertisementSearcher>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+            kernel.Bind<IBrandRepository>().To<BrandRepository>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+            kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+            kernel.Bind<IFuelRepository>().To<FuelRepository>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+            kernel.Bind<ITransmissionTypeRepository>().To<TransmissionTypeRepository>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+            kernel.Bind<IAdvertisementRepository>().To<AdvertisementRepository>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+            kernel.Bind<IRegionRepository>().To<RegionRepository>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
 
             kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
 

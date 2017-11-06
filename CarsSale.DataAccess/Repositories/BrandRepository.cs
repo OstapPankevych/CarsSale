@@ -10,6 +10,10 @@ namespace CarsSale.DataAccess.Repositories
 {
     public class BrandRepository: Repository, IBrandRepository
     {
+        public BrandRepository(string connectionString)
+            : base(connectionString)
+        { }
+
         public IEnumerable<Brand> GetBrands()
         {
             using (var context = CreateContext())
