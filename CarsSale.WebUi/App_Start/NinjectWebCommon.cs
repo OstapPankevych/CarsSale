@@ -20,8 +20,6 @@ namespace CarsSale.WebUi.App_Start
     using Ninject.Web.Common;
     using CarsSale.DataAccess.Repositories;
     using Microsoft.AspNet.Identity;
-    using CarsSale.DataAccess.Searchers.Interfaces;
-    using CarsSale.DataAccess.Searchers;
     using CarsSale.WebUi.Logger;
 
     public static class NinjectWebCommon 
@@ -76,8 +74,7 @@ namespace CarsSale.WebUi.App_Start
         {
             kernel.Bind<ILogger>().To<Logger>();
             kernel.Bind<IContentProvider>().To<AzureProvider>();
-            kernel.Bind<IAdvertisementSearcher>().To<AdvertisementSearcher>()
-                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+
             kernel.Bind<IBrandRepository>().To<BrandRepository>()
                 .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
             kernel.Bind<IVehiclTypeRepository>().To<VehiclTypeRepository>()

@@ -166,10 +166,6 @@
     <Compile Include="Role.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>
-    <Compile Include="Searchers\Interfaces\IAdvertisementSearcher.cs" />
-    <Compile Include="Searchers\Interfaces\ISearcher.cs" />
-    <Compile Include="Searchers\AdvertisementSearcher.cs" />
-    <Compile Include="Searchers\Searcher.cs" />
     <Compile Include="TRANSMISSION_TYPE.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>

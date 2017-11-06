@@ -3,19 +3,14 @@ using System.Data.Entity;
 using System.Linq;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.DTO;
-using CarsSale.DataAccess.Searchers.Interfaces;
 
 namespace CarsSale.DataAccess.Repositories
 {
     public class AdvertisementRepository: Repository, IAdvertisementRepository
     {
-
-        private readonly IAdvertisementSearcher _searcher;
-
-        public AdvertisementRepository(string connectionString, IAdvertisementSearcher searcher)
+        public AdvertisementRepository(string connectionString)
             : base(connectionString)
         {
-            _searcher = searcher;
         }
 
         public IEnumerable<Advertisement> GetAdvertisements(
@@ -48,15 +43,6 @@ namespace CarsSale.DataAccess.Repositories
                     .AsEnumerable()
                     .Select(x => new Advertisement(x))
                     .ToList();
-
-                //var advertisements = _searcher
-                //    .For(context.ADVERTISEMENTs)
-                //    .ByRegion(region)
-                //    .ByBrand(brand)
-                //    .ByFuelType(fuels)
-                //    .ByRegion(region)
-                //    .ByVehiclType(vehiclType)
-                //    .CreateQuery(context.ADVERTISEMENTs);
             }
         }
 
