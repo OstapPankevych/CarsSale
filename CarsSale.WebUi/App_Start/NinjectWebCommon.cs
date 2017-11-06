@@ -20,7 +20,6 @@ namespace CarsSale.WebUi.App_Start
     using Ninject.Web.Common;
     using CarsSale.DataAccess.Repositories;
     using Microsoft.AspNet.Identity;
-    using CarsSale.WebUi.Logger;
 
     public static class NinjectWebCommon 
     {
@@ -72,7 +71,6 @@ namespace CarsSale.WebUi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ILogger>().To<Logger>();
             kernel.Bind<IContentProvider>().To<AzureProvider>();
 
             kernel.Bind<IBrandRepository>().To<BrandRepository>()
@@ -90,7 +88,7 @@ namespace CarsSale.WebUi.App_Start
 
             kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
 
-            kernel.BindFilter<CarsSaleExceptionFilter>(FilterScope.Global, 0);
+            kernel.BindFilter<ExceptionLoggingFilterAttribute>(FilterScope.Global, 0);
         }        
     }
 }
