@@ -9,7 +9,7 @@ namespace CarsSale.WebUi
             bundles.Add(new StyleBundle("~/Content/bootstrap")
                 .Include("~/Content/Styles/bootstrap/bootstrap.css",
                     "~/Content/Styles/bootstrap/bootstrap-theme.css",
-                    "~/Content/Styles/default.css"));
+                    "~/Content/Styles/cars-sale/default.css"));
 
             bundles.Add(new ScriptBundle("~/Scripts/bootstrap")
                 .Include("~/Content/Scripts/src/bootstrap.js"));

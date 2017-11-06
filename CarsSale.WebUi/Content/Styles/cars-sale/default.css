@@ -2,3 +2,7 @@
     top: 10em;
     display: none;
 }
+
+#searching {
+    display: none;
+}

@@ -145,7 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Styles\default.css" />
+    <Content Include="Content\Styles\cars-sale\default.css" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
     <Compile Include="Support\ConnectionStringBuilder.cs" />
     <Compile Include="Support\LogProvider.cs" />
@@ -305,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Icons\" />
     <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>

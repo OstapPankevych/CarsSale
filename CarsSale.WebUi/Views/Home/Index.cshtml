@@ -10,9 +10,15 @@
 
 <legend class="text-center">Welcome to CarsSale</legend>
 <div class="col-sm-12">	
-	@Html.Partial("Partials/SearchForm", Model)
-
-	<div id="search-result">
+	
+	<div class="row">
+		<div class="col-sm-3 col-lg-3 col-md-3 col-xs-12">
+			@Html.Partial("Partials/SearchForm", Model)
+		</div>
+		<div id="searching" class="col-sm-8 text-center">
+			<h2>Searching... Please Wait</h2>
+		</div>
+		<div id="search-result"></div>
 	</div>
 
 	<div class="col-sm-12 text-center">

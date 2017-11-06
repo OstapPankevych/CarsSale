@@ -9,8 +9,11 @@
 carsSale.modules = (() => {
     var Searcher = function() {
         var formId;
-        var resultId;
-        var errorPlacement;
+        var onValidationSuccessHandler;
+        var onValidationErrorHandler;
+        var onSerachSuccessHandler;
+        var onSerachErrorHandler;
+        var onStartSearchHandler;
 
         var getFormElement = (elementId) => {
             return elementId ? $("#" + formId + " " + elementId) : $("#" + formId);
@@ -36,14 +39,8 @@ carsSale.modules = (() => {
                     range: () => [getFormElement("#search-volume-from").val() || getFormElement("#engine-volume-search-form").attr("min"), getFormElement("#engine-volume-search-form").attr("max")]
                 }
             },
-            errorPlacement: (error) => {
-                var errorPopup = $("#" + errorPlacement);
-                $("#" + errorPlacement).text("Search Form: " + error.text());
-                errorPopup.show();
-            },
-            success: () => {
-                $("#" + errorPlacement).hide();
-            }
+            errorPlacement: onValidationErrorHandler,
+            success: onValidationSuccessHandler
         };
 
         var isFormValid = () => {
@@ -79,15 +76,26 @@ carsSale.modules = (() => {
             var options = {
                 url: carsSale.urls.search,
                 data: { searchViewModel: getSearchOptions() },
-                success: (data) => $("#" + resultId).html(data)
+                success: onSerachSuccessHandler,
+                error: onSerachErrorHandler,
+                beforeSend: onStartSearchHandler
             };
             $.post(options);
         };
 
-        this.init = (searchFormId, resultContainerId, errorPlacementId) => {
+        this.init = (searchFormId, onStartSearch,
+            onSearchSuccess, onSearchError,
+            onValidationSuccess, onValidationError
+        ) => {
             formId = searchFormId;
-            resultId = resultContainerId;
-            errorPlacement = errorPlacementId;
+
+            onStartSearchHandler = onStartSearch;
+
+            onValidationSuccessHandler = onValidationSuccess;
+            onValidationErrorHandler = onValidationError;
+
+            onSerachSuccessHandler = onSearchSuccess;
+            onSerachErrorHandler = onSearchError;
 
             getFormElement("#engine-volume-search-form").validate(validationOptions);
 
