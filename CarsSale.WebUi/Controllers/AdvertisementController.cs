@@ -48,7 +48,7 @@ namespace CarsSale.WebUi.Controllers
         }
 
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Create()
         {
             var advertisement = new NewAdvertisementViewModel
             {
@@ -64,12 +64,12 @@ namespace CarsSale.WebUi.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Index(NewAdvertisementViewModel adv)
+        public ActionResult Create(NewAdvertisementViewModel adv)
         {
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "The registered form is invalid! Please try again");
-                return Index();
+                return View();
             }
 
             var imagesFolder = new Guid();

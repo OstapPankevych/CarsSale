@@ -146,7 +146,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\logo.jpeg" />
+    <Content Include="Content\Scripts\cars-sale\cars-sale.advertisement-search.js" />
+    <Content Include="Content\Scripts\cars-sale\cars-sale.js" />
+    <Content Include="Content\Scripts\cars-sale\modules\cars-sale.modules.js" />
     <Content Include="Content\Styles\cars-sale\default.css" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
     <Compile Include="Support\ConnectionStringBuilder.cs" />
@@ -170,8 +174,7 @@
     <Content Include="Content\Styles\bootstrap-fileinput\themes\fa\theme.min.js" />
     <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.js" />
     <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.min.js" />
-    <Content Include="Content\Scripts\cars-sale.home.js" />
-    <Content Include="Content\Scripts\modules\cars-sale.js" />
+    <Content Include="Content\Scripts\cars-sale\modules\cars-sale.js" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\bootstrap\bootstrap.css" />
@@ -292,8 +295,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Advertisement\Index.cshtml" />
-    <Content Include="Views\Advertisement\Success.cshtml" />
+    <Content Include="Views\Advertisement\Create.cshtml" />
     <Content Include="Views\Shared\Partials\Advertisement.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\_ViewStart.cshtml" />
