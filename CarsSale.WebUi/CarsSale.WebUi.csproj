@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44386</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -145,6 +146,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\logo.jpeg" />
     <Content Include="Content\Styles\cars-sale\default.css" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
     <Compile Include="Support\ConnectionStringBuilder.cs" />
@@ -306,7 +308,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Icons\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarsSale.DataAccess\CarsSale.DataAccess.csproj">

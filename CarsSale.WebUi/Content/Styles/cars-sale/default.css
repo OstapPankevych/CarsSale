@@ -6,3 +6,17 @@
 #searching {
     display: none;
 }
+
+#wrapper {
+    top: 6em;
+    position: relative;
+}
+
+#logo {
+    background-image: url('../../Images/logo.jpeg');
+    height: 6em;
+    background-size: auto 8em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-clip: content-box
+}
