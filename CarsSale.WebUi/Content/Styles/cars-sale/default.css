@@ -20,3 +20,8 @@
     background-repeat: no-repeat;
     background-clip: content-box
 }
+
+.navbar-brand:hover {
+    background-color: lightgrey !important;
+    border-radius: 5px;
+}
