@@ -6,6 +6,7 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
     public interface IAdvertisementRepository
     {
         Advertisement Create(Advertisement advertisement);
+
         IEnumerable<Advertisement> GetAdvertisements(
             Brand brand = null,
             Region region = null,
@@ -14,5 +15,7 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
             List<Fuel> fuels = null,
             Engine from = null,
             Engine to = null);
+
+        IEnumerable<Advertisement> GetTopAdvertisements(int top);
     }
 }

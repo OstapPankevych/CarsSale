@@ -58,3 +58,20 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+#slider {
+    margin: auto;
+    width: 80%;
+    top: 10em;
+    height: 31em;
+}
+
+#slider img {
+    width: 60%;
+    height: 80%;
+    margin: auto;
+}
+
+#slider .item .description {
+    border-left: #337ab7 2px solid;
+}

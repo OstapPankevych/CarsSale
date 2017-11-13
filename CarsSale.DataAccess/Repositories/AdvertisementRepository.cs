@@ -54,6 +54,19 @@ namespace CarsSale.DataAccess.Repositories
             }
         }
 
+        public IEnumerable<Advertisement> GetTopAdvertisements(int top)
+        {
+            using (var context = CreateContext())
+            {
+                return context.ADVERTISEMENTs
+                    .OrderBy(x => x.CREATED_DATE)
+                    .Take(5)
+                    .AsEnumerable()
+                    .Select(x => new Advertisement(x))
+                    .ToList();
+            }
+        }
+
         public Advertisement Create(Advertisement advertisement)
         {
             using (var context = CreateContext())

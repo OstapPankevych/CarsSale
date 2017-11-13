@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -72,7 +73,9 @@ namespace CarsSale.WebUi.Controllers
                 return View();
             }
 
-            var imagesFolder = new Guid();
+            var rootFolder = ConfigurationManager.AppSettings["advertismentsRootFolder"];
+            var imagesFolder = Path.Combine(rootFolder, new Guid().ToString());
+
             var advertisement = new Advertisement
             {
                 CreatedDate = DateTime.Now,
@@ -91,10 +94,10 @@ namespace CarsSale.WebUi.Controllers
                     VehiclType = adv.VehiclType
                 },
                 User = UserManager.FindByLogin(User.Identity.Name),
-                ImagePath = Path.Combine(imagesFolder.ToString(), adv.Image.FileName)
+                ImagePath = Path.Combine(imagesFolder, adv.Image.FileName)
             };
 
-            _contentProvider.Upload(Path.Combine(imagesFolder.ToString(), adv.Image.FileName),
+            _contentProvider.Upload(Path.Combine(imagesFolder, adv.Image.FileName),
                 adv.Image.InputStream);
 
             _advertisementRepository.Create(advertisement);
@@ -122,6 +125,12 @@ namespace CarsSale.WebUi.Controllers
             stream.Position = 0;
             stream.CopyTo(ms);
             return new FileContentResult(ms.ToArray(), $"image/{Path.GetExtension(imagePath)}");
+        }
+
+        public PartialViewResult GetTopAdvertisements(int top)
+        {
+            var arvertisements = _advertisementRepository.GetTopAdvertisements(top);
+            return PartialView("Partials/Slider", arvertisements);
         }
     }
 }
