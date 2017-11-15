@@ -17,7 +17,9 @@ namespace CarsSale.WebUi.Controllers
     [ExceptionLoggingFilter]
     [LoggingFilter]
     public class AccountController : Controller
-    { 
+    {
+        private const string CarsSaleLoginProvider = "CarsSale";
+
         private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
@@ -35,10 +37,11 @@ namespace CarsSale.WebUi.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var dbUser = UserManager.Find(user.Login, user.Password);
-            if (dbUser == null)
+            var dbUser = UserManager.Find(new UserLoginInfo(CarsSaleLoginProvider, user.Login));
+
+            if (dbUser == null || UserManager.CheckPassword(dbUser, user.Password))
             {
-                ModelState.AddModelError("", "Wrong Login or Password!");
+                ModelState.AddModelError("", "User wi");
                 return View("Login");
             }
 
@@ -91,20 +94,20 @@ namespace CarsSale.WebUi.Controllers
 
             var user = new CarsSaleUser
             {
-                UserName = account.Login,
+                UserName = account.Name,
                 PhoneNumber = account.Phone,
                 Logins =
                     {
                         new CarsSaleLogin
                         {
-                            LoginProvider = "CarsSale", ProviderKey = account.Login
+                            LoginProvider = CarsSaleLoginProvider,
+                            ProviderKey = account.Login
                         }
                     },
                 Email = account.Email,
                 Claims =
                 {
-                    new CarsSaleClaim { ClaimType = ClaimTypes.Name, ClaimValue = account.Name },
-                    new CarsSaleClaim {ClaimType = ClaimTypes.DateOfBirth, ClaimValue = account.Birthday.ToLongDateString() }
+                    new CarsSaleClaim { ClaimType = ClaimTypes.DateOfBirth, ClaimValue = account.Birthday.ToLongDateString() }
                 }
             };
 
