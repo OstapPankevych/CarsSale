@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using CarsSale.DataAccess.Providers.Content;
 using CarsSale.DataAccess.Repositories.Interfaces;
+using CarsSale.DataAccess.Repositories.QueryBuilders;
 using CarsSale.WebUi.Filters;
 using CarsSale.WebUi.Support;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -87,6 +88,8 @@ namespace CarsSale.WebUi.App_Start
                 .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
 
             kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
+
+            kernel.Bind<IAdvertisementSearchQueryBuilder>().To<AdvertismentSearchQueryBuilder>();
 
             kernel.BindFilter<ExceptionLoggingFilterAttribute>(FilterScope.Global, 0);
         }        

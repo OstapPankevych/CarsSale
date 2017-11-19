@@ -1,16 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.DTO;
+using CarsSale.DataAccess.Repositories.QueryBuilders;
 
 namespace CarsSale.DataAccess.Repositories
 {
     public class AdvertisementRepository: Repository, IAdvertisementRepository
     {
-        public AdvertisementRepository(string connectionString)
+        private readonly IAdvertisementSearchQueryBuilder _queryBuilder;
+
+        public AdvertisementRepository(string connectionString, IAdvertisementSearchQueryBuilder queryBuilder)
             : base(connectionString)
         {
+            _queryBuilder = queryBuilder;
         }
 
         public IEnumerable<Advertisement> GetAdvertisements(
@@ -24,22 +29,17 @@ namespace CarsSale.DataAccess.Repositories
         {
             using (var context = CreateContext())
             {
-                var query = context.ADVERTISEMENTs.AsQueryable();
-                if (brand != null) query = query.Where(x => x.VEHICL.BRAND_ID == brand.Id);
-                if (region != null) query = query.Where(x => x.REGION_ID == region.Id);
-                if (vehiclType != null) query = query.Where(x => x.VEHICL.VEHICL_TYPE_ID == vehiclType.Id);
-                if (transmission != null) query = query.Where(x => x.VEHICL.TRANSMISSION_TYPE_ID == transmission.Id);
-                if (fuels != null)
-                {
-                    var fuelIds = fuels.Select(x => x.Id).ToList();
-                    query = query.Where(
-                        x => fuelIds.All(id => x.VEHICL.ENGINE.ENGINE_FUEL.Select(ef => ef.FUEL_ID).Any(f => f == id))
-                        && fuelIds.Count == x.VEHICL.ENGINE.ENGINE_FUEL.Count);
-                }
-                if (from != null) query = query.Where(x => x.VEHICL.ENGINE.VOLUME >= from.Volume);
-                if (to != null) query = query.Where(x => x.VEHICL.ENGINE.VOLUME <= to.Volume);
+                var query = _queryBuilder
+                    .For(context.ADVERTISEMENTs.AsQueryable())
+                    .By(brand)
+                    .By(region)
+                    .By(vehiclType)
+                    .By(transmission)
+                    .By(fuels)
+                    .By(from, to)
+                    .CreateQuery();
 
-                return query
+                 return query
                     .AsEnumerable()
                     .Select(x => new Advertisement(x))
                     .ToList();
