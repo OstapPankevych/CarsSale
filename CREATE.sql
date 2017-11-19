@@ -17,6 +17,10 @@ CREATE TABLE [User](
     [LockoutEndDateUtc] DATETIME NULL,
     [LockoutEnabled] BIT NOT NULL,
     [AccessFailedCount] INT NOT NULL,
+	/*Not Identity required*/
+	[FullName] NVARCHAR(256) NOT NULL,
+	[Birthday] DATETIME NOT NULL,
+	/***********************/
 	PRIMARY KEY([Id]),
 	UNIQUE ([UserName])
 );
