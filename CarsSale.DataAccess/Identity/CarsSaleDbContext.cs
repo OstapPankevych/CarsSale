@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace CarsSale.DataAccess.Identity
 {
     public class CarsSaleDbContext: IdentityDbContext<CarsSaleUser, CarsSaleRole, int, CarsSaleLogin, CarsSaleUserRole, CarsSaleClaim>
-    {
+    { 
         public CarsSaleDbContext()
         {
         }
@@ -24,17 +24,20 @@ namespace CarsSale.DataAccess.Identity
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<CarsSaleUser>().ToTable("User");
-            modelBuilder.Entity<CarsSaleRole>().ToTable("Role");
-            modelBuilder.Entity<CarsSaleClaim>().ToTable("UserClaim");
+            modelBuilder.Entity<CarsSaleUser>().ToTable("User")
+                .Property(r => r.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<CarsSaleUser>().Property(r => r.PasswordHash).HasColumnName("Password");
+
+            modelBuilder.Entity<CarsSaleRole>().ToTable("Role")
+                .Property(r => r.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<CarsSaleClaim>().ToTable("UserClaim")
+                .Property(r => r.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
             modelBuilder.Entity<CarsSaleLogin>().ToTable("UserLogin");
             modelBuilder.Entity<CarsSaleUserRole>().ToTable("UserRole");
-
-            modelBuilder.Entity<CarsSaleUser>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<CarsSaleClaim>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<CarsSaleRole>().Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-
-            modelBuilder.Entity<CarsSaleUser>().Property(r => r.PasswordHash).HasColumnName("Password");
         }
     }
 }

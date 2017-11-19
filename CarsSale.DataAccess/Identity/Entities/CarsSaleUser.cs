@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CarsSale.DataAccess.Identity.Managers;
 using Microsoft.AspNet.Identity;
@@ -13,5 +14,8 @@ namespace CarsSale.DataAccess.Identity.Entities
             var userIdentity = await userManager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             return userIdentity;
         }
+
+        public DateTime Birthday { get; set; }
+        public string FullName { get; set; }
     }
 }

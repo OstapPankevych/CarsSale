@@ -36,8 +36,9 @@ namespace CarsSale.DataAccess.DTO
             User = new CarsSaleUser
             {
                 Email = entity.User?.Email,
-                UserName = entity.User?.UserClaims.FirstOrDefault(x => x.ClaimType == ClaimTypes.Name)?.ClaimValue,
-                PhoneNumber = entity.User?.PhoneNumber
+                UserName = entity.User?.UserName,
+                PhoneNumber = entity.User?.PhoneNumber,
+                FullName = entity.User?.FullName
             };
         }
 

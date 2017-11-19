@@ -22,7 +22,7 @@ namespace CarsSale.DataAccess.Identity.Managers
 
         public bool IsLoginExists(string login)
         {
-            var user = Users.FirstOrDefault(x => x.Logins.FirstOrDefault(l => l.LoginProvider == login) != null);
+            var user = Users.FirstOrDefault(x => x.UserName == login);
             return user != null;
         }
 

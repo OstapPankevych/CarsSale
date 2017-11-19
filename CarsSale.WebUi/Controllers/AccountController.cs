@@ -94,21 +94,19 @@ namespace CarsSale.WebUi.Controllers
 
             var user = new CarsSaleUser
             {
-                UserName = account.Name,
+                UserName = account.Login,
                 PhoneNumber = account.Phone,
-                Logins =
-                    {
-                        new CarsSaleLogin
-                        {
-                            LoginProvider = CarsSaleLoginProvider,
-                            ProviderKey = account.Login
-                        }
-                    },
                 Email = account.Email,
                 Claims =
                 {
-                    new CarsSaleClaim { ClaimType = ClaimTypes.DateOfBirth, ClaimValue = account.Birthday.ToLongDateString() }
-                }
+                    new CarsSaleClaim
+                    {
+                        ClaimType = ClaimTypes.DateOfBirth,
+                        ClaimValue = account.Birthday.ToLongDateString()
+                    }
+                },
+                FullName = account.Name,
+                Birthday = account.Birthday
             };
 
             var result = UserManager.Create(user, account.Password);
