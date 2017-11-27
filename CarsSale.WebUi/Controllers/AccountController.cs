@@ -18,13 +18,11 @@ namespace CarsSale.WebUi.Controllers
     [LoggingFilter]
     public class AccountController : Controller
     {
-        private const string CarsSaleLoginProvider = "CarsSale";
-
         private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
-        public ActionResult Login()
+        public ActionResult SignIn()
         {
             return View();
         }
@@ -37,12 +35,12 @@ namespace CarsSale.WebUi.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var dbUser = UserManager.Find(new UserLoginInfo(CarsSaleLoginProvider, user.Login));
+            var dbUser = UserManager.Find(user.Login, user.Password);
 
-            if (dbUser == null || UserManager.CheckPassword(dbUser, user.Password))
+            if (dbUser == null)
             {
-                ModelState.AddModelError("", "User wi");
-                return View("Login");
+                ModelState.AddModelError("", "User login or password is wrong!");
+                return View();
             }
 
             SignIn(dbUser, user.Remember);
@@ -66,7 +64,7 @@ namespace CarsSale.WebUi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registry(AccountViewModel account)
+        public ActionResult Registry(CreateAccountViewModel account)
         {
             if (!ModelState.IsValid)
             {

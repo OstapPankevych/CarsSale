@@ -5,21 +5,20 @@ namespace CarsSale.WebUi.Support
 {
     public static class ConnectionStringBuilder
     {
-        public static string ConnectionString { get; private set; }
-
-        public static string IdentityConnectionString { get; private set; }
-
-        static ConnectionStringBuilder()
+        public static string IdentityConnectionString
         {
-            ConnectionString = System.Configuration.ConfigurationManager.
-                ConnectionStrings["CarsSaleEntities"].ConnectionString;
+            get
+            {
+                var entityConnectionStringBuilder =
+                    new EntityConnectionStringBuilder(ConnectionString);
+                var sqlConnection = new SqlConnection(entityConnectionStringBuilder.ProviderConnectionString);
 
-            var entityConnectionStringBuilder =
-                new EntityConnectionStringBuilder(ConnectionString);
-
-            var sqlConnection = new SqlConnection(entityConnectionStringBuilder.ProviderConnectionString);
-
-            IdentityConnectionString = sqlConnection.ConnectionString;
+                return sqlConnection.ConnectionString;
+            }
         }
+
+        public static string ConnectionString => 
+            System.Configuration.ConfigurationManager.
+                ConnectionStrings["CarsSaleEntities1"].ConnectionString;
     }
 }

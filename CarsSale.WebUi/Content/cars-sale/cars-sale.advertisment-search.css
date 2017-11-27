@@ -1,0 +1,52 @@
+﻿.carousel-item {
+    height: inherit !important;
+    min-height: inherit !important;
+}
+
+.carousel-item {
+    margin-left: 13em;
+}
+
+.carousel-indicators > .indicator.active {
+    background-color: #aaaaaa;
+}
+
+.indicator {
+    color: red;
+    height: 3px;
+}
+
+.carousel-control-prev,
+.carousel-control-next,
+.carousel-inner {
+    background-color: lightgray;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+#search-result .advertisement:hover {
+    box-shadow: -10px 0px 10px 1px #aaaaaa;
+    transform: scale(1.01);
+    transition: all .2s;
+}
+
+
+.image-container {
+    position: relative;
+    height: 13em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+
+.image-content {
+    height: 100%;
+    position: relative;
+}
+
+.image-content img {
+    height: 100%;
+}

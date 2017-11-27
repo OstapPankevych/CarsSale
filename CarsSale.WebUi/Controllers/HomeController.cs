@@ -4,6 +4,7 @@ using CarsSale.DataAccess.Repositories.Interfaces;
 
 using CarsSale.WebUi.Models;
 using CarsSale.WebUi.Filters;
+using CarsSale.WebUi.Models.Advertisement;
 
 namespace CarsSale.WebUi.Controllers
 {
@@ -34,7 +35,7 @@ namespace CarsSale.WebUi.Controllers
 
         public ActionResult Index()
         {
-            var searchViewModel = new SearchViewModel
+            var searchViewModel = new SearchAdvertismentViewModel
             {
                 BrandOptions = _brandRepository.GetBrands(),
                 RegionOptions = _regionRepository.GetRegions(),

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<CarsSale.DataAccess.DTO.Advertisement>
+
+<div class="row">
+	@foreach (var x in Model)
+	{
+		@Html.DisplayFor(m => x, "Advertisment")
+		<hr>
+	}
+</div>

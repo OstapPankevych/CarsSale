@@ -30,6 +30,8 @@
         <AssociationConnector Association="CarsSaleModel.FK__UserLogin__UserI__1A14E395" ManuallyRouted="false" />
         <AssociationConnector Association="CarsSaleModel.FK__VEHICL__VEHICL_T__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="CarsSaleModel.UserRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CarsSaleModel.CURRENCY" Width="1.5" PointX="0.75" PointY="6.875" />
+        <AssociationConnector Association="CarsSaleModel.FK__ADVERTISE__CURRE__3D5E1FD2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,8 +15,8 @@ namespace CarsSale.DataAccess
     
     public partial class CarsSaleEntities : DbContext
     {
-        public CarsSaleEntities(string connectionString)
-            : base(connectionString)
+        public CarsSaleEntities()
+            : base("name=CarsSaleEntities")
         {
         }
     
@@ -38,5 +38,6 @@ namespace CarsSale.DataAccess
         public virtual DbSet<VEHICL> VEHICLs { get; set; }
         public virtual DbSet<VEHICL_TYPE> VEHICL_TYPE { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<CURRENCY> CURRENCies { get; set; }
     }
 }

@@ -23,6 +23,10 @@ namespace CarsSale.DataAccess.DTO
 
         public string ImagePath { get; set; }
 
+        public Currency Currency { get; set; }
+
+        public int Price { get; set; }
+
         public Advertisement(ADVERTISEMENT entity = null)
         {
             if (entity == null) return;
@@ -33,6 +37,8 @@ namespace CarsSale.DataAccess.DTO
             Vehicl = new Vehicl(entity.VEHICL);
             Region = new Region(entity.REGION);
             ImagePath = entity.IMAGE_PATH;
+            Currency = new Currency(entity.CURRENCY);
+            Price = entity.PRICE;
             User = new CarsSaleUser
             {
                 Email = entity.User?.Email,
@@ -52,7 +58,9 @@ namespace CarsSale.DataAccess.DTO
                 VEHICL_ID = Vehicl.Id,
                 REGION_ID = Region.Id,
                 USER_ID = User.Id,
-                IMAGE_PATH = ImagePath
+                IMAGE_PATH = ImagePath,
+                PRICE = Price,
+                CURRENCY_ID = Currency.Id
             };
         }
     }
