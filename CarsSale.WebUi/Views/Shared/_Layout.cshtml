@@ -61,11 +61,11 @@
 			</div>
 		</div>
 	</nav>
+    <div id="error-placement" class="alert alert-danger alert-dismissable  col-lg-2 float-right">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong class="message"></strong>
+    </div>
 	<div id="content" class="container">
-        <div id="error-placement" class="alert alert-danger alert-dismissable fade in top navbar-fixed-top col-lg-3 float-right col-lg-offset-9">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong class="message"></strong>
-        </div>
 		@RenderBody()
 	</div>
 </body>
