@@ -50,3 +50,15 @@
 .image-content img {
     height: 100%;
 }
+
+#search-empty {
+    display: none;
+}
+
+#img-search-empty {
+    background-image: url('../../Images/cars-sale/search.png');
+    background-size: 20em 20em;
+    width: 20em;
+    height: 20em;
+    margin: auto;
+}

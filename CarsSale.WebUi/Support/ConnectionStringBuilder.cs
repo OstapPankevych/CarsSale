@@ -19,6 +19,6 @@ namespace CarsSale.WebUi.Support
 
         public static string ConnectionString => 
             System.Configuration.ConfigurationManager.
-                ConnectionStrings["CarsSaleEntities1"].ConnectionString;
+                ConnectionStrings["CarsSaleEntities"].ConnectionString;
     }
 }

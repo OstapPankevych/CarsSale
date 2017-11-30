@@ -22,7 +22,7 @@
 
 $(() => {
     var searchResult = $("#search-result");
-
+    var emptySearchResult = $("#search-empty");
     var getCheckedValues = (checkBoxContainerId) => {
         var fuels = $(checkBoxContainerId + " input:checked")
             .map(() => $(this).val());
@@ -80,14 +80,19 @@ $(() => {
     var onSearchSuccess = (data) => {
         $("#error-placement").hide();
         carsSale.loader.hide();
-        searchResult.html(data);
-        searchResult.show();
+        if (data) {
+            searchResult.html(data);
+            emptySearchResult.hide();
+            searchResult.show();
+        } else {
+            searchResult.hide();
+            emptySearchResult.show();
+        }
     };
 
     $("button#search").click(() => {
         if (!isFormValid()) return;
         carsSale.errorPlacement.hide();
-        searchResult.hide();
         carsSale.loader.show();
         carsSale.advertisments.search(getSearchOptions(), onSearchSuccess);
     });
