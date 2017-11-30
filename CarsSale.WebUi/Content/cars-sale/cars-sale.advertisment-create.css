@@ -1,0 +1,46 @@
+﻿#photo-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+#photo-btn-input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+
+.image-container {
+    position: relative;
+    height: 20em;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #000000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.no-photo {
+    opacity: 0.2;
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.no-photo img {
+    display: block;
+    width: 10em;
+    height: 10em;
+    margin: auto;
+    margin-top: 13%
+}
+
+.image-content {
+    display: none;
+    height: 100%;
+    position: relative;
+}
+
+.image-content img {
+    height: 100%;
+}

@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,11 +50,17 @@
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AspNet.Mvc.UnobtrusiveAjax, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\aspnet-mvc-unobtrusiveajax.1.0.0\lib\net461\AspNet.Mvc.UnobtrusiveAjax.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="jQuery.Validation.Unobtrusive.Native, Version=1.1.5809.17463, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jQuery.Validation.Unobtrusive.Native.MVC5.1.3.0\lib\net45\jQuery.Validation.Unobtrusive.Native.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -112,6 +120,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -145,126 +154,117 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\loading.gif" />
-    <Content Include="Content\Images\logo.jpeg" />
-    <Content Include="Content\Scripts\cars-sale\cars-sale.advertisement-search.js" />
-    <Content Include="Content\Scripts\cars-sale\cars-sale.js" />
-    <Content Include="Content\Scripts\cars-sale\modules\cars-sale.modules.js" />
-    <Content Include="Content\Styles\cars-sale\default.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cars-sale\cars-sale.account-create.css" />
+    <Content Include="Content\cars-sale\cars-sale.advertisment-create.css" />
+    <Content Include="Content\cars-sale\cars-sale.advertisment-search.css" />
+    <Content Include="Content\cars-sale\layout.css" />
+    <Content Include="Images\cars-sale\camera-icon.gif" />
+    <Content Include="Images\cars-sale\loading.gif" />
+    <Content Include="Images\cars-sale\logo.jpeg" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cars-sale\cars-sale.js" />
+    <Content Include="Scripts\cars-sale\modules\cars-sale.advertisment-create.js" />
+    <Content Include="Scripts\cars-sale\modules\cars-sale.advertisment-search.js" />
+    <Compile Include="Attributes\AtLeastCollectionCountAttribute.cs" />
+    <Compile Include="Attributes\ValidateHttpPostedFileBaseAsImageAttribute.cs" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
+    <Content Include="Scripts\cars-sale\modules\cars-sale.account-create.js" />
     <Compile Include="Support\ConnectionStringBuilder.cs" />
     <Compile Include="Support\LogProvider.cs" />
-    <Content Include="Content\Scripts\image-viewer\image-viewer.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\css\fileinput-rtl.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\css\fileinput-rtl.min.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\css\fileinput.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\css\fileinput.min.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\img\loading-sm.gif" />
-    <Content Include="Content\Styles\bootstrap-fileinput\img\loading.gif" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer-fa\theme.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer-fa\theme.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer-fa\theme.min.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer-fa\theme.min.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer\theme.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer\theme.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer\theme.min.css" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\explorer\theme.min.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\fa\theme.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\fa\theme.min.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.js" />
-    <Content Include="Content\Styles\bootstrap-fileinput\themes\gly\theme.min.js" />
-    <Content Include="Content\Scripts\cars-sale\modules\cars-sale.js" />
-    <Content Include="Content\Styles\bootstrap\bootstrap-theme.css" />
-    <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css" />
-    <Content Include="Content\Styles\bootstrap\bootstrap.css" />
-    <Content Include="Content\Styles\bootstrap\bootstrap.min.css" />
-    <Content Include="Content\Styles\bootstrap\cosmo\bootstrap.min.css" />
-    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\Styles\image-viewer\image-viewer.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\Styles\bootstrap\bootstrap.min.css.map" />
-    <Content Include="Content\Styles\bootstrap\bootstrap.css.map" />
-    <Content Include="Content\Styles\bootstrap\bootstrap-theme.min.css.map" />
-    <Content Include="Content\Styles\bootstrap\bootstrap-theme.css.map" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <None Include="Content\Scripts\src\jquery-3.1.1.intellisense.js" />
-    <Content Include="Content\Scripts\src\bootstrap.js" />
-    <Content Include="Content\Scripts\src\bootstrap.min.js" />
-    <Content Include="Content\Scripts\src\fileinput.js" />
-    <Content Include="Content\Scripts\src\fileinput.min.js" />
-    <Content Include="Content\Scripts\src\jquery-3.1.1.js" />
-    <Content Include="Content\Scripts\src\jquery-3.1.1.min.js" />
-    <Content Include="Content\Scripts\src\jquery-3.1.1.slim.js" />
-    <Content Include="Content\Scripts\src\jquery-3.1.1.slim.min.js" />
-    <Content Include="Content\Scripts\src\jquery-3.1.1.slim.min.map" />
-    <Content Include="Content\Scripts\src\jquery-3.1.1.min.map" />
-    <None Include="Content\Scripts\src\jquery.validate-vsdoc.js" />
-    <Content Include="Content\Scripts\src\jquery.maskedinput.js" />
-    <Content Include="Content\Scripts\src\jquery.maskedinput.min.js" />
-    <Content Include="Content\Scripts\src\jquery.unobtrusive-ajax.js" />
-    <Content Include="Content\Scripts\src\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Content\Scripts\src\jquery.validate.js" />
-    <Content Include="Content\Scripts\src\jquery.validate.min.js" />
-    <Content Include="Content\Scripts\src\jquery.validate.unobtrusive.js" />
-    <Content Include="Content\Scripts\src\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Content\Scripts\src\locales\ar.js" />
-    <Content Include="Content\Scripts\src\locales\az.js" />
-    <Content Include="Content\Scripts\src\locales\bg.js" />
-    <Content Include="Content\Scripts\src\locales\ca.js" />
-    <Content Include="Content\Scripts\src\locales\cr.js" />
-    <Content Include="Content\Scripts\src\locales\cz.js" />
-    <Content Include="Content\Scripts\src\locales\da.js" />
-    <Content Include="Content\Scripts\src\locales\de.js" />
-    <Content Include="Content\Scripts\src\locales\el.js" />
-    <Content Include="Content\Scripts\src\locales\es.js" />
-    <Content Include="Content\Scripts\src\locales\et.js" />
-    <Content Include="Content\Scripts\src\locales\fa.js" />
-    <Content Include="Content\Scripts\src\locales\fi.js" />
-    <Content Include="Content\Scripts\src\locales\fr.js" />
-    <Content Include="Content\Scripts\src\locales\gl.js" />
-    <Content Include="Content\Scripts\src\locales\hu.js" />
-    <Content Include="Content\Scripts\src\locales\id.js" />
-    <Content Include="Content\Scripts\src\locales\it.js" />
-    <Content Include="Content\Scripts\src\locales\ja.js" />
-    <Content Include="Content\Scripts\src\locales\kr.js" />
-    <Content Include="Content\Scripts\src\locales\kz.js" />
-    <Content Include="Content\Scripts\src\locales\LANG.js" />
-    <Content Include="Content\Scripts\src\locales\lt.js" />
-    <Content Include="Content\Scripts\src\locales\nl.js" />
-    <Content Include="Content\Scripts\src\locales\no.js" />
-    <Content Include="Content\Scripts\src\locales\pl.js" />
-    <Content Include="Content\Scripts\src\locales\pt-BR.js" />
-    <Content Include="Content\Scripts\src\locales\pt.js" />
-    <Content Include="Content\Scripts\src\locales\ro.js" />
-    <Content Include="Content\Scripts\src\locales\ru.js" />
-    <Content Include="Content\Scripts\src\locales\sk.js" />
-    <Content Include="Content\Scripts\src\locales\sl.js" />
-    <Content Include="Content\Scripts\src\locales\sv.js" />
-    <Content Include="Content\Scripts\src\locales\th.js" />
-    <Content Include="Content\Scripts\src\locales\tr.js" />
-    <Content Include="Content\Scripts\src\locales\uk.js" />
-    <Content Include="Content\Scripts\src\locales\vi.js" />
-    <Content Include="Content\Scripts\src\locales\zh-TW.js" />
-    <Content Include="Content\Scripts\src\locales\zh.js" />
-    <Content Include="Content\Scripts\src\MicrosoftAjax.debug.js" />
-    <Content Include="Content\Scripts\src\MicrosoftAjax.js" />
-    <Content Include="Content\Scripts\src\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Content\Scripts\src\MicrosoftMvcAjax.js" />
-    <Content Include="Content\Scripts\src\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Content\Scripts\src\MicrosoftMvcValidation.js" />
-    <Content Include="Content\Scripts\src\modernizr-2.8.3.js" />
     <Compile Include="Filters\ExceptionLoggingFilterAttribute.cs" />
-    <Compile Include="Models\EngineViewModel.cs" />
-    <Content Include="Content\Scripts\src\plugins\piexif.js" />
-    <Content Include="Content\Scripts\src\plugins\piexif.min.js" />
-    <Content Include="Content\Scripts\src\plugins\purify.js" />
-    <Content Include="Content\Scripts\src\plugins\purify.min.js" />
-    <Content Include="Content\Scripts\src\plugins\sortable.js" />
-    <Content Include="Content\Scripts\src\plugins\sortable.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\inputmask\bindings\inputmask.binding.js" />
+    <Content Include="Scripts\inputmask\bindings\inputmask.binding.min.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.jqlite.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.jqlite.min.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.jquery.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.jquery.min.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.min.js" />
+    <Content Include="Scripts\inputmask\global\document.js" />
+    <Content Include="Scripts\inputmask\global\document.min.js" />
+    <Content Include="Scripts\inputmask\global\window.js" />
+    <Content Include="Scripts\inputmask\global\window.min.js" />
+    <Content Include="Scripts\inputmask\inputmask.date.extensions.js" />
+    <Content Include="Scripts\inputmask\inputmask.date.extensions.min.js" />
+    <Content Include="Scripts\inputmask\inputmask.extensions.js" />
+    <Content Include="Scripts\inputmask\inputmask.extensions.min.js" />
+    <Content Include="Scripts\inputmask\inputmask.js" />
+    <Content Include="Scripts\inputmask\inputmask.min.js" />
+    <Content Include="Scripts\inputmask\inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\inputmask\inputmask.numeric.extensions.min.js" />
+    <Content Include="Scripts\inputmask\inputmask.phone.extensions.js" />
+    <Content Include="Scripts\inputmask\inputmask.phone.extensions.min.js" />
+    <Content Include="Scripts\inputmask\inputmask.regex.extensions.js" />
+    <Content Include="Scripts\inputmask\inputmask.regex.extensions.min.js" />
+    <Content Include="Scripts\inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\inputmask\jquery.inputmask.min.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-be.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-be.min.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-nl.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-nl.min.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-ru.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-ru.min.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-uk.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone-uk.min.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone.js" />
+    <Content Include="Scripts\inputmask\phone-codes\phone.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery.inputmask.bundle.js" />
+    <Content Include="Scripts\jquery.inputmask.bundle.min.js" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -277,10 +277,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModel.cs" />
-    <Compile Include="Models\Advertisements\AdvertisementViewModel.cs" />
-    <Compile Include="Models\Advertisements\NewAdvertisementViewModel.cs" />
-    <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\CreateAccountViewModel.cs" />
+    <Compile Include="Models\Advertisement\AdvertisementViewModel.cs" />
+    <Compile Include="Models\Advertisement\CreateAdvertisementViewModel.cs" />
+    <Compile Include="Models\Advertisement\SearchAdvertismentViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -290,16 +290,29 @@
     <Content Include="Views\Account\Registry.cshtml" />
     <Content Include="log4net.config" />
     <None Include="packages.config" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Advertisement\Create.cshtml" />
-    <Content Include="Views\Shared\Partials\Advertisement.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Partials\SearchForm.cshtml" />
-    <Content Include="Views\Shared\Partials\Slider.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Advertisment.cshtml" />
+    <Content Include="Views\Shared\Partials\Advertisment.cshtml" />
+    <Content Include="Views\Advertisement\Search.cshtml" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
+    <Content Include="Views\Shared\Partials\AdvertisementSlider.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -309,7 +322,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Icons\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarsSale.DataAccess\CarsSale.DataAccess.csproj">
@@ -320,11 +332,18 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

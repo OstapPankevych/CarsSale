@@ -86,6 +86,8 @@ namespace CarsSale.WebUi.App_Start
                 .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
             kernel.Bind<IRegionRepository>().To<RegionRepository>()
                 .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
+            kernel.Bind<ICurrencyRepository>().To<CurrencyRepository>()
+                .WithConstructorArgument("connectionString", ConnectionStringBuilder.ConnectionString);
 
             kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
 

@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using CarsSale.DataAccess.DTO;
 using CarsSale.DataAccess.Identity.Managers;
 using CarsSale.DataAccess.Providers.Content;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.WebUi.Filters;
 using CarsSale.WebUi.Models;
-using CarsSale.WebUi.Models.Advertisements;
+using CarsSale.WebUi.Models.Advertisement;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace CarsSale.WebUi.Controllers
@@ -27,6 +29,7 @@ namespace CarsSale.WebUi.Controllers
         private readonly ITransmissionTypeRepository _transmissionRepository;
         private readonly IVehiclTypeRepository _vehiclTypeRepository;
         private readonly IRegionRepository _regionRepository;
+        private readonly ICurrencyRepository _currencyRepository;
 
         private CarsSaleUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<CarsSaleUserManager>();
 
@@ -37,7 +40,8 @@ namespace CarsSale.WebUi.Controllers
             IFuelRepository fuelRepository,
             ITransmissionTypeRepository transmissionRepository,
             IVehiclTypeRepository vehiclTypeRepository,
-            IRegionRepository regionRepository)
+            IRegionRepository regionRepository,
+            ICurrencyRepository currencyRepository)
         {
             _contentProvider = contentProvider;
             _advertisementRepository = advertisementRepository;
@@ -46,66 +50,86 @@ namespace CarsSale.WebUi.Controllers
             _transmissionRepository = transmissionRepository;
             _vehiclTypeRepository = vehiclTypeRepository;
             _regionRepository = regionRepository;
+            _currencyRepository = currencyRepository;
         }
 
         [Authorize]
         public ActionResult Create()
         {
-            var advertisement = new NewAdvertisementViewModel
-            {
-                RegionOptions = _regionRepository.GetRegions(),
-                BrandOptions = _brandRepository.GetBrands(),
-                VehiclTypeOptions = _vehiclTypeRepository.GetVehiclTypes(),
-                TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes(),
-                FuelOptions = _fuelRepository.GetFuels(),
-
-            };
+            var advertisement = new CreateAdvertisementViewModel();
+            InitCreateAdvertismentViewModelOptions(advertisement);
             return View(advertisement);
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Create(NewAdvertisementViewModel adv)
+        public ActionResult Create(CreateAdvertisementViewModel adv)
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "The registered form is invalid! Please try again");
-                return View();
+                foreach (var key in ModelState.Keys)
+                {
+                    var errors = ModelState[key].Errors.ToList();
+                    if (errors.Count == 0) continue;
+                    foreach (var error in errors)
+                    {
+                        ModelState.AddModelError(key, error.ErrorMessage);
+                    }
+                }
+                ModelState.AddModelError("", "The form is invalid! Please try again");
+                InitCreateAdvertismentViewModelOptions(adv);
+                return View(adv);
             }
 
             var rootFolder = ConfigurationManager.AppSettings["advertismentsRootFolder"];
-            var imagesFolder = Path.Combine(rootFolder, new Guid().ToString());
+            var imagesFolder = Path.Combine(rootFolder, Guid.NewGuid().ToString());
+            var fullPath = Path.Combine(imagesFolder, adv.Image.FileName);
 
             var advertisement = new Advertisement
             {
                 CreatedDate = DateTime.Now,
                 ExpirationDate = DateTime.Today.AddDays(30),
                 IsActive = false,
-                Region = adv.Region,
+                Region = new Region { Id = adv.RegionId },
                 Vehicl = new Vehicl
                 {
-                    Brand = adv.Brand,
+                    Brand = new Brand { Id = adv.BrandId },
                     Engine = new Engine
                     {
                         Volume = adv.EngineVolume,
                         Fuels = adv.Fuels.Select(x => new Fuel {Id = x})
                     },
-                    TransmissionType = adv.TransmissionType,
-                    VehiclType = adv.VehiclType
+                    TransmissionType = new TransmissionType { Id = adv.TransmissionTypeId },
+                    VehiclType = new VehiclType { Id = adv.VehiclTypeId }
                 },
                 User = UserManager.FindByLogin(User.Identity.Name),
-                ImagePath = Path.Combine(imagesFolder, adv.Image.FileName)
+                ImagePath = fullPath,
+                Price = adv.Price,
+                Currency = new Currency { Id = adv.CurrencyId }
             };
-
-            _contentProvider.Upload(Path.Combine(imagesFolder, adv.Image.FileName),
-                adv.Image.InputStream);
+            
+            _contentProvider.Upload(fullPath, adv.Image.InputStream);
 
             _advertisementRepository.Create(advertisement);
 
             return RedirectToAction("Index", "Home");
         }
 
-        public PartialViewResult Search(SearchViewModel searchViewModel)
+        public ActionResult Search()
+        {
+            var searchViewModel = new SearchAdvertismentViewModel
+            {
+                RegionOptions = _regionRepository.GetRegions(),
+                BrandOptions = _brandRepository.GetBrands(),
+                FuelOptions = _fuelRepository.GetFuels(),
+                VehiclTypeOptions =  _vehiclTypeRepository.GetVehiclTypes(),
+                TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes()
+            };
+            return View(searchViewModel);
+        }
+
+        [HttpPost]
+        public PartialViewResult Search(SearchAdvertismentViewModel searchViewModel)
         {
             var advertisements = _advertisementRepository.GetAdvertisements(
                 searchViewModel.Brand,
@@ -113,9 +137,9 @@ namespace CarsSale.WebUi.Controllers
                 searchViewModel.VehiclType,
                 searchViewModel.TransmissionType,
                 searchViewModel.Fuels?.ToList(),
-                searchViewModel.EngineFrom != null ? new Engine {Volume = searchViewModel.EngineFrom.Volume} : null,
-                searchViewModel.EngineTo != null ? new Engine {Volume = searchViewModel.EngineTo.Volume} : null);
-            return PartialView("Partials/Advertisement", advertisements);
+                searchViewModel.EngineFrom != null ? new Engine { Volume = searchViewModel.EngineFrom.Volume } : null,
+                searchViewModel.EngineTo != null ? new Engine { Volume = searchViewModel.EngineTo.Volume } : null);
+            return PartialView("Partials/Advertisment", advertisements);
         }
 
         public FileContentResult GetImage(string imagePath)
@@ -130,7 +154,17 @@ namespace CarsSale.WebUi.Controllers
         public PartialViewResult GetTopAdvertisements(int top)
         {
             var arvertisements = _advertisementRepository.GetTopAdvertisements(top);
-            return PartialView("Partials/Slider", arvertisements);
+            return PartialView("Partials/AdvertisementSlider", arvertisements);
+        }
+
+        private void InitCreateAdvertismentViewModelOptions(CreateAdvertisementViewModel adv)
+        {
+            adv.RegionOptions = _regionRepository.GetRegions();
+            adv.BrandOptions = _brandRepository.GetBrands();
+            adv.VehiclTypeOptions = _vehiclTypeRepository.GetVehiclTypes();
+            adv.TransmissionTypeOptions = _transmissionRepository.GetTransmissionTypes();
+            adv.FuelOptions = _fuelRepository.GetFuels();
+            adv.CurrencyOptions = _currencyRepository.GetCurrencies();
         }
     }
 }

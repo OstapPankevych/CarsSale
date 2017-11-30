@@ -1,0 +1,50 @@
+﻿@model CarsSale.DataAccess.DTO.Advertisement
+
+<div class="col-md-6 advertisement">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="image-container">
+                <div class="col-sm-12 row">
+                    <div class="row col-sm-7  text-left">
+                        <h5>@Model.Vehicl.Brand.Name </h5>
+                    </div>
+                    <div class="row col-sm-5">
+                        <h5>@Model.Price @Model.Currency.Sign</h5>
+                    </div>
+                </div>
+				<div class="image-content">
+					<img id="photo" src="@Url.Action("GetImage", "Advertisement", new {imagePath = Model.ImagePath})" class="img-fluid" alt="Responsive image">
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="col-md-12">
+            <div class="row col-sm-12">
+			    <label class="col-sm-6">
+                    <label>Transmission:</label>
+                    <label class="badge">@Model.Vehicl.TransmissionType.Name</label>
+                </label>
+                <lable class="col-sm-6 text-right">
+                    <label>Engine:</label>
+                    <label class="badge">@Math.Round((float)Model.Vehicl.Engine.Volume / 1000, 1) m<sup>3</sup></label>
+                </lable>
+            </div>
+            <div class="row">
+                <lable class="col-sm-12">
+                    <label>Fuels:</label>
+                    @foreach (var fuel in Model.Vehicl.Engine.Fuels)
+                    {
+                        <span class="badge">@fuel.Name</span>
+                    }
+                </lable>
+            </div>
+            <div class="row">
+                <lable class="col-sm-12">
+                    <label>Seller:</label>
+                    <div class="badge">@Model.User.FullName</div>
+                    <span class="badge col-sm-6 text-right">@Model.User.PhoneNumber</span>
+                </lable>
+            </div>
+		</div>
+	</div>
+</div>

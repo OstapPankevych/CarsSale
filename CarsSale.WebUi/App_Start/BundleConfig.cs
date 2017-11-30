@@ -6,23 +6,28 @@ namespace CarsSale.WebUi
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/bootstrap")
-                .Include("~/Content/Styles/bootstrap/bootstrap.css",
-                    "~/Content/Styles/bootstrap/bootstrap-theme.css",
-                    "~/Content/Styles/cars-sale/default.css"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery/js").Include(
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery-{version}.intellisense.js",
+                "~/Scripts/jquery.mask.js",
+                "~/Scripts/jquery.inputmask.bundle.js",
+               "~/Scripts/jquery.validate.js",
+               "~/Scripts/jquery.validate.unobtrusive.js"
+               ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/bootstrap")
-                .Include("~/Content/Scripts/src/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery-validate/js").Include(
+                "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.validate.unobtrusive.js"
+            ));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Content/Scripts/src/jquery-{version}.js",
-                "~/Content/Scripts/src/jquery.validate.js",
-                "~/Content/Scripts/src/jquery.maskedinput.js",
-                "~/Content/Scripts/src/jquery.validate.unobtrusive.js",
-                "~/Content/Scripts/src/jquery.unobtrusive-ajax.js",
-                "~/Content/Scripts/src/jquery.validate.unobtrusive-ajax.js",
-                "~/Content/Scripts/src/MicrosoftAjax.js",
-                "~/Content/Scripts/src/MicrosoftMvcAjax.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap/js")
+                .Include("~/Scripts/umd/popper.js",
+                    "~/Scripts/bootstrap.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/bootstrap/css")
+                .Include("~/Content/bootstrap.css",
+                    "~/Content/bootstrap-grid.css",
+                    "~/Content/bootstrap-reboot.css"));
         }
     }
 }

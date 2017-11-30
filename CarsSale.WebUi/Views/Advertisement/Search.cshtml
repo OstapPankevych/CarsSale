@@ -1,0 +1,128 @@
+﻿@model CarsSale.WebUi.Models.Advertisement.SearchAdvertismentViewModel
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+	
+<link href="~/Content/cars-sale/cars-sale.advertisment-search.css" rel="stylesheet" />
+<script src="~/Scripts/cars-sale/modules/cars-sale.advertisment-search.js"></script>
+
+<div class="row">
+	<div class="col-lg-3">
+		<h1 class="my-4">Search</h1>
+		<div class="list-group">
+			<div id="search-form">
+				<div>
+					<div>
+						<div class="row">
+							<div class="col-lg-12">
+								<label class="col-lg-12">Region</label>
+								<div class="col-lg-12">
+									<select class="form-control" id="region">
+										<option value="">-- Select --</option>
+										@foreach (var x in Model.RegionOptions)
+										{
+											<option value="@x.Id">@x.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-lg-12">
+								<label class="col-lg-12">Brand</label>
+								<div class="col-lg-12">
+									<select class="form-control" id="brand">
+										<option value="">-- Select --</option>
+										@foreach (var x in Model.BrandOptions)
+										{
+											<option value="@x.Id">@x.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-lg-12">
+								<label class="col-lg-12">Vehicl Type</label>
+								<div class="col-lg-12">
+									<select class="form-control" id="vehicl-type">
+										<option value="">-- Select --</option>
+										@foreach (var x in Model.VehiclTypeOptions)
+										{
+											<option value="@x.Id">@x.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-lg-12">
+								<label class="col-lg-12">Transmission</label>
+								<div class="col-lg-12">
+									<select class="form-control" id="transmission">
+										<option value="">-- Select --</option>
+										@foreach (var x in Model.TransmissionTypeOptions)
+										{
+											<option value="@x.Id">@x.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="col-lg-12">
+							<form id="engine-volume-search-form" min="1" max="10000" class="col-lg-12">
+								<label class="col-lg-12 text-center">Engine</label>
+								<div class="col-lg-12">
+									<div class="col-lg-6">From</div>
+									<div class="form-group">
+										<input class="form-control" type="number" id="search-volume-from" name="searchVolumeFrom" />
+									</div>
+									<div class="col-lg-6">To</div>
+									<div class="form-group">
+										<input class="form-control" type="number" id="search-volume-to" name="searchVolumeTo" />
+									</div>
+									<div class="col-lg-12">
+										<div>
+											@foreach (var x in Model.FuelOptions)
+											{
+												<label class="custom-control custom-checkbox" id="fuels">
+													<input type="checkbox"
+													       class="custom-control-input"
+													       value="@x.Id"
+													       name="@Html.NameFor(m => m.Fuels)">
+													<span class="custom-control-indicator"></span>
+													<span class="custom-control-description">
+														@x.Name
+													</span>
+												</label>
+											}
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<hr>
+						<div class="col-lg-10">
+							<button id="search" type="submit" class="btn btn-primary">Search</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-9">
+		@Html.Action("GetTopAdvertisements", "Advertisement", new { top = 3 }) 
+		<hr>
+        <div id="search-empty" class="row">
+            <div id="img-search-empty" class="col-lg-12 text-center"></div>
+            <div class="col-lg-12 text-center">
+                <h3>No Advertisments found</h3>
+            </div>
+        </div>
+		<div id="search-result"></div>
+	</div>
+</div>
