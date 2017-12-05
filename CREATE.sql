@@ -19,7 +19,7 @@ CREATE TABLE [User](
     [AccessFailedCount] INT NOT NULL,
 	/*Not Identity required*/
 	[FullName] NVARCHAR(256) NOT NULL,
-	[Birthday] DATETIME NOT NULL,
+	[Birthday] DATETIME NULL,
 	/***********************/
 	PRIMARY KEY([Id]),
 	UNIQUE ([UserName])
