@@ -34,7 +34,6 @@ namespace CarsSale.WebUi.Models
         [Remote("CheckPhone", "Account")]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "The Birthday is required")]
         [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
     }
