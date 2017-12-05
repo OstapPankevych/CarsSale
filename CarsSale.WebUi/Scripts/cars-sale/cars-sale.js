@@ -23,3 +23,11 @@ $(document).ajaxError(() => {
     carsSale.loader.hide();
     carsSale.errorPlacement.show("Ajax request error. Please contact to support.");
 });
+
+$.validator.setDefaults({
+    onkeyup: (element, e) => {
+        if ($(element).attr('data-val-remote-url')) return false;
+        $(element).validate();
+        return $(element).valid();
+    }
+});

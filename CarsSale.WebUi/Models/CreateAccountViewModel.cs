@@ -6,9 +6,9 @@ namespace CarsSale.WebUi.Models
 {
     public class CreateAccountViewModel
     {
+        [Remote("CheckLogin", "Account")]
         [Required(ErrorMessage = "The Login is required")]
         [MaxLength(50, ErrorMessage = "The Login can not be longer 50 characters")]
-        [Remote("CheckLogin", "Account")]
         public string Login { get; set; }
 
         [Required(ErrorMessage = "The Name is required")]
