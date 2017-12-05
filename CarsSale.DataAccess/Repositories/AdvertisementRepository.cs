@@ -59,8 +59,8 @@ namespace CarsSale.DataAccess.Repositories
             using (var context = CreateContext())
             {
                 return context.ADVERTISEMENTs
-                    .OrderBy(x => x.CREATED_DATE)
-                    .Take(5)
+                    .OrderByDescending(x => x.CREATED_DATE)
+                    .Take(top)
                     .AsEnumerable()
                     .Select(x => new Advertisement(x))
                     .ToList();

@@ -151,9 +151,10 @@ namespace CarsSale.WebUi.Controllers
             return new FileContentResult(ms.ToArray(), $"image/{Path.GetExtension(imagePath)}");
         }
 
-        public PartialViewResult GetTopAdvertisements(int top)
+        public PartialViewResult GetTopAdvertisements(int? top)
         {
-            var arvertisements = _advertisementRepository.GetTopAdvertisements(top);
+            var topAdvs = top ?? int.Parse(ConfigurationManager.AppSettings["topAdvertismentsCount"]);
+            var arvertisements = _advertisementRepository.GetTopAdvertisements(topAdvs);
             return PartialView("Partials/AdvertisementSlider", arvertisements);
         }
 
