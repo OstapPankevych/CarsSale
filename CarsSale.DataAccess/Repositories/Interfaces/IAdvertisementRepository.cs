@@ -17,5 +17,7 @@ namespace CarsSale.DataAccess.Repositories.Interfaces
             Engine to = null);
 
         IEnumerable<Advertisement> GetTopAdvertisements(int top);
+
+        Advertisement GetAdvertisement(int id);
     }
 }
