@@ -149,8 +149,8 @@
     <Compile Include="Identity\Entities\CarsSaleUserRole.cs" />
     <Compile Include="Identity\Managers\CarsSaleUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\Content\ContentProvider.cs" />
-    <Compile Include="Providers\Content\IContentProvider.cs" />
+    <Compile Include="Servicess\Content\AzureBlobService.cs" />
+    <Compile Include="Servicess\Content\IContentService.cs" />
     <Compile Include="REGION.cs">
       <DependentUpon>CarsSale.tt</DependentUpon>
     </Compile>

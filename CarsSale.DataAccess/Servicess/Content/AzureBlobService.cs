@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
+using CarsSale.DataAccess.Providers.Content;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace CarsSale.DataAccess.Providers.Content
+namespace CarsSale.DataAccess.Servicess.Content
 {
     public class AzureProvider : IContentProvider
     {

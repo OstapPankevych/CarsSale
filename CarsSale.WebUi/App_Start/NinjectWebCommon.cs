@@ -2,6 +2,7 @@ using System.Web.Mvc;
 using CarsSale.DataAccess.Providers.Content;
 using CarsSale.DataAccess.Repositories.Interfaces;
 using CarsSale.DataAccess.Repositories.QueryBuilders;
+using CarsSale.DataAccess.Servicess.Content;
 using CarsSale.WebUi.Filters;
 using CarsSale.WebUi.Support;
 using Microsoft.AspNet.Identity.EntityFramework;
