@@ -15,7 +15,16 @@ namespace CarsSale.WebUi
         public void ConfigureAuth(IAppBuilder app)
         {
             app.CreatePerOwinContext(() => CarsSaleDbContext.Create(ConnectionStringBuilder.IdentityConnectionString));
-            app.CreatePerOwinContext<CarsSaleUserManager>(CarsSaleUserManager.Create);
+            app.CreatePerOwinContext<CarsSaleUserManager>((options, context) =>
+                CarsSaleUserManager.Create(options, context,
+                new PasswordValidator
+                {
+                    RequiredLength = PasswordConfigProvider.RequiredLength,
+                    RequireNonLetterOrDigit = PasswordConfigProvider.RequireNonLetterOrDigit,
+                    RequireDigit = PasswordConfigProvider.RequireDigit,
+                    RequireLowercase = PasswordConfigProvider.RequireLowercase,
+                    RequireUppercase = PasswordConfigProvider.RequireUppercase
+                }));
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

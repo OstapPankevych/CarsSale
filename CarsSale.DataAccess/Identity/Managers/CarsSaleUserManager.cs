@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Runtime.CompilerServices;
 using CarsSale.DataAccess.Identity.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -38,6 +39,21 @@ namespace CarsSale.DataAccess.Identity.Managers
         }
 
         public static CarsSaleUserManager Create(IdentityFactoryOptions<CarsSaleUserManager> options, IOwinContext context)
+        {
+            return Create(context);
+        }
+
+        public static CarsSaleUserManager Create(
+            IdentityFactoryOptions<CarsSaleUserManager> options,
+            IOwinContext context,
+            IIdentityValidator<string> passwordValidator)
+        {
+            var manager = Create(context);
+            manager.PasswordValidator = passwordValidator;
+            return manager;
+        }
+
+        private static CarsSaleUserManager Create(IOwinContext context)
         {
             var db = context.Get<CarsSaleDbContext>();
             var store = new UserStore<CarsSaleUser,
