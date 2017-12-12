@@ -92,7 +92,7 @@ namespace CarsSale.WebUi.App_Start
 
             kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
 
-            kernel.Bind<IAdvertisementSearchQueryBuilder>().To<AdvertismentSearchQueryBuilder>();
+            kernel.Bind<IAdvertisementSearchQueryBuilder>().To<AdvertismentRepositoryLinqExpressions>();
 
             kernel.BindFilter<ExceptionLoggingFilterAttribute>(FilterScope.Global, 0);
         }        
