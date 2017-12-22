@@ -132,13 +132,13 @@ namespace CarsSale.WebUi.Controllers
         public PartialViewResult Search(SearchAdvertismentViewModel searchViewModel)
         {
             var advertisements = _advertisementRepository.GetAdvertisements(
-                searchViewModel.Brand,
-                searchViewModel.Region,
-                searchViewModel.VehiclType,
-                searchViewModel.TransmissionType,
-                searchViewModel.Fuels?.ToList(),
-                searchViewModel.EngineFrom != null ? new Engine { Volume = searchViewModel.EngineFrom.Volume } : null,
-                searchViewModel.EngineTo != null ? new Engine { Volume = searchViewModel.EngineTo.Volume } : null);
+                searchViewModel.BrandId != null ? new Brand {Id = searchViewModel.BrandId.Value } : null,
+                searchViewModel.RegionId != null ? new Region { Id = searchViewModel.RegionId.Value } : null,
+                searchViewModel.VehiclTypeId != null ? new VehiclType { Id = searchViewModel.VehiclTypeId.Value } : null,
+                searchViewModel.TransmissionTypeId != null ? new TransmissionType { Id = searchViewModel.TransmissionTypeId.Value } : null,
+                searchViewModel.FuelIds?.Select(x => new Fuel { Id = x }).ToList(),
+                searchViewModel.EngineFrom != null ? new Engine { Volume = searchViewModel.EngineFrom.Value } : null,
+                searchViewModel.EngineTo != null ? new Engine { Volume = searchViewModel.EngineTo.Value } : null);
             return PartialView("Partials/Advertisment", advertisements);
         }
 

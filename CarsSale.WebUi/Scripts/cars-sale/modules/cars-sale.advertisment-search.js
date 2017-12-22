@@ -1,11 +1,11 @@
 ﻿carsSale.advertisments = (() => ({
     search: ({ regionId, brandId, vehiclTypeId, transmissionId, fuelIds, volumeFrom, volumeTo }, success, error) => {
         var data = {
-            Region: regionId ? { Id: regionId } : null,
-            Brand: brandId ? { Id: brandId } : null,
-            VehiclType: vehiclTypeId ? { Id: vehiclTypeId } : null,
-            TransmissionType: transmissionId ? { Id: transmissionId } : null,
-            Fuels: fuelIds.map((id) => ({ Id: id })),
+            RegionId: regionId,
+            BrandId: brandId,
+            VehiclTypeId: vehiclTypeId,
+            TransmissionTypeId: transmissionId,
+            FuelIds: fuelIds,
             EngineVolumeFrom: volumeFrom,
             EngineVolumeTo: volumeTo
         };

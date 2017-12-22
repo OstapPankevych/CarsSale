@@ -6,19 +6,17 @@ namespace CarsSale.WebUi.Models.Advertisement
 {
     public class SearchAdvertismentViewModel
     {
-        public class EngineViewModel
-        {
-            [Range(1, 10000)]
-            public int Volume { get; set; }
-        }
+        [Range(1, 10000)]
+        public int? EngineFrom { get; set; }
 
-        public EngineViewModel EngineFrom { get; set; }
-        public EngineViewModel EngineTo { get; set; }
-        public IEnumerable<Fuel> Fuels { get; set; }
-        public Region Region { get; set; }
-        public Brand Brand { get; set; }
-        public VehiclType VehiclType { get; set; }
-        public TransmissionType TransmissionType { get; set; }
+        [Range(1, 10000)]
+        public int? EngineTo { get; set; }
+
+        public int[] FuelIds { get; set; }
+        public int? RegionId { get; set; }
+        public int? BrandId { get; set; }
+        public int? VehiclTypeId { get; set; }
+        public int? TransmissionTypeId { get; set; }
 
         public IEnumerable<Fuel> FuelOptions { get; set; }
         public IEnumerable<Region> RegionOptions { get; set; }
