@@ -9,26 +9,26 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarsSale.WebApi.Services.Controllers
 {
     [Route("api/[controller]")]
-    public class AdvertismentsController : Controller
+    public class AdvertisementsController : Controller
     {
         private readonly IAdvertisementRepository _advertisementRepository;
-        public AdvertismentsController(IAdvertisementRepository advertisementRepository)
+        public AdvertisementsController(IAdvertisementRepository advertisementRepository)
         {
             _advertisementRepository = advertisementRepository;
         }
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Advertisement> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _advertisementRepository.GetAdvertisements();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Advertisement Get(int id)
+        public string Get(int id)
         {
-            return _advertisementRepository.GetAdvertisement(id);
+            return "value";
         }
 
         // POST api/values

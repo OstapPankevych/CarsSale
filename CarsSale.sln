@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsSale.DataAccess", "CarsSale.DataAccess\CarsSale.DataAccess.csproj", "{8885ADB7-DA9D-4B59-8B31-7D974DA44506}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsSale.WebUi", "CarsSale.WebUi\CarsSale.WebUi.csproj", "{B2B2DF2C-47BF-499E-A0C6-251475899E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsSale.WebApi.Services", "CarsSale.WebApi.Services\CarsSale.WebApi.Services.csproj", "{7E088B38-B9AD-47FD-8A77-E51AE48DB10C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsSale.WebApi.Services", "CarsSale.WebApi.Services\CarsSale.WebApi.Services.csproj", "{39B90005-DBE6-488B-8869-8C5479071A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{B2B2DF2C-47BF-499E-A0C6-251475899E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2B2DF2C-47BF-499E-A0C6-251475899E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2B2DF2C-47BF-499E-A0C6-251475899E8B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E088B38-B9AD-47FD-8A77-E51AE48DB10C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E088B38-B9AD-47FD-8A77-E51AE48DB10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E088B38-B9AD-47FD-8A77-E51AE48DB10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E088B38-B9AD-47FD-8A77-E51AE48DB10C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B90005-DBE6-488B-8869-8C5479071A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B90005-DBE6-488B-8869-8C5479071A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B90005-DBE6-488B-8869-8C5479071A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B90005-DBE6-488B-8869-8C5479071A87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

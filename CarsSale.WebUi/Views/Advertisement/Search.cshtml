@@ -92,7 +92,8 @@
 												<label class="custom-control custom-checkbox" id="fuels">
 													<input type="checkbox"
 													       class="custom-control-input"
-													       value="@x.Id">
+													       value="@x.Id"
+													       name="@Html.NameFor(m => m.FuelOptions)">
 													<span class="custom-control-indicator"></span>
 													<span class="custom-control-description">
 														@x.Name
